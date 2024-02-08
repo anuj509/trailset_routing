@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             InkWell(
               onTap: () {
                 html.window.open(
-                    'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic_link',
+                    'https://github.com/anuj509/trailset_routing/blob/main/README.md',
                     'Documentation');
               },
               child: Container(
