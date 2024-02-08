@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:parsel_web_optimize/mvp/src/home/model/json_uploaded_model.dart';
 import 'package:parsel_web_optimize/mvp/src/home/model/open_source_place_response.dart';
 import 'package:parsel_web_optimize/mvp/src/home/model/optimized_route_model.dart';
 import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
@@ -61,6 +65,11 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
   TextEditingController latController = TextEditingController();
   TextEditingController longController = TextEditingController();
   TextEditingController locationNameController = TextEditingController();
+  Timer? _debounceTimerForLocationName;
+  Timer? _debounceTimerForLat;
+  Timer? _debounceTimerForLong;
+  DateTime startDateTime = DateTime.now();
+  DateTime endDateTime = DateTime.now();
 
   @override
   void initState() {
@@ -123,12 +132,17 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                         onChanged: (val) async {
                           print(val.isNotEmpty && val.length > 3);
                           if (val.isNotEmpty && val.length > 3) {
+                            _debounceTimerForLocationName?.cancel();
                             // if (widget.isNewRecord) {
-                            //   await widget.homeProvider
-                            //       .searchOnChanged(searchText: val);
-                            //   state(() {});
+                            _debounceTimerForLocationName = Timer(
+                                const Duration(milliseconds: 1500), () async {
+                              await widget.homeProvider
+                                  .searchOnChanged(searchText: val);
+                              state(() {});
+                            });
                             // }
                           }
+                          state(() {});
                         },
                         decoration: InputDecoration(
                             hintText: 'Search your location here...',
@@ -173,18 +187,21 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                   itemBuilder: (context, index) {
                                     return InkWell(
                                       onTap: () {
-                                        // OpenStreetPlaceResponse
-                                        //     openStreetPlaceResponse = widget
-                                        //             .homeProvider
-                                        //             .searchOpenStreetPlaceResponseList[
-                                        //         index];
-                                        // locationName =
-                                        //     openStreetPlaceResponse.displayName;
-                                        // latController = TextEditingController(
-                                        //     text: openStreetPlaceResponse.lat);
-                                        // longController = TextEditingController(
-                                        //     text: openStreetPlaceResponse.lon);
-
+                                        OpenStreetPlaceResponse
+                                            openStreetPlaceResponse = widget
+                                                    .homeProvider
+                                                    .searchOpenStreetPlaceResponseList[
+                                                index];
+                                        locationNameController =
+                                            TextEditingController(
+                                                text: openStreetPlaceResponse
+                                                    .displayName);
+                                        latController = TextEditingController(
+                                            text: openStreetPlaceResponse.lat);
+                                        longController = TextEditingController(
+                                            text: openStreetPlaceResponse.lon);
+                                        widget.homeProvider
+                                            .searchOpenStreetPlaceResponseList = [];
                                         state(() {});
                                       },
                                       child: Column(
@@ -269,6 +286,45 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                           width: 100,
                           child: TextField(
                             controller: latController,
+                            onChanged: (val) {
+                              String latLng = '$val,${longController.text}';
+                              bool isLatLngValidate = isValidLatLong(latLng);
+                              _debounceTimerForLat?.cancel();
+                              print("isLatValid ==> $isLatLngValidate");
+
+                              if (isLatLngValidate) {
+                                _debounceTimerForLat =
+                                    Timer(const Duration(milliseconds: 1500),
+                                        () async {
+                                  OpenStreetPlaceResponse?
+                                      openStreetPlaceResponse = await widget
+                                          .homeProvider
+                                          .fetchLocationNameFromLatLong(LatLng(
+                                              double.parse(val),
+                                              double.parse(
+                                                  longController.text)));
+                                  if (openStreetPlaceResponse != null) {
+                                    print(
+                                        'openStreetPlaceResponse --> ${openStreetPlaceResponse.toJson()}');
+                                    locationNameController =
+                                        TextEditingController(
+                                            text: openStreetPlaceResponse
+                                                .displayName);
+
+                                    latController = TextEditingController(
+                                        text: openStreetPlaceResponse.lat);
+                                    longController = TextEditingController(
+                                        text: openStreetPlaceResponse.lon);
+                                    widget.homeProvider
+                                        .searchOpenStreetPlaceResponseList = [];
+                                    state(() {});
+                                  }
+
+                                  print(
+                                      "isLatLngValidate ==> $isLatLngValidate");
+                                });
+                              }
+                            },
                             inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.allow(
                                   RegExp(r'^(\d+)?\.?\d*'))
@@ -309,6 +365,44 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                           height: 30,
                           width: 100,
                           child: TextField(
+                            onChanged: (val) async {
+                              String latLng = '${latController.text},$val';
+                              bool isLatLngValidate = isValidLatLong(latLng);
+                              _debounceTimerForLong?.cancel();
+                              print("isLatValid ==> $isLatLngValidate");
+
+                              if (isLatLngValidate) {
+                                _debounceTimerForLong =
+                                    Timer(const Duration(milliseconds: 1500),
+                                        () async {
+                                  OpenStreetPlaceResponse?
+                                      openStreetPlaceResponse = await widget
+                                          .homeProvider
+                                          .fetchLocationNameFromLatLong(LatLng(
+                                              double.parse(latController.text),
+                                              double.parse(val)));
+                                  if (openStreetPlaceResponse != null) {
+                                    print(
+                                        'openStreetPlaceResponse --> ${openStreetPlaceResponse?.toJson()}');
+                                    locationNameController =
+                                        TextEditingController(
+                                            text: openStreetPlaceResponse
+                                                .displayName);
+
+                                    latController = TextEditingController(
+                                        text: openStreetPlaceResponse.lat);
+                                    longController = TextEditingController(
+                                        text: openStreetPlaceResponse.lon);
+                                    widget.homeProvider
+                                        .searchOpenStreetPlaceResponseList = [];
+                                    state(() {});
+                                  }
+
+                                  print(
+                                      "isLatLngValidate ==> $isLatLngValidate");
+                                });
+                              }
+                            },
                             controller: longController,
                             inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.allow(
@@ -493,6 +587,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                   )
                                 ],
                               ),
+                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -628,7 +723,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                   )
                                 ],
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -651,6 +746,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                           timeOfDay.hour,
                                           timeOfDay.minute,
                                         );
+                                        startDateTime = selectedDateTime;
                                         widget.homeProvider
                                             .updateStartTimeForOptimizedMarker(
                                                 widget.routeStep.description ??
@@ -684,7 +780,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                   )
                                 ],
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -708,7 +804,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                           timeOfDay.hour,
                                           timeOfDay.minute,
                                         );
-
+                                        endDateTime = selectedDateTime;
                                         widget.homeProvider
                                             .updateEndTimeForOptimizedMarker(
                                                 widget.routeStep.description ??
@@ -778,23 +874,56 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                           borderColor: VariableUtilities.theme.primaryColor,
                           width: 110,
                           onTap: () async {
-                            // if (widget.isNewRecord) {
-                            //   widget.homeProvider.updateUploadExcelItemList(
-                            //       UploadedExcelModel(
-                            //           id: (widget
-                            //                   .homeProvider
-                            //                   .uploadedExcelToOptimizeMarkerList
-                            //                   .length +
-                            //               1),
-                            //           name: locationName,
-                            //           lng: double.parse(longController.text),
-                            //           lat: double.parse(latController.text),
-                            //           priority: int.parse(priority),
-                            //           startTime: DateTime.now(),
-                            //           endTime: DateTime.now(),
-                            //           serviceTime: int.parse(serviceTime),
-                            //           globalKey: GlobalKey()));
-                            // }
+                            if (locationNameController.text.isEmpty) {
+                              showToast(title: 'Please Enter Location name');
+                              return;
+                            }
+                            if (isValidLatLong(
+                                '${latController.text},${longController.text}')) {
+                              showToast(title: 'Enter Valid LatLng');
+                              return;
+                            }
+                            widget.homeProvider
+                                .updateOptimizedPointsListByIndex(
+                              routeStep: RouteStep(
+                                  description: locationNameController.text,
+                                  globalKey: widget.routeStep.globalKey,
+                                  id: widget.routeStep.id,
+                                  job: widget.routeStep.job,
+                                  type: widget.routeStep.type,
+                                  location: [
+                                    double.parse(longController.text),
+                                    double.parse(latController.text)
+                                  ],
+                                  setup: widget.routeStep.setup,
+                                  service: widget.routeStep.service,
+                                  waitingTime: widget.routeStep.waitingTime,
+                                  load: widget.routeStep.load,
+                                  arrival: widget.routeStep.arrival,
+                                  duration: widget.routeStep.duration,
+                                  totalTravelDuration:
+                                      widget.routeStep.totalTravelDuration,
+                                  violations: widget.routeStep.violations,
+                                  distance: widget.routeStep.distance,
+                                  priority: int.parse(priorityController.text),
+                                  startTime: startDateTime,
+                                  endTime: endDateTime,
+                                  serviceTime:
+                                      int.parse(serviceTimeController.text)),
+                              id: widget.routeStep.id ?? 0,
+                              uploadedExcelModel: UploadedExcelModel(
+                                  id: widget.routeStep.id ?? 0,
+                                  name: locationNameController.text,
+                                  lng: double.parse(longController.text),
+                                  lat: double.parse(latController.text),
+                                  priority: int.parse(priorityController.text),
+                                  startTime: startDateTime,
+                                  endTime: endDateTime,
+                                  serviceTime:
+                                      int.parse(serviceTimeController.text),
+                                  globalKey: GlobalKey()),
+                            );
+
                             widget.homeProvider
                                 .searchOpenStreetPlaceResponseList = [];
                             // Navigator.pop(context);
@@ -809,5 +938,33 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
             )),
       );
     });
+  }
+
+  DateTime convertTimeOfDayToDateTime(TimeOfDay timeOfDay) {
+    DateTime now = DateTime.now();
+    DateTime dateTime = DateTime(
+        now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
+
+    print('Converted DateTime: $dateTime');
+    return dateTime;
+  }
+
+  bool isValidLatitude(String latitude) {
+    RegExp pattern = RegExp(r'^\s*([-+]?\d{1,2}(?:\.\d{1,6})?)\s*$');
+
+    return pattern.hasMatch(latitude);
+  }
+
+  bool isValidLongitude(String longitude) {
+    RegExp pattern = RegExp(r'^\s*([-+]?\d{1,3}(?:\.\d{1,6})?)\s*$');
+
+    return pattern.hasMatch(longitude);
+  }
+
+  bool isValidLatLong(String latLong) {
+    RegExp pattern = RegExp(
+        r'^\s*([-+]?\d{1,2}(?:\.\d{1,6})?)\s*,\s*([-+]?\d{1,3}(?:\.\d{1,6})?)\s*$');
+
+    return pattern.hasMatch(latLong);
   }
 }

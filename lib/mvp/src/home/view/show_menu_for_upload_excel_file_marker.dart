@@ -46,7 +46,7 @@ class _UploadedExcelFileMarkerDialogState
   TextEditingController longController = TextEditingController();
   TextEditingController locationNameController = TextEditingController();
 
-  String locationName = 'Unnamed road';
+  String locationName = 'Search Location...';
   LatLng latlong = const LatLng(0.0, 0.0);
   String serviceTime = "10";
   String priority = "0";
@@ -313,9 +313,11 @@ class _UploadedExcelFileMarkerDialogState
                               controller: latController,
                               onChanged: (val) {
                                 String latLng = '$val,${longController.text}';
+
                                 bool isLatLngValidate = isValidLatLong(latLng);
                                 _debounceTimerForLat?.cancel();
-                                print("isLatValid ==> $isLatLngValidate");
+                                print(
+                                    "isLatValid ==> $isLatLngValidate $latLng");
 
                                 if (isLatLngValidate) {
                                   _debounceTimerForLat =
@@ -1013,7 +1015,7 @@ class _UploadedExcelFileMarkerDialogState
                                                 .uploadedExcelToOptimizeMarkerList
                                                 .length +
                                             1),
-                                        name: locationName,
+                                        name: locationNameController.text,
                                         lng: double.parse(longController.text),
                                         lat: double.parse(latController.text),
                                         priority: int.parse(priority),
@@ -1024,16 +1026,16 @@ class _UploadedExcelFileMarkerDialogState
                                 Navigator.pop(context);
                               } else {
                                 // Navigator.pop(context);
-                                widget
-                                    .homeProvider
+                                widget.homeProvider
                                     .updateUploadExcelItemListByIndex(
                                         UploadedExcelModel(
-                                            id: widget
-                                                .homeProvider
-                                                .uploadedExcelToOptimizeMarkerList[
-                                                    widget.index]
-                                                .id,
-                                            name: locationName,
+                                            id:
+                                                widget
+                                                    .homeProvider
+                                                    .uploadedExcelModelList[
+                                                        widget.index]
+                                                    .id,
+                                            name: locationNameController.text,
                                             lng: double.parse(
                                                 longController.text),
                                             lat: double.parse(
@@ -1044,6 +1046,7 @@ class _UploadedExcelFileMarkerDialogState
                                             serviceTime: int.parse(serviceTime),
                                             globalKey: GlobalKey()),
                                         widget.index);
+                                print("Update Function Executed!");
                                 widget.callback();
                               }
                               widget.homeProvider

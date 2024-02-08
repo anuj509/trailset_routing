@@ -167,10 +167,10 @@ class _DownloadTemplateViewState extends State<DownloadTemplateView> {
                         onTap: () {
                           if (isSampleData || isSampleStandard) {
                             String assetPath =
-                                'assets/xlsx/${isSampleData ? 'trailset_sample_data' : 'trailset_standard_template'}.xlsx'; // Adjust the path to match your asset
+                                'assets/xlsx/${isSampleData ? 'trailset_standard_template' : 'trailset_sample_data'}.xlsx'; // Adjust the path to match your asset
                             final anchor = html.AnchorElement(href: assetPath)
                               ..setAttribute('download',
-                                  '${isSampleData ? 'trailset_sample_data' : 'trailset_standard_template'}.xlsx'); // Specify the filename
+                                  '${isSampleData ? 'trailset_standard_template' : 'trailset_sample_data'}.xlsx'); // Specify the filename
                             anchor.click();
                           }
                         },

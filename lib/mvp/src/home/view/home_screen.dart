@@ -14,10 +14,8 @@ import 'package:parsel_web_optimize/mvp/src/home/model/json_uploaded_model.dart'
 import 'package:parsel_web_optimize/mvp/src/home/model/open_source_place_response.dart';
 import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
 import 'package:parsel_web_optimize/mvp/src/home/view/assigned_un_assigned_widget.dart';
-import 'package:parsel_web_optimize/mvp/src/home/view/assined_points_list_widget.dart';
 import 'package:parsel_web_optimize/mvp/src/home/view/create_new_vehicle_widget.dart';
 import 'package:parsel_web_optimize/mvp/src/home/view/download_template_view.dart';
-
 import 'package:parsel_web_optimize/mvp/src/home/view/home_screen_header_view.dart';
 import 'package:parsel_web_optimize/mvp/src/home/view/import_or_add_stops_widget.dart';
 import 'package:parsel_web_optimize/mvp/src/home/view/optimize_button_widget.dart';
@@ -49,8 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
   CustomPoint<double> offset = CustomPoint(0, 0);
   PopupController uploadedExcelPointPopupController = PopupController();
   PopupController optimizedPointsMPopupController = PopupController();
-  GlobalKey uploadedMarkerKey = GlobalKey();
-  GlobalKey optimizedMarkerKey = GlobalKey();
 
   @override
   void initState() {
@@ -179,9 +175,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(height: 10),
                           RoundTripWidget(homeProvider: homeProvider),
                           const SizedBox(height: 10),
-                          SelectedVehicleWithStops(homeProvider: homeProvider),
+                          homeProvider.selectedAssignableType == 'Un-Assigned'
+                              ? const SizedBox()
+                              : SelectedVehicleWithStops(
+                                  homeProvider: homeProvider),
                           const SizedBox(height: 10),
-                          AssignedPointsListWidget(homeProvider: homeProvider),
+                          // AssignedPointsListWidget(homeProvider: homeProvider),
                           UnAssignedPointsListWidget(
                               homeProvider: homeProvider),
                           UploadedExcelPointsListWidget(
@@ -241,25 +240,34 @@ class _HomeScreenState extends State<HomeScreen> {
                         Stack(
                           children: List.generate(
                             homeProvider.optimizedRouteModel.routes.length,
-                            (index) => PolylineLayer(
-                              polylineCulling: true,
-                              polylines: [
-                                Polyline(
-                                    strokeWidth: 0.5,
-                                    borderColor: homeProvider
-                                        .optimizedRouteModel.routes[index].color
-                                        .withOpacity(.6),
-                                    color: homeProvider
-                                        .optimizedRouteModel.routes[index].color
-                                        .withOpacity(.6),
-                                    borderStrokeWidth: 6,
-                                    points: homeProvider.optimizedRouteModel
-                                        .routes[index].polylines
-                                        .map((e) =>
-                                            LatLng(e.latitude, e.longitude))
-                                        .toList())
-                              ],
-                            ),
+                            (index) => homeProvider
+                                    .optimizedRouteModel.routes[index].isVisible
+                                ? PolylineLayer(
+                                    polylineCulling: true,
+                                    polylines: [
+                                      Polyline(
+                                          strokeWidth: 0.5,
+                                          borderColor: homeProvider
+                                              .optimizedRouteModel
+                                              .routes[index]
+                                              .color
+                                              .withOpacity(.6),
+                                          color: homeProvider
+                                              .optimizedRouteModel
+                                              .routes[index]
+                                              .color
+                                              .withOpacity(.6),
+                                          borderStrokeWidth: 6,
+                                          points: homeProvider
+                                              .optimizedRouteModel
+                                              .routes[index]
+                                              .polylines
+                                              .map((e) => LatLng(
+                                                  e.latitude, e.longitude))
+                                              .toList())
+                                    ],
+                                  )
+                                : const SizedBox(),
                           ),
                         ),
                         MarkerLayer(
@@ -298,168 +306,126 @@ class _HomeScreenState extends State<HomeScreen> {
                                 })
                           ],
                         ),
-                        for (int i = 0;
-                            i < homeProvider.selectedJobList.length;
-                            i++) ...{
-                          PopupMarkerLayer(
-                            key: optimizedMarkerKey,
-                            options: PopupMarkerLayerOptions(
-                              popupController: optimizedPointsMPopupController,
-                              markers: List.generate(
-                                  homeProvider.selectedJobList[i]
-                                      .dropLocationNameList.length,
-                                  (index) => OptimizedExcelPointsMarker(
-                                      routeStep: homeProvider.selectedJobList[i]
-                                          .dropLocationNameList[index],
-                                      index: index,
-                                      builder: (_) => homeProvider
-                                                  .selectedJobList[i]
-                                                  .dropLocationNameList[index]
-                                                  .type ==
-                                              'job'
-                                          ? Stack(
-                                              children: [
-                                                Center(
-                                                  child: SvgPicture.asset(
-                                                    AssetUtils.greenMapSvgIcon,
-                                                    height: 35,
-                                                    width: 35,
-                                                    color: homeProvider
-                                                        .selectedJobList[i]
-                                                        .color
-                                                        .withOpacity(0.6),
-                                                  ),
-                                                ),
-                                                Center(
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            bottom: 5.0,
-                                                            right: 1.0),
-                                                    child: Text(
-                                                      '$index',
-                                                      style: FontUtilities.h12(
-                                                          fontWeight:
-                                                              FWT.semiBold,
-                                                          fontColor:
-                                                              VariableUtilities
-                                                                  .theme
-                                                                  .whiteColor),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          : const SizedBox())),
-                              popupDisplayOptions: PopupDisplayOptions(
-                                  snap: PopupSnap.markerTop,
-                                  builder:
-                                      (BuildContext context, Marker marker) {
-                                    if (marker is OptimizedExcelPointsMarker) {
-                                      return OptimizedMarkerDialog(
-                                        key: marker.key,
-                                        homeProvider: homeProvider,
-                                        color: homeProvider
-                                            .selectedJobList[i].color,
-                                        routeStep: homeProvider
-                                            .selectedJobList[i]
-                                            .dropLocationNameList[marker.index],
-                                        selectedJobIndex: i,
-                                        dropLocationIndex: marker.index,
-                                        callBack: () {
-                                          optimizedPointsMPopupController
-                                              .hideAllPopups();
-                                        },
-                                      );
-                                    }
-                                    return const SizedBox();
-                                  }),
-                            ),
-                          ),
-                          // MarkerLayer(
-                          //     markers: List.generate(
-                          //         homeProvider.selectedJobList[i]
-                          //             .dropLocationNameList.length,
-                          //         (index) => Marker(
-                          //               builder: (c) {
-                          //                 return homeProvider
-                          //                             .selectedJobList[i]
-                          //                             .dropLocationNameList[
-                          //                                 index]
-                          //                             .type ==
-                          //                         'job'
-                          //                     ? InkWell(
-                          //                         onTapDown: (details) {
-                          //                           // showMenuForOptimizedMarker(
-                          //                           //     homeProvider:
-                          //                           //         homeProvider,
-                          //                           //     color: homeProvider
-                          //                           //         .selectedJobList[i]
-                          //                           //         .color,
-                          //                           //     routeStep: homeProvider
-                          //                           //             .selectedJobList[i]
-                          //                           //             .dropLocationNameList[
-                          //                           //         index],
-                          //                           //     context: context,
-                          //                           //     details: details,
-                          //                           //     // homeProvider:
-                          //                           //     //     homeProvider,
-                          //                           //     selectedJobIndex: i,
-                          //                           //     dropLocationIndex:
-                          //                           //         index);
-                          //                         },
-                          //                         child: Stack(
-                          //                           children: [
-                          //                             Center(
-                          //                               child: SvgPicture.asset(
-                          //                                 AssetUtils
-                          //                                     .greenMapSvgIcon,
-                          //                                 height: 35,
-                          //                                 width: 35,
-                          //                                 color: homeProvider
-                          //                                     .selectedJobList[
-                          //                                         i]
-                          //                                     .color
-                          //                                     .withOpacity(0.6),
-                          //                               ),
-                          //                             ),
-                          //                             Center(
-                          //                               child: Padding(
-                          //                                 padding:
-                          //                                     const EdgeInsets
-                          //                                         .only(
-                          //                                         bottom: 5.0,
-                          //                                         right: 1.0),
-                          //                                 child: Text(
-                          //                                   '$index',
-                          //                                   style: FontUtilities.h12(
-                          //                                       fontWeight: FWT
-                          //                                           .semiBold,
-                          //                                       fontColor:
-                          //                                           VariableUtilities
-                          //                                               .theme
-                          //                                               .whiteColor),
-                          //                                 ),
-                          //                               ),
-                          //                             ),
-                          //                           ],
-                          //                         ),
-                          //                       )
-                          //                     : const SizedBox();
-                          //               },
-                          //               point: LatLng(
-                          //                   homeProvider
-                          //                       .selectedJobList[i]
-                          //                       .dropLocationNameList[index]
-                          //                       .location[1],
-                          //                   homeProvider
-                          //                       .selectedJobList[i]
-                          //                       .dropLocationNameList[index]
-                          //                       .location[0]),
-                          //             ))),
-                        },
+
+                        Stack(
+                          children: [
+                            for (int i = 0;
+                                i < homeProvider.selectedJobList.length;
+                                i++) ...{
+                              homeProvider.selectedJobList[i].isJobActivated
+                                  ? PopupMarkerLayer(
+                                      key: homeProvider
+                                          .selectedJobList[i].globalKey,
+                                      options: PopupMarkerLayerOptions(
+                                        popupController:
+                                            optimizedPointsMPopupController,
+                                        markers: List.generate(
+                                            homeProvider.selectedJobList[i]
+                                                .dropLocationNameList.length,
+                                            (index) =>
+                                                OptimizedExcelPointsMarker(
+                                                    selectedJobIndex: i,
+                                                    routeStep: homeProvider
+                                                            .selectedJobList[i]
+                                                            .dropLocationNameList[
+                                                        index],
+                                                    index: index,
+                                                    builder: (_) => homeProvider
+                                                                .selectedJobList[
+                                                                    i]
+                                                                .dropLocationNameList[
+                                                                    index]
+                                                                .type ==
+                                                            'job'
+                                                        ? Stack(
+                                                            children: [
+                                                              Center(
+                                                                child:
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  AssetUtils
+                                                                      .greenMapSvgIcon,
+                                                                  height: 35,
+                                                                  width: 35,
+                                                                  color: homeProvider
+                                                                      .selectedJobList[
+                                                                          i]
+                                                                      .color
+                                                                      .withOpacity(
+                                                                          0.6),
+                                                                ),
+                                                              ),
+                                                              Center(
+                                                                child: Padding(
+                                                                  padding: const EdgeInsets
+                                                                      .only(
+                                                                      bottom:
+                                                                          5.0,
+                                                                      right:
+                                                                          1.0),
+                                                                  child: Text(
+                                                                    '$index',
+                                                                    style: FontUtilities.h12(
+                                                                        fontWeight: FWT
+                                                                            .semiBold,
+                                                                        fontColor: VariableUtilities
+                                                                            .theme
+                                                                            .whiteColor),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          )
+                                                        : const SizedBox())),
+                                        popupDisplayOptions:
+                                            PopupDisplayOptions(
+                                                snap: PopupSnap.markerTop,
+                                                builder: (BuildContext context,
+                                                    Marker marker) {
+                                                  if (marker
+                                                      is OptimizedExcelPointsMarker) {
+                                                    print(
+                                                        "marker.index --> ${marker.selectedJobIndex} ${marker.index}");
+                                                    return OptimizedMarkerDialog(
+                                                      key: homeProvider
+                                                          .selectedJobList[marker
+                                                              .selectedJobIndex]
+                                                          .dropLocationNameList[
+                                                              marker.index]
+                                                          .globalKey,
+                                                      homeProvider:
+                                                          homeProvider,
+                                                      color: homeProvider
+                                                          .selectedJobList[marker
+                                                              .selectedJobIndex]
+                                                          .color,
+                                                      routeStep: homeProvider
+                                                              .selectedJobList[
+                                                                  marker
+                                                                      .selectedJobIndex]
+                                                              .dropLocationNameList[
+                                                          marker.index],
+                                                      selectedJobIndex: marker
+                                                          .selectedJobIndex,
+                                                      dropLocationIndex:
+                                                          marker.index,
+                                                      callBack: () {
+                                                        optimizedPointsMPopupController
+                                                            .hideAllPopups();
+                                                      },
+                                                    );
+                                                  }
+                                                  return const SizedBox();
+                                                }),
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                            },
+                          ],
+                        ),
+                        // : const SizedBox(),
                         PopupMarkerLayer(
-                          key: uploadedMarkerKey,
+                          // key: uploadedMarkerKey,
                           options: PopupMarkerLayerOptions(
                             popupController: uploadedExcelPointPopupController,
                             markers: List.generate(

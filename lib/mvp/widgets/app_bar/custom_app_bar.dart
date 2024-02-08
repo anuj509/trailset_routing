@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:universal_html/html.dart' as html;
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -31,7 +32,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               AssetUtils.trailSetSvgLogo,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                html.window.open(
+                    'https://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic_link',
+                    'Documentation');
+              },
               child: Container(
                 height: 38,
                 decoration: BoxDecoration(
@@ -46,7 +51,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(AssetUtils.downloadTemplateSvgIcon),
+                        // SvgPicture.asset(AssetUtils.downloadTemplateSvgIcon),
+                        const Icon(Icons.shuffle),
                         const SizedBox(width: 10),
                         Text('Documentation',
                             style: FontUtilities.h16(

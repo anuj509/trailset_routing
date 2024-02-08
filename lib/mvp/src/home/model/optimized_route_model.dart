@@ -63,6 +63,7 @@ class Summary {
   final ComputingTimes? computingTimes;
   List<PointLatLng> polylines;
   Color color;
+  bool isVisible;
 
   Summary({
     this.vehicle,
@@ -84,6 +85,7 @@ class Summary {
     this.routes,
     this.unassigned,
     this.computingTimes,
+    this.isVisible = true,
   });
 
   factory Summary.fromJson(Map<String, dynamic> json) => Summary(

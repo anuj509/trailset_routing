@@ -103,15 +103,15 @@ class _SelectedVehicleWithStopsState extends State<SelectedVehicleWithStops> {
                         ),
                         Row(
                           children: [
-                            Text(
-                              widget.homeProvider.selectedJobList[index]
-                                  .vehicleNo,
-                              style: FontUtilities.h14(
-                                  fontColor:
-                                      VariableUtilities.theme.color737B85,
-                                  fontWeight: FWT.semiBold),
-                            ),
-                            const SizedBox(width: 5),
+                            // Text(
+                            //   widget.homeProvider.selectedJobList[index]
+                            //       .vehicleNo,
+                            //   style: FontUtilities.h14(
+                            //       fontColor:
+                            //           VariableUtilities.theme.color737B85,
+                            //       fontWeight: FWT.semiBold),
+                            // ),
+                            // const SizedBox(width: 5),
                             Text(
                               '${widget.homeProvider.selectedJobList[index].stops} Stops',
                               style: FontUtilities.h14(
@@ -316,13 +316,10 @@ class _SelectedVehicleWithStopsState extends State<SelectedVehicleWithStops> {
                                                   Text(
                                                     DateFormat('h:mm a').format(
                                                         DateTime.fromMillisecondsSinceEpoch(
-                                                            widget
-                                                                .homeProvider
-                                                                .selectedJobList[
-                                                                    index]
-                                                                .dropLocationNameList[
-                                                                    insideI]
-                                                                .arrival)),
+                                                                int.parse(
+                                                                    '${widget.homeProvider.selectedJobList[index].dropLocationNameList[insideI].arrival}000'))
+                                                            .toLocal()
+                                                            .toLocal()),
                                                     // Text(
                                                     //   truckReachDurationTmeInHoursAndMinutes(widget
                                                     //       .homeProvider

@@ -33,21 +33,25 @@ class JobDetailContainer extends StatelessWidget {
                 width: width,
               ),
         const SizedBox(width: 5),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              containerName,
-              style: FontUtilities.h14(
-                  fontColor: VariableUtilities.theme.color737B85),
-            ),
-            Text(
-              '${count ?? ''}$suffixTitle',
-              style: FontUtilities.h16(
-                  fontColor: VariableUtilities.theme.color333333,
-                  fontWeight: FWT.semiBold),
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                containerName,
+                style: FontUtilities.h14(
+                    fontColor: VariableUtilities.theme.color737B85),
+              ),
+              Text(
+                '${count ?? ''}$suffixTitle',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: FontUtilities.h16(
+                    fontColor: VariableUtilities.theme.color333333,
+                    fontWeight: FWT.semiBold),
+              ),
+            ],
+          ),
         )
       ]),
     );

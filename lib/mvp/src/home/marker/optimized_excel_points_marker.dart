@@ -11,7 +11,9 @@ class OptimizedExcelPointsMarker extends Marker {
     required this.routeStep,
     required this.builder,
     required this.index,
+    required this.selectedJobIndex,
   }) : super(
+          key: GlobalKey(),
           height: 40,
           anchorPos: AnchorPos.align(AnchorAlign.top),
           rotateAlignment: AnchorAlign.top.rotationAlignment,
@@ -24,6 +26,7 @@ class OptimizedExcelPointsMarker extends Marker {
 
   final Widget Function(BuildContext) builder;
   final int index;
+  final int selectedJobIndex;
 }
 
 class OptimizedPointsMarkerPopup extends StatelessWidget {
