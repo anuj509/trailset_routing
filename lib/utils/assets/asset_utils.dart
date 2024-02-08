@@ -3,7 +3,7 @@ class AssetUtils {
   static const String _svgUrl = 'assets/images/svg/';
 
   ///PNG
-  static const String parselTruck = '${_pngUrl}parsel_truck.png';
+  static const String trailsetTruck = '${_pngUrl}trailset_truck.png';
   static const String optimizeIcon = '${_pngUrl}optimize_icon.png';
   static const String addRoundedIcon = '${_pngUrl}add_rounded_icon.png';
   static const String mapIcon = '${_pngUrl}map_icon.png';

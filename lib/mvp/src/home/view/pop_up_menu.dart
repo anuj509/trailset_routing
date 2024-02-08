@@ -574,7 +574,7 @@ class _PopupMenuRoute<T> extends PopupRoute<T> {
   }
 }
 
-Future<T?> showMenuForParsel<T>({
+Future<T?> showMenuForTrailset<T>({
   required BuildContext context,
   required RelativeRect position,
   required Widget item,
@@ -735,7 +735,7 @@ class PopupMenuButtonState<T> extends State<PopupMenuButton<T>> {
     final Widget items = widget;
 
     widget.onOpened?.call();
-    showMenuForParsel<T?>(
+    showMenuForTrailset<T?>(
       context: context,
       elevation: widget.elevation ?? popupMenuTheme.elevation,
       shadowColor: widget.shadowColor ?? popupMenuTheme.shadowColor,

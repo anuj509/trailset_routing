@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 
 ///Validator for text field
 typedef Validator = String? Function(String?)?;

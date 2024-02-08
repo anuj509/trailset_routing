@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 
 /// FontUtilities is main base class for all the styles of fonts used.
 /// you can directly change the font styles in this file.

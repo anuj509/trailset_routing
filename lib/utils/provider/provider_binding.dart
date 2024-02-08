@@ -1,4 +1,4 @@
-import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
+import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
 import 'package:provider/provider.dart';
 
 /// This class manage all the provider and return list of provider.

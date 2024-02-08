@@ -1,4 +1,4 @@
-part of parsel_web_optimize_theme;
+part of trailset_route_optimize_theme;
 
 class StaticColors {
   static List<Color> colorsList = [

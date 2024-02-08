@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 
 class RoundTripWidget extends StatelessWidget {
   const RoundTripWidget({super.key, required this.homeProvider});

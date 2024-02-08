@@ -1,6 +1,6 @@
 {
-    "name": "parsel_web_optimize",
-    "short_name": "parsel_web_optimize",
+    "name": "trailset_route_optimize",
+    "short_name": "trailset_route_optimize",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/job_model.dart';
-import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/job_model.dart';
+import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
 
 DateTime morningDateTime({int hours = 9, int minutes = 0}) {
   return DateTime(

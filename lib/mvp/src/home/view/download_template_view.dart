@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 import 'package:universal_html/html.dart' as html;
 
 class DownloadTemplateView extends StatefulWidget {

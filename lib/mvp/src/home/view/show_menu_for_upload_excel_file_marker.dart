@@ -6,13 +6,13 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/json_uploaded_model.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/open_source_place_response.dart';
-import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
-import 'package:parsel_web_optimize/mvp/src/home/view/open_time_picker.dart';
-import 'package:parsel_web_optimize/mvp/widgets/pop_up/pop_up_shape.dart';
-import 'package:parsel_web_optimize/mvp/widgets/widgets.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/json_uploaded_model.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/open_source_place_response.dart';
+import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
+import 'package:trailset_route_optimize/mvp/src/home/view/open_time_picker.dart';
+import 'package:trailset_route_optimize/mvp/widgets/pop_up/pop_up_shape.dart';
+import 'package:trailset_route_optimize/mvp/widgets/widgets.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 
 class UploadedExcelFileMarkerDialog extends StatefulWidget {
   const UploadedExcelFileMarkerDialog(

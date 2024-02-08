@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 import 'package:universal_html/html.dart' as html;
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {

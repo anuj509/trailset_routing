@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
-import 'package:parsel_web_optimize/mvp/src/home/view/selected_vehicle_view.dart';
-import 'package:parsel_web_optimize/mvp/widgets/widgets.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
+import 'package:trailset_route_optimize/mvp/src/home/view/selected_vehicle_view.dart';
+import 'package:trailset_route_optimize/mvp/widgets/widgets.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 
 class SelectNewVehicleWidget extends StatelessWidget {
   const SelectNewVehicleWidget({super.key, required this.homeProvider});

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/json_uploaded_model.dart';
-import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
-import 'package:parsel_web_optimize/mvp/src/home/view/show_menu_for_upload_excel_file_marker.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/json_uploaded_model.dart';
+import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
+import 'package:trailset_route_optimize/mvp/src/home/view/show_menu_for_upload_excel_file_marker.dart';
 
 class UploadedExcelPointsMarker extends Marker {
   UploadedExcelPointsMarker({

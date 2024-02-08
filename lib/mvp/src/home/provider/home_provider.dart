@@ -12,12 +12,12 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart'
     as polylinePoints;
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/job_model.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/json_uploaded_model.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/open_source_place_response.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/optimized_route_model.dart';
-import 'package:parsel_web_optimize/mvp/widgets/widgets.dart';
-import 'package:parsel_web_optimize/utils/theme/theme.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/job_model.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/json_uploaded_model.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/open_source_place_response.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/optimized_route_model.dart';
+import 'package:trailset_route_optimize/mvp/widgets/widgets.dart';
+import 'package:trailset_route_optimize/utils/theme/theme.dart';
 
 class HomeProvider extends ChangeNotifier {
   UniqueKey _uploadedMarkerKey = UniqueKey();

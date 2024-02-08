@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "parsel_web_optimize" "\0"
+            VALUE "FileDescription", "trailset_route_optimize" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "parsel_web_optimize" "\0"
+            VALUE "InternalName", "trailset_route_optimize" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "parsel_web_optimize.exe" "\0"
-            VALUE "ProductName", "parsel_web_optimize" "\0"
+            VALUE "OriginalFilename", "trailset_route_optimize.exe" "\0"
+            VALUE "ProductName", "trailset_route_optimize" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
-import 'package:parsel_web_optimize/mvp/src/home/view/home_screen.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/mvp/src/home/view/home_screen.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   VariableUtilities.theme = LightTheme();
-  runApp(const ParselWebOptimizeApp());
+  runApp(const TrailsetRouteOptimizeApp());
 }
 
-class ParselWebOptimizeApp extends StatelessWidget {
-  const ParselWebOptimizeApp({super.key});
+class TrailsetRouteOptimizeApp extends StatelessWidget {
+  const TrailsetRouteOptimizeApp({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-part of parsel_web_optimize_theme;
+part of trailset_route_optimize_theme;
 
 /// all the colores used in the application are managed using this theme_base.
 /// if you want to use the additional colors then you can add in this class.

@@ -1,4 +1,4 @@
-part of parsel_web_optimize_theme;
+part of trailset_route_optimize_theme;
 
 /// This is the class contains all the colors of the light theme.
 /// when user select the light mode in the application then we use light colors.

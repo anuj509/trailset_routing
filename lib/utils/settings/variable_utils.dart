@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// All the global variables used in the application are defined in this class.

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:parsel_web_optimize/mvp/src/home/view/home_screen.dart';
+import 'package:trailset_route_optimize/mvp/src/home/view/home_screen.dart';
 
 
 /// Manage all the routes used in the application.

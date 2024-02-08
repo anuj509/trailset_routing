@@ -1,7 +1,7 @@
-library parsel_web_optimize_theme;
+library trailset_route_optimize_theme;
 
 import 'package:flutter/material.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 
 part 'theme_base.dart';
 part 'light_theme.dart';

@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:parsel_web_optimize/mvp/src/home/provider/home_provider.dart';
-import 'package:parsel_web_optimize/mvp/src/home/view/open_time_picker.dart';
-import 'package:parsel_web_optimize/mvp/widgets/widgets.dart';
-import 'package:parsel_web_optimize/utils/utils.dart';
+import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
+import 'package:trailset_route_optimize/mvp/src/home/view/open_time_picker.dart';
+import 'package:trailset_route_optimize/mvp/widgets/widgets.dart';
+import 'package:trailset_route_optimize/utils/utils.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 class SelectedVehicleWithStops extends StatefulWidget {

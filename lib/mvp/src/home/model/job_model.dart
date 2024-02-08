@@ -5,7 +5,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:parsel_web_optimize/mvp/src/home/model/optimized_route_model.dart';
+import 'package:trailset_route_optimize/mvp/src/home/model/optimized_route_model.dart';
 
 JobModel jobModelFromJson(String str) => JobModel.fromJson(json.decode(str));
 
