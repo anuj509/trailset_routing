@@ -19,7 +19,7 @@ All assumptions should be elaborated.
 
 ## Solution
 
-![Logo](https://github.com/anuj509/trailset_routing/blob/main/media/trailset_logo.svg)
+![Logo](https://github.com/anuj509/trailset_routing/blob/main/media/trailset_logo.png)
 
 ## Trailset Routing: A Route Optimization API for Logistic Companies
 
