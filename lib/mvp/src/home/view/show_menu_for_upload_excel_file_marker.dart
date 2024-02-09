@@ -703,12 +703,12 @@ class _UploadedExcelFileMarkerDialogState
                                                     } else {
                                                       widget.homeProvider
                                                           .increaseServiceTimeByType(
-                                                              jobName: widget
+                                                              id: widget
                                                                   .homeProvider
                                                                   .uploadedExcelModelList[
                                                                       widget
                                                                           .index]
-                                                                  .name,
+                                                                  .id,
                                                               service: service,
                                                               index:
                                                                   widget.index);
@@ -753,7 +753,7 @@ class _UploadedExcelFileMarkerDialogState
                                                               .homeProvider
                                                               .uploadedExcelModelList[
                                                                   widget.index]
-                                                              .name);
+                                                              .id);
                                                       serviceTimeController
                                                               .text =
                                                           '${widget.homeProvider.uploadedExcelModelList[widget.index].serviceTime}';
@@ -788,7 +788,7 @@ class _UploadedExcelFileMarkerDialogState
                                                               .homeProvider
                                                               .uploadedExcelModelList[
                                                                   widget.index]
-                                                              .name);
+                                                              .id);
 
                                                       serviceTimeController
                                                               .text =
@@ -857,12 +857,12 @@ class _UploadedExcelFileMarkerDialogState
                                                       }
                                                       widget.homeProvider
                                                           .increasePriorityByType(
-                                                              jobName: widget
+                                                              id: widget
                                                                   .homeProvider
                                                                   .uploadedExcelModelList[
                                                                       widget
                                                                           .index]
-                                                                  .name,
+                                                                  .id,
                                                               priority:
                                                                   priorityInt,
                                                               index:
@@ -875,12 +875,12 @@ class _UploadedExcelFileMarkerDialogState
                                                               .text;
                                                       widget.homeProvider
                                                           .increasePriorityByType(
-                                                              jobName: widget
+                                                              id: widget
                                                                   .homeProvider
                                                                   .uploadedExcelModelList[
                                                                       widget
                                                                           .index]
-                                                                  .name,
+                                                                  .id,
                                                               priority: 100,
                                                               index:
                                                                   widget.index);
@@ -932,7 +932,7 @@ class _UploadedExcelFileMarkerDialogState
                                                               .homeProvider
                                                               .uploadedExcelModelList[
                                                                   widget.index]
-                                                              .name);
+                                                              .id);
                                                       priorityController.text =
                                                           '${widget.homeProvider.uploadedExcelModelList[widget.index].priority}';
                                                     }
@@ -961,7 +961,7 @@ class _UploadedExcelFileMarkerDialogState
                                                               .homeProvider
                                                               .uploadedExcelModelList[
                                                                   widget.index]
-                                                              .name);
+                                                              .id);
                                                       priorityController.text =
                                                           '${widget.homeProvider.uploadedExcelModelList[widget.index].priority}';
                                                     }
@@ -1011,7 +1011,7 @@ class _UploadedExcelFileMarkerDialogState
                                                     .homeProvider
                                                     .uploadedExcelModelList[
                                                         widget.index]
-                                                    .name,
+                                                    .id,
                                                 selectedDateTime);
                                           }
                                           state(() {});
@@ -1081,7 +1081,7 @@ class _UploadedExcelFileMarkerDialogState
                                                     .homeProvider
                                                     .uploadedExcelModelList[
                                                         widget.index]
-                                                    .name,
+                                                    .id,
                                                 selectedDateTime);
                                           }
 

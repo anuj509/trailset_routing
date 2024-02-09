@@ -51,25 +51,33 @@ class JobModel {
     this.dropLocationNameList = const [],
   });
 
-  factory JobModel.fromJson(Map<String, dynamic> json) => JobModel(
-        isJobActivated: json["isJobActivated"],
-        id: json["id"],
-        vehicleId: json["vehicleId"],
-        isDropDownMenuOpen: json["isDropDownMenuOpen"],
-        isItemSelected: json["isItemSelected"],
-        vehicleQty: json["vehicleQty"],
-        vehicleName: json["vehicleName"],
-        vehicleNo: json["vehicleNo"],
-        stops: json["stops"],
-        height: json["height"],
-        length: json["length"],
-        payload: json["payload"],
-        topSpeed: json["topSpeed"],
-        startTime: DateTime.parse(json["startTime"]),
-        endTime: DateTime.parse(json["endTime"]),
-        dropLocationNameList: List<RouteStep>.from(
-            json["dropLocationNameList"].map((x) => RouteStep.fromJson(x))),
-      );
+  factory JobModel.fromJson(Map<String, dynamic> json) {
+    print("startTime --> ${json["startTime"].runtimeType}");
+    print("endTime --> ${json["endTime"].runtimeType}");
+    return JobModel(
+      isJobActivated: json["isJobActivated"],
+      id: json["id"],
+      vehicleId: json["vehicleId"],
+      isDropDownMenuOpen: json["isDropDownMenuOpen"],
+      isItemSelected: json["isItemSelected"],
+      vehicleQty: json["vehicleQty"],
+      vehicleName: json["vehicleName"],
+      vehicleNo: json["vehicleNo"],
+      stops: json["stops"],
+      height: json["height"],
+      length: json["length"],
+      payload: json["payload"],
+      topSpeed: json["topSpeed"],
+      startTime: json["startTime"].runtimeType == DateTime
+          ? json["startTime"]
+          : DateTime.parse(json["startTime"]),
+      endTime: json["endTime"].runtimeType == DateTime
+          ? json["endTime"]
+          : DateTime.parse(json["endTime"]),
+      dropLocationNameList: List<RouteStep>.from(
+          json["dropLocationNameList"].map((x) => RouteStep.fromJson(x))),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,
