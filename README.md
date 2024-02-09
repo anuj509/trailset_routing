@@ -19,6 +19,8 @@ All assumptions should be elaborated.
 
 ## Solution
 
+![Logo](https://github.com/anuj509/trailset_routing/blob/main/media/trailset_logo.svg)
+
 ## Trailset Routing: A Route Optimization API for Logistic Companies
 
 Trailset Routing is an innovative solution aimed at empowering logistic companies with efficient route planning for their deliveries. Leveraging VROOM, an open-source optimization engine, and powered by Valhalla's robust capabilities, this API offers comprehensive features tailored to various real-life vehicle routing problems (VRP).
