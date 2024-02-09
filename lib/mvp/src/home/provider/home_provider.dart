@@ -103,6 +103,7 @@ class HomeProvider extends ChangeNotifier {
   LatLng get depoLocation => _depoLocation;
   set depoLocation(LatLng val) {
     _depoLocation = val;
+    isOptimizedButtonEnabled();
     notifyListeners();
   }
 
@@ -225,8 +226,6 @@ class HomeProvider extends ChangeNotifier {
     uploadedExcelModelList.add(uploadedExcelModel);
     uploadedExcelToOptimizeMarkerList.add(uploadedExcelModel);
     checkExcelModelIsSameList.add(uploadedExcelModel);
-    print(
-        "uploadedExcelToOptimizeMarkerList.length-->${uploadedExcelToOptimizeMarkerList.length}");
     isOptimizedButtonEnabled();
     notifyListeners();
   }
@@ -407,9 +406,14 @@ class HomeProvider extends ChangeNotifier {
   void decreaseItemQty({required int id}) {
     for (int i = 0; i < vehicleList.length; i++) {
       if (vehicleList[i].id == id) {
-        if (vehicleList[i].vehicleQty > 1) {
+        if (vehicleList[i].vehicleQty > 0) {
           removeVehicleFromSelectedJobList(jobModel: vehicleList[i]);
           vehicleList[i].vehicleQty--;
+          if (vehicleList[i].vehicleQty == 0) {
+            vehicleList[i].isItemSelected = false;
+            vehicleList[i].isJobActivated = true;
+            selectedVehicleList.removeWhere((element) => element.id == id);
+          }
           notifyListeners();
         }
         break;
@@ -418,19 +422,41 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void removeVehicleFromSelectedJobList({required JobModel jobModel}) {
+    optimizedRouteModel.routes.removeWhere((e) {
+      return (e.vehicleId == jobModel.vehicleQty) && (e.id == jobModel.id);
+    });
+    for (int i = 0; i < selectedJobList.length; i++) {
+      if ((selectedJobList[i].id == jobModel.id) &&
+          (selectedJobList[i].vehicleId == jobModel.vehicleQty)) {
+        for (int j = 0;
+            j < selectedJobList[i].dropLocationNameList.length;
+            j++) {
+          RouteStep routeStep = selectedJobList[i].dropLocationNameList[j];
+          if (routeStep.id != null) {
+            UploadedExcelModel uploadedExcelModel = UploadedExcelModel(
+                endTime: routeStep.endTime,
+                globalKey: GlobalKey(),
+                id: routeStep.id ?? 0,
+                lat: routeStep.location[1],
+                lng: routeStep.location[0],
+                name: routeStep.description ?? '',
+                priority: routeStep.priority,
+                serviceTime: routeStep.serviceTime,
+                startTime: routeStep.startTime);
+            assignedExcelModelList
+                .removeWhere((element) => element.id == uploadedExcelModel.id);
+            uploadedExcelModelList.add(uploadedExcelModel);
+            checkExcelModelIsSameList.add(uploadedExcelModel);
+          }
+        }
+      }
+    }
+
     selectedJobList.removeWhere((element) {
       return (element.id == jobModel.id &&
           element.vehicleId == jobModel.vehicleQty);
     });
-
-    // for (int i = 0; i < selectedJobList.length; i++) {
-    //   if (selectedJobList[i].id == jobModel.id &&
-    //       selectedJobList[i].vehicleId == jobModel.vehicleQty) {
-    //     selectedJobList.remove(jobModel);
-    //     break;
-    //   }
-    // }
-    // selectedJobList = jobs;
+    isOptimizedButtonEnabled();
     notifyListeners();
   }
 
@@ -498,7 +524,6 @@ class HomeProvider extends ChangeNotifier {
     }
     colorIndex = colorIndex + 1;
     jobModel.globalKey = GlobalKey();
-
     selectedJobList.add(jobModels);
     isOptimizedButtonEnabled();
 
@@ -569,13 +594,40 @@ class HomeProvider extends ChangeNotifier {
   }
 
   Future removeItemFromSelectedVehicleList(
-      {required int id, required int vehicleId}) async {
+      {bool clearAll = false, required int id, required int vehicleId}) async {
     for (int i = 0; i < vehicleList.length; i++) {
       if (vehicleList[i].id == id) {
         vehicleList[i].isItemSelected = false;
         break;
       }
     }
+    for (int i = 0; i < selectedJobList.length; i++) {
+      if (selectedJobList[i].id == id) {
+        for (int j = 0;
+            j < selectedJobList[i].dropLocationNameList.length;
+            j++) {
+          RouteStep routeStep = selectedJobList[i].dropLocationNameList[j];
+          if (routeStep.id != null) {
+            UploadedExcelModel uploadedExcelModel = UploadedExcelModel(
+                endTime: routeStep.endTime,
+                globalKey: GlobalKey(),
+                id: routeStep.id ?? 0,
+                lat: routeStep.location[1],
+                lng: routeStep.location[0],
+                name: routeStep.description ?? '',
+                priority: routeStep.priority,
+                serviceTime: routeStep.serviceTime,
+                startTime: routeStep.startTime);
+            assignedExcelModelList
+                .removeWhere((element) => element.id == uploadedExcelModel.id);
+            uploadedExcelModelList.add(uploadedExcelModel);
+            checkExcelModelIsSameList.add(uploadedExcelModel);
+          }
+        }
+      }
+    }
+    optimizedRouteModel.routes.removeWhere((e) => e.id == id);
+
     selectedVehicleList.removeWhere((element) => (element.id == id));
     selectedJobList.removeWhere((element) => (element.id == id));
     isOptimizedButtonEnabled();
@@ -606,6 +658,10 @@ class HomeProvider extends ChangeNotifier {
             id: vehicleList[i].id, vehicleId: vehicleList[i].vehicleId);
 
         if (!isVehicleExists) {
+          if (vehicleList[i].vehicleQty == 0) {
+            // vehicleList[i].vehicleQty = 1;
+            increaseItemQty(id: vehicleList[i].id);
+          }
           vehicleList[i].vehicleId = i + 1;
           selectedVehicleList.add(vehicleList[i]);
         } else {
@@ -633,13 +689,9 @@ class HomeProvider extends ChangeNotifier {
   Future makeSwitchOnOrOff({required int index}) async {
     if (selectedJobList[index].isJobActivated) {
       selectedJobList[index].isJobActivated = false;
-      print(
-          '${index < optimizedRouteModel.routes.length} $index > ${optimizedRouteModel.routes.length}}');
       if (optimizedRouteModel.routes.isNotEmpty) {
         if (index < optimizedRouteModel.routes.length) {
           optimizedRouteModel.routes[index].isVisible = false;
-          print(
-              "optimizedRouteModel.routes[index]->  ${optimizedRouteModel.routes[index].isVisible}");
         }
       }
     } else {
@@ -647,8 +699,6 @@ class HomeProvider extends ChangeNotifier {
       if (optimizedRouteModel.routes.isNotEmpty) {
         if (index < optimizedRouteModel.routes.length) {
           optimizedRouteModel.routes[index].isVisible = true;
-          print(
-              "optimizedRouteModel.routes[index]->  ${optimizedRouteModel.routes[index].isVisible}");
         }
       }
     }
@@ -1104,6 +1154,7 @@ class HomeProvider extends ChangeNotifier {
       isOptimizeButtonEnabled = areJobListsAreSame;
       return;
     }
+
     if (uploadedExcelToOptimizeMarkerList.isNotEmpty &&
         uploadedExcelModelList.isEmpty &&
         selectedVehicleList.isNotEmpty &&
@@ -1124,14 +1175,16 @@ class HomeProvider extends ChangeNotifier {
       isOptimizeButtonEnabled = false;
       return;
     }
+
     bool isBothListIsEqual = areUploadedExcelModelListsEqual(
         uploadedExcelModelList, checkExcelModelIsSameList);
 
     bool isItemSelected = checkIsItemSelected();
 
     bool isJobActivated = checkIsJobActivated();
+    print(
+        "selectedVehicleList.isEmpty -->isBothListIsEqual $isBothListIsEqual isItemSelected $isItemSelected isJobActivated $isJobActivated");
 
-    print("$isBothListIsEqual && $isItemSelected && $isJobActivated");
     if (isBothListIsEqual && isItemSelected && isJobActivated) {
       isOptimizeButtonEnabled = true;
     } else {
@@ -1159,8 +1212,6 @@ class HomeProvider extends ChangeNotifier {
 
   bool checkIsJobActivated() {
     for (int i = 0; i < selectedJobList.length; i++) {
-      print(
-          'selectedJobList[i].isJobActivated-->${selectedJobList[i].isJobActivated}');
       if (selectedJobList[i].isJobActivated == true) {
         return true;
       }
@@ -1205,10 +1256,7 @@ class HomeProvider extends ChangeNotifier {
           ],
           id: uploadedExcelToOptimizeMarkerList[i].id));
     }
-    for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      print(
-          "uploadedExcelToOptimizeMarkerList[i].id --> ${uploadedExcelToOptimizeMarkerList[i].id}");
-    }
+    for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {}
     List<Vehicles> vehiclesList = [];
     List<Map<String, dynamic>> vehiclesWithoutRoundTripList = [];
 
@@ -1258,6 +1306,7 @@ class HomeProvider extends ChangeNotifier {
       );
 
       if (res.statusCode == 200) {
+        lastDepoLocation = depoLocation;
         assignedExcelModelList = [];
         isSelectVehicleDropDownOpen = false;
         OptimizedRouteModel optimizedRouteServerResponse =
@@ -1299,13 +1348,16 @@ class HomeProvider extends ChangeNotifier {
                     optimizedRouteModel.routes[routesIndex].steps!.length - 2;
                 selectedJobList[i].dropLocationNameList =
                     optimizedRouteModel.routes[routesIndex].steps ?? [];
+                optimizedRouteModel.routes[routesIndex].id =
+                    selectedJobList[i].id;
+                optimizedRouteModel.routes[routesIndex].vehicleId =
+                    selectedJobList[i].vehicleId;
                 // selectedJobList[i].dropLocationNameList[routesIndex].globalKey =
                 //     GlobalKey();
                 routesIndex = routesIndex + 1;
               }
             }
           }
-          print("selectedJobList -- > ${selectedJobList.length}");
           for (int i = 0; i < selectedJobList.length; i++) {
             if (selectedJobList[i].isJobActivated) {
               selectedJobList[i].isDropDownMenuOpen = true;
@@ -1314,13 +1366,9 @@ class HomeProvider extends ChangeNotifier {
           }
           for (int i = 0; i < selectedJobList.length; i++) {
             int duration = 0;
-            print(
-                "selectedJobList[i].dropLocationNameList--> ${selectedJobList[i].dropLocationNameList.length}");
             for (int j = 0;
                 j < selectedJobList[i].dropLocationNameList.length;
                 j++) {
-              print(
-                  "selectedJobList[i].dropLocationNameList[j].arrival ${selectedJobList[i].dropLocationNameList[j].arrival}");
               for (int k = 0;
                   k < uploadedExcelToOptimizeMarkerList.length;
                   k++) {
@@ -1368,11 +1416,11 @@ class HomeProvider extends ChangeNotifier {
         checkUploadedExcelToOptimizeMarkerListIsSame =
             List.from(uploadedExcelToOptimizeMarkerList);
       } else {
-        print(res.body);
         showToast(title: jsonDecode(res.body)['error']);
       }
     } catch (e) {
-      print("e--> $e");
+      lastDepoLocation = const LatLng(0, 0);
+
       showToast(title: "Failed to draw your route!");
 
       isRouteOptimizedActivated = false;
@@ -1481,6 +1529,34 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isLocationSearching = false;
+  bool get isLocationSearching => _isLocationSearching;
+  set isLocationSearching(bool val) {
+    _isLocationSearching = val;
+    notifyListeners();
+  }
+
+  bool _isSelectValidAddress = false;
+  bool get isSelectValidAddress => _isSelectValidAddress;
+  set isSelectValidAddress(bool val) {
+    _isSelectValidAddress = val;
+    notifyListeners();
+  }
+
+  bool _isLatSearching = false;
+  bool get isLatSearching => _isLatSearching;
+  set isLatSearching(bool val) {
+    _isLatSearching = val;
+    notifyListeners();
+  }
+
+  bool _isLongSearching = false;
+  bool get isLongSearching => _isLongSearching;
+  set isLongSearching(bool val) {
+    _isLongSearching = val;
+    notifyListeners();
+  }
+
   List<OpenStreetPlaceResponse> _searchOpenStreetPlaceResponseList = [];
   List<OpenStreetPlaceResponse> get searchOpenStreetPlaceResponseList =>
       _searchOpenStreetPlaceResponseList;
@@ -1511,7 +1587,7 @@ class HomeProvider extends ChangeNotifier {
           return OpenStreetPlaceResponse.fromJson(jsonObject);
         }).toList();
       } catch (e) {
-        print(e);
+        searchOpenStreetPlaceResponseList = [];
       }
     }
 
@@ -1520,17 +1596,16 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void updateUploadExcelItemList(UploadedExcelModel uploadedExcelModel) {
-    checkExcelModelIsSameList.add(uploadedExcelModel);
     uploadedExcelModelList.add(uploadedExcelModel);
     uploadedExcelToOptimizeMarkerList.add(uploadedExcelModel);
+    checkExcelModelIsSameList.add(uploadedExcelModel);
+    isOptimizedButtonEnabled();
 
     notifyListeners();
   }
 
   void updateUploadExcelItemListByIndex(
       UploadedExcelModel uploadedExcelModel, int index) {
-    print(
-        "-----------------------------------------------${uploadedExcelModel.id}");
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
       if (uploadedExcelModel.id == _uploadedExcelModelList[i].id) {
         uploadedExcelModelList[i] = uploadedExcelModel;
@@ -1544,15 +1619,13 @@ class HomeProvider extends ChangeNotifier {
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
       if (uploadedExcelModel.id == uploadedExcelToOptimizeMarkerList[i].id) {
         uploadedExcelToOptimizeMarkerList[i] = uploadedExcelModel;
-
         break;
       }
     }
 
     for (int i = 0; i < checkExcelModelIsSameList.length; i++) {
-      if (uploadedExcelModel.id == uploadedExcelModel.id) {
+      if (checkExcelModelIsSameList[i].id == uploadedExcelModel.id) {
         checkExcelModelIsSameList[i] = uploadedExcelModel;
-
         break;
       }
     }
@@ -1594,9 +1667,7 @@ class HomeProvider extends ChangeNotifier {
         break;
       }
     }
-    for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      print("--------------> ${uploadedExcelToOptimizeMarkerList[i].id}");
-    }
+    for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {}
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
       if (id == uploadedExcelModel.id) {
         uploadedExcelModelList[i] = uploadedExcelModel;
@@ -1622,7 +1693,6 @@ class HomeProvider extends ChangeNotifier {
     OpenStreetPlaceResponse? openStreetPaceResponse;
     var res = await http.get(Uri.parse(
         "https://nominatim.openstreetmap.org/reverse?lat=${latLng.latitude}&lon=${latLng.longitude}&format=json"));
-    print('res --> ${res.body}');
     if (res.statusCode == 200) {
       Map<String, dynamic> map = jsonDecode(res.body);
       if (map.containsKey('error')) {
@@ -1634,7 +1704,6 @@ class HomeProvider extends ChangeNotifier {
         return openStreetPaceResponse;
       }
     } else {
-      print("res --> ${res.statusCode}");
       return null;
     }
   }

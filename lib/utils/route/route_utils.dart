@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trailset_route_optimize/mvp/src/home/view/home_screen.dart';
 
-
 /// Manage all the routes used in the application.
 class RouteUtilities {
   /// first screen to open in the application.
@@ -20,13 +19,17 @@ class RouteUtilities {
     String routeName = settings.name ?? RouteUtilities.root;
 
     /// this is the instance of arguments to pass data in other screens.
-    dynamic arguments = settings.arguments;
+    // dynamic arguments = settings.arguments;
     switch (routeName) {
       case RouteUtilities.root:
         return MaterialPageRoute(
           builder: (BuildContext context) => const HomeScreen(),
         );
       case RouteUtilities.homeScreen:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => const HomeScreen(),
+        );
+      default:
         return MaterialPageRoute(
           builder: (BuildContext context) => const HomeScreen(),
         );

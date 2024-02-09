@@ -23,17 +23,24 @@ class ImportOrAddStopsWidget extends StatelessWidget {
         child: Row(
           children: [
             !homeProvider.isFileUploaded
-                ? button(
-                    backgroundColor: VariableUtilities.theme.color2F9947,
-                    borderColor: Colors.transparent,
-                    callBack: onImportCallBack,
-                    svgIcon: AssetUtils.jsonObjectSvgIcon,
-                    title: 'Import Jobs',
-                    titleStyle: FontUtilities.h16(
-                        fontWeight: FWT.semiBold,
-                        fontColor: VariableUtilities.theme.whiteColor))
+                ? Expanded(
+                    child: Row(
+                      children: [
+                        button(
+                            backgroundColor:
+                                VariableUtilities.theme.color2F9947,
+                            borderColor: Colors.transparent,
+                            callBack: onImportCallBack,
+                            svgIcon: AssetUtils.jsonObjectSvgIcon,
+                            title: 'Import Jobs',
+                            titleStyle: FontUtilities.h16(
+                                fontWeight: FWT.semiBold,
+                                fontColor: VariableUtilities.theme.whiteColor)),
+                        const SizedBox(width: 10),
+                      ],
+                    ),
+                  )
                 : const SizedBox(),
-            const SizedBox(width: 10),
             button(
                 backgroundColor: VariableUtilities.theme.whiteColor,
                 borderColor: VariableUtilities.theme.color737B85,

@@ -97,7 +97,10 @@ class OpenStreetPlaceResponse {
         addresstype: json["addresstype"] ?? '',
         name: json["name"] ?? '',
         displayName: json["display_name"] ?? '',
-        address: Address.fromJson(json["address"] ?? ''),
+        address: Address.fromJson((json["address"].runtimeType == String
+                ? jsonDecode(json["address"])
+                : json["address"]) ??
+            {}),
         boundingbox: json["boundingbox"] == null
             ? []
             : List<String>.from(json["boundingbox"].map((x) => x)),

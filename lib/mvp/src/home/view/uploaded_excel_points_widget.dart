@@ -55,12 +55,13 @@ class UploadedExcelPointsListWidget extends StatelessWidget {
                                     children: [
                                       Center(
                                         child: SvgPicture.asset(
-                                          AssetUtils.greenMapSvgIcon,
-                                          height: 35,
-                                          width: 35,
-                                          color: VariableUtilities
-                                              .theme.primaryColor,
-                                        ),
+                                            AssetUtils.greenMapSvgIcon,
+                                            height: 35,
+                                            width: 35,
+                                            colorFilter: ColorFilter.mode(
+                                                VariableUtilities
+                                                    .theme.primaryColor,
+                                                BlendMode.srcATop)),
                                       ),
                                       Center(
                                         child: Padding(

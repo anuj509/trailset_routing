@@ -12,7 +12,7 @@ import 'package:trailset_route_optimize/utils/utils.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 addManuallyMarkerDialog(BuildContext context, HomeProvider homeProvider) {
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   showDialog(
       barrierColor: Colors.transparent,
@@ -30,7 +30,7 @@ addManuallyMarkerDialog(BuildContext context, HomeProvider homeProvider) {
                   child: Align(
                     alignment: Alignment.center,
                     child: Form(
-                      key: _formKey,
+                      key: formKey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -83,8 +83,6 @@ addManuallyMarkerDialog(BuildContext context, HomeProvider homeProvider) {
                                                         openStreetPaceResponses;
                                                     state(() {});
                                                   }
-                                                  print(
-                                                      "Value --> ${value.statusCode}");
                                                 });
                                                 return list;
                                               },
@@ -93,9 +91,7 @@ addManuallyMarkerDialog(BuildContext context, HomeProvider homeProvider) {
                                                 isFilterOnline: true,
                                                 showSelectedItems: true,
                                                 showSearchBox: true,
-                                                onItemAdded: (list, obj) {
-                                                  print(obj);
-                                                },
+                                                onItemAdded: (list, obj) {},
                                                 itemBuilder:
                                                     (context, object, val) {
                                                   return Text(
@@ -254,7 +250,7 @@ addManuallyMarkerDialog(BuildContext context, HomeProvider homeProvider) {
                                               PrimaryButton(
                                                 width: 150,
                                                 onTap: () async {
-                                                  if (_formKey.currentState!
+                                                  if (formKey.currentState!
                                                       .validate()) {
                                                     Navigator.pop(context);
                                                   }

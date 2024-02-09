@@ -26,7 +26,7 @@ import 'package:trailset_route_optimize/mvp/src/home/view/select_new_vehicle_wid
 import 'package:trailset_route_optimize/mvp/src/home/view/selected_vehicles_with_stops_widget.dart';
 import 'package:trailset_route_optimize/mvp/src/home/view/show_menu_for_optimized_marker.dart';
 import 'package:trailset_route_optimize/mvp/src/home/view/show_menu_for_upload_excel_file_marker.dart';
-import 'package:trailset_route_optimize/mvp/src/home/view/un_assined_points_list_widget.dart';
+import 'package:trailset_route_optimize/mvp/src/home/view/un_assigned_points_list_widget.dart';
 import 'package:trailset_route_optimize/mvp/src/home/view/uploaded_excel_points_widget.dart';
 import 'package:trailset_route_optimize/mvp/widgets/widgets.dart';
 import 'package:trailset_route_optimize/utils/utils.dart';
@@ -44,7 +44,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Offset markerPosition = const Offset(0, 0);
-  CustomPoint<double> offset = CustomPoint(0, 0);
+  CustomPoint<double> offset = const CustomPoint(0, 0);
   PopupController uploadedExcelPointPopupController = PopupController();
   PopupController optimizedPointsMPopupController = PopupController();
 
@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context: context,
                                   barrierColor: Colors.transparent,
                                   builder: (ctx) {
-                                    return DownloadTemplateView();
+                                    return const DownloadTemplateView();
                                   });
                             },
                             homeProvider: homeProvider,
@@ -107,10 +107,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   context: context,
                                   barrierColor: Colors.transparent,
                                   builder: (ctx) {
-                                    return Material(
-                                      color: Colors.transparent,
-                                      child: SizedBox(
-                                        width: 600,
+                                    return SizedBox(
+                                      width: VariableUtilities.screenSize.width,
+                                      height:
+                                          VariableUtilities.screenSize.height,
+                                      child: Material(
+                                        color: Colors.transparent,
                                         child: Center(
                                           child: SingleChildScrollView(
                                             child: Container(
@@ -142,40 +144,51 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(height: 12),
                           AssignedOrUnAssigned(homeProvider: homeProvider),
                           const SizedBox(height: 21),
-                          HomeScreenHeaderView(
-                              isOptimizeButtonEnabled:
-                                  homeProvider.isOptimizeButtonEnabled,
-                              onTap: homeProvider.isOptimizeButtonEnabled
-                                  ? () async {
-                                      // Timer(Duration(), () { })
-                                      // await homeProvider.callOptimizeApi();
-                                    }
-                                  : () {}),
-                          const SizedBox(height: 15),
-                          CreateNewVehicleWidget(homeProvider: homeProvider),
-                          const SizedBox(height: 10),
-                          SelectNewVehicleWidget(homeProvider: homeProvider),
-                          const SizedBox(height: 14),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 15.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'JOB',
-                                style: FontUtilities.h14(
-                                    fontColor:
-                                        VariableUtilities.theme.blackColor,
-                                    fontWeight: FWT.bold),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          SelectDepoWidget(homeProvider: homeProvider),
-                          const SizedBox(height: 10),
-                          RoundTripWidget(homeProvider: homeProvider),
-                          const SizedBox(height: 10),
-                          homeProvider.selectedAssignableType == 'Un-Assigned'
+                          homeProvider.selectedAssignableType == 'Total'
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    HomeScreenHeaderView(
+                                        isOptimizeButtonEnabled: homeProvider
+                                            .isOptimizeButtonEnabled,
+                                        onTap:
+                                            homeProvider.isOptimizeButtonEnabled
+                                                ? () async {
+                                                    // Timer(Duration(), () { })
+                                                    // await homeProvider.callOptimizeApi();
+                                                  }
+                                                : () {}),
+                                    const SizedBox(height: 15),
+                                    CreateNewVehicleWidget(
+                                        homeProvider: homeProvider),
+                                    const SizedBox(height: 10),
+                                    SelectNewVehicleWidget(
+                                        homeProvider: homeProvider),
+                                    const SizedBox(height: 14),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15.0),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'JOB',
+                                          style: FontUtilities.h14(
+                                              fontColor: VariableUtilities
+                                                  .theme.blackColor,
+                                              fontWeight: FWT.bold),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    SelectDepoWidget(
+                                        homeProvider: homeProvider),
+                                    const SizedBox(height: 10),
+                                    RoundTripWidget(homeProvider: homeProvider),
+                                    const SizedBox(height: 10),
+                                  ],
+                                )
+                              : const SizedBox(),
+                          (homeProvider.selectedAssignableType == 'Un-Assigned')
                               ? const SizedBox()
                               : SelectedVehicleWithStops(
                                   homeProvider: homeProvider),
@@ -207,7 +220,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               homeProvider.updateExcelModelListOnTap(
                                   latLng, openStreetPaceResponse);
                             }
-                            print("Value --> ${value.statusCode}");
                           });
                           uploadedExcelPointPopupController.hideAllPopups();
                         },
@@ -347,12 +359,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                       .greenMapSvgIcon,
                                                                   height: 35,
                                                                   width: 35,
-                                                                  color: homeProvider
-                                                                      .selectedJobList[
-                                                                          i]
-                                                                      .color
-                                                                      .withOpacity(
-                                                                          0.6),
+                                                                  // color:
+                                                                  colorFilter: ColorFilter.mode(
+                                                                      homeProvider
+                                                                          .selectedJobList[
+                                                                              i]
+                                                                          .color
+                                                                          .withOpacity(
+                                                                              0.6),
+                                                                      BlendMode
+                                                                          .srcIn),
                                                                 ),
                                                               ),
                                                               Center(
@@ -384,8 +400,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Marker marker) {
                                                   if (marker
                                                       is OptimizedExcelPointsMarker) {
-                                                    print(
-                                                        "marker.index --> ${marker.selectedJobIndex} ${marker.index}");
                                                     return OptimizedMarkerDialog(
                                                       key: homeProvider
                                                           .selectedJobList[marker
@@ -468,9 +482,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                               AssetUtils.greenMapSvgIcon,
                                               height: 35,
                                               width: 35,
-                                              color: VariableUtilities
-                                                  .theme.primaryColor
-                                                  .withOpacity(0.6),
+                                              colorFilter: ColorFilter.mode(
+                                                VariableUtilities
+                                                    .theme.primaryColor
+                                                    .withOpacity(0.6),
+                                                BlendMode.srcIn,
+                                              ),
                                             ),
                                           ),
                                           Center(

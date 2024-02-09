@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 part 'shape_painter.dart';
 
 enum PopupArrowPosition {
-  BottomLeft,
-  BottomCenter,
-  BottomRight,
-  CenterRight,
-  CenterLeft,
-  TopLeft,
-  TopCenter,
-  TopRight,
+  bottomLeft,
+  bottomCenter,
+  bottomRight,
+  centerRight,
+  centerLeft,
+  topLeft,
+  topCenter,
+  topRight,
   none
 }
 
@@ -26,10 +26,11 @@ class PopupShapes extends StatelessWidget {
   final double height;
 
   PopupShapes({
+    super.key,
     this.bgColor = Colors.blue,
     this.shadowColor = Colors.grey,
     this.shadowRadius = 3.0,
-    this.position = PopupArrowPosition.BottomCenter,
+    this.position = PopupArrowPosition.bottomCenter,
     this.child = const SizedBox(),
     this.width = 55,
     this.height = 55,
@@ -39,7 +40,7 @@ class PopupShapes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 300,
       child: CustomPaint(
         painter: ShapePainter(

@@ -23,338 +23,386 @@ class _SelectedVehicleWithStopsState extends State<SelectedVehicleWithStops> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
-      child: ListView.builder(
-          itemCount: widget.homeProvider.selectedJobList.length,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: VariableUtilities.theme.whiteColor,
-                    borderRadius: BorderRadius.circular(3),
-                    border:
-                        Border.all(color: VariableUtilities.theme.colorDFDFDF)),
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+      child: Stack(
+        children: [
+          ListView.builder(
+              itemCount: widget.homeProvider.selectedJobList.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: VariableUtilities.theme.whiteColor,
+                        borderRadius: BorderRadius.circular(3),
+                        border: Border.all(
+                            color: VariableUtilities.theme.colorDFDFDF)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Column(children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Transform.scale(
-                              scale: 0.75,
-                              child: Switch(
-                                  activeTrackColor: widget.homeProvider
-                                      .selectedJobList[index].color,
-                                  activeColor:
-                                      VariableUtilities.theme.whiteColor,
-                                  value: widget.homeProvider
-                                      .selectedJobList[index].isJobActivated,
-                                  onChanged: (val) {
-                                    widget.homeProvider
-                                        .makeSwitchOnOrOff(index: index);
-                                  }),
-                            ),
-                            Text(
-                              widget.homeProvider.selectedJobList[index]
-                                  .vehicleName,
-                              style: FontUtilities.h14(
-                                  fontColor:
-                                      VariableUtilities.theme.color292D32,
-                                  fontWeight: FWT.bold),
-                            ),
-                            IconButton(
-                                onPressed: () {
-                                  showDialogForUpdate(
-                                      cargoEndTime: DateFormat('h:mm a').format(
-                                          widget.homeProvider
-                                              .selectedJobList[index].endTime),
-                                      cargoHeight:
-                                          '${widget.homeProvider.selectedJobList[index].height}',
-                                      cargoId:
-                                          '${widget.homeProvider.selectedJobList[index].id}',
-                                      cargoLength:
-                                          '${widget.homeProvider.selectedJobList[index].length}',
-                                      cargoName: widget.homeProvider
-                                          .selectedJobList[index].vehicleName,
-                                      cargoNo: widget.homeProvider
-                                          .selectedJobList[index].vehicleNo,
-                                      cargoPayload:
-                                          '${widget.homeProvider.selectedJobList[index].payload}',
-                                      cargoStartTime: DateFormat('h:mm a')
-                                          .format(widget
+                            Row(
+                              children: [
+                                Transform.scale(
+                                  scale: 0.75,
+                                  child: Switch(
+                                      activeTrackColor: widget.homeProvider
+                                          .selectedJobList[index].color,
+                                      activeColor:
+                                          VariableUtilities.theme.whiteColor,
+                                      value: widget
+                                          .homeProvider
+                                          .selectedJobList[index]
+                                          .isJobActivated,
+                                      onChanged: (val) {
+                                        widget.homeProvider
+                                            .makeSwitchOnOrOff(index: index);
+                                      }),
+                                ),
+                                Text(
+                                  widget.homeProvider.selectedJobList[index]
+                                      .vehicleName,
+                                  style: FontUtilities.h14(
+                                      fontColor:
+                                          VariableUtilities.theme.color292D32,
+                                      fontWeight: FWT.bold),
+                                ),
+                                Text(
+                                  widget.homeProvider.selectedJobList[index].id
+                                      .toString(),
+                                  style: FontUtilities.h14(
+                                      fontColor:
+                                          VariableUtilities.theme.color292D32,
+                                      fontWeight: FWT.bold),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  widget.homeProvider.selectedJobList[index]
+                                      .vehicleId
+                                      .toString(),
+                                  style: FontUtilities.h14(
+                                      fontColor:
+                                          VariableUtilities.theme.color292D32,
+                                      fontWeight: FWT.bold),
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      showDialogForUpdate(
+                                          cargoEndTime: DateFormat('h:mm a')
+                                              .format(widget
+                                                  .homeProvider
+                                                  .selectedJobList[index]
+                                                  .endTime),
+                                          cargoHeight:
+                                              '${widget.homeProvider.selectedJobList[index].height}',
+                                          cargoId:
+                                              '${widget.homeProvider.selectedJobList[index].id}',
+                                          cargoLength:
+                                              '${widget.homeProvider.selectedJobList[index].length}',
+                                          cargoName: widget
                                               .homeProvider
                                               .selectedJobList[index]
-                                              .startTime),
-                                      cargoStops:
-                                          '${widget.homeProvider.selectedJobList[index].stops}',
-                                      cargoTopSpeed:
-                                          '${widget.homeProvider.selectedJobList[index].topSpeed}',
-                                      index: index,
-                                      isUpdate: true,
-                                      context: context,
-                                      homeProvider: widget.homeProvider);
-                                },
-                                icon: SvgPicture.asset(AssetUtils.editSvgIcon))
+                                              .vehicleName,
+                                          cargoNo: widget.homeProvider
+                                              .selectedJobList[index].vehicleNo,
+                                          cargoPayload:
+                                              '${widget.homeProvider.selectedJobList[index].payload}',
+                                          cargoStartTime: DateFormat('h:mm a')
+                                              .format(widget
+                                                  .homeProvider
+                                                  .selectedJobList[index]
+                                                  .startTime),
+                                          cargoStops:
+                                              '${widget.homeProvider.selectedJobList[index].stops}',
+                                          cargoTopSpeed:
+                                              '${widget.homeProvider.selectedJobList[index].topSpeed}',
+                                          index: index,
+                                          isUpdate: true,
+                                          context: context,
+                                          homeProvider: widget.homeProvider);
+                                    },
+                                    icon: SvgPicture.asset(
+                                        AssetUtils.editSvgIcon))
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                // Text(
+                                //   widget.homeProvider.selectedJobList[index]
+                                //       .vehicleNo,
+                                //   style: FontUtilities.h14(
+                                //       fontColor:
+                                //           VariableUtilities.theme.color737B85,
+                                //       fontWeight: FWT.semiBold),
+                                // ),
+                                // const SizedBox(width: 5),
+                                Text(
+                                  '${widget.homeProvider.selectedJobList[index].stops} Stops',
+                                  style: FontUtilities.h14(
+                                      fontColor:
+                                          VariableUtilities.theme.blackColor,
+                                      fontWeight: FWT.semiBold),
+                                ),
+                                IconButton(
+                                  icon: SvgPicture.asset(
+                                      widget.homeProvider.selectedJobList[index]
+                                              .isDropDownMenuOpen
+                                          ? AssetUtils.upArrowSvgIcon
+                                          : AssetUtils.downArrowSvgIcon,
+                                      height: 8,
+                                      width: 8),
+                                  onPressed: () {
+                                    widget.homeProvider
+                                        .makeDropDownMenuOpenOrCloseInJobList(
+                                            // id : homeProvider
+                                            //     .selectedJobList[
+                                            //         index]
+                                            //     .vehicleName,
+                                            index: index);
+                                  },
+                                ),
+                              ],
+                            ),
                           ],
                         ),
-                        Row(
-                          children: [
-                            // Text(
-                            //   widget.homeProvider.selectedJobList[index]
-                            //       .vehicleNo,
-                            //   style: FontUtilities.h14(
-                            //       fontColor:
-                            //           VariableUtilities.theme.color737B85,
-                            //       fontWeight: FWT.semiBold),
-                            // ),
-                            // const SizedBox(width: 5),
-                            Text(
-                              '${widget.homeProvider.selectedJobList[index].stops} Stops',
-                              style: FontUtilities.h14(
-                                  fontColor: VariableUtilities.theme.blackColor,
-                                  fontWeight: FWT.semiBold),
-                            ),
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                  widget.homeProvider.selectedJobList[index]
-                                          .isDropDownMenuOpen
-                                      ? AssetUtils.upArrowSvgIcon
-                                      : AssetUtils.downArrowSvgIcon,
-                                  height: 8,
-                                  width: 8),
-                              onPressed: () {
-                                widget.homeProvider
-                                    .makeDropDownMenuOpenOrCloseInJobList(
-                                        // id : homeProvider
-                                        //     .selectedJobList[
-                                        //         index]
-                                        //     .vehicleName,
-                                        index: index);
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Wrap(
-                        runSpacing: 20,
-                        direction: Axis.horizontal,
-                        children: [
-                          widget.homeProvider.selectedJobList[index].vehicleNo
-                                  .isEmpty
-                              ? const SizedBox()
-                              : JobDetailContainer(
-                                  containerName: 'Number',
-                                  suffixTitle: widget.homeProvider
-                                      .selectedJobList[index].vehicleNo,
+                        const SizedBox(height: 5),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Wrap(
+                            runSpacing: 20,
+                            direction: Axis.horizontal,
+                            children: [
+                              widget.homeProvider.selectedJobList[index]
+                                      .vehicleNo.isEmpty
+                                  ? const SizedBox()
+                                  : JobDetailContainer(
+                                      containerName: 'Number',
+                                      suffixTitle: widget.homeProvider
+                                          .selectedJobList[index].vehicleNo,
+                                      height: 18,
+                                      width: 18,
+                                      isPng: false,
+                                      imageUrl: AssetUtils.speedometerSvgIcon),
+                              JobDetailContainer(
+                                  containerName: 'Height (mm)',
+                                  count: widget.homeProvider
+                                      .selectedJobList[index].height,
+                                  suffixTitle: 'mm',
                                   height: 18,
                                   width: 18,
-                                  isPng: false,
+                                  isPng: true,
+                                  imageUrl: AssetUtils.heightIcon),
+                              JobDetailContainer(
+                                  containerName: 'Length (mm)',
+                                  count: widget.homeProvider
+                                      .selectedJobList[index].length,
+                                  suffixTitle: 'mm',
+                                  height: 18,
+                                  width: 18,
+                                  isPng: true,
+                                  imageUrl: AssetUtils.lengthIcon),
+                              JobDetailContainer(
+                                  containerName: 'Pay load',
+                                  count: widget.homeProvider
+                                      .selectedJobList[index].payload,
+                                  suffixTitle: 'Kgs',
+                                  imageUrl: AssetUtils.loadedSvgIcon),
+                              JobDetailContainer(
+                                  containerName: 'Top Speed',
+                                  count: widget.homeProvider
+                                      .selectedJobList[index].topSpeed,
+                                  suffixTitle: 'Km/h',
                                   imageUrl: AssetUtils.speedometerSvgIcon),
-                          JobDetailContainer(
-                              containerName: 'Height (mm)',
-                              count: widget
-                                  .homeProvider.selectedJobList[index].height,
-                              suffixTitle: 'mm',
-                              height: 18,
-                              width: 18,
-                              isPng: true,
-                              imageUrl: AssetUtils.heightIcon),
-                          JobDetailContainer(
-                              containerName: 'Length (mm)',
-                              count: widget
-                                  .homeProvider.selectedJobList[index].length,
-                              suffixTitle: 'mm',
-                              height: 18,
-                              width: 18,
-                              isPng: true,
-                              imageUrl: AssetUtils.lengthIcon),
-                          JobDetailContainer(
-                              containerName: 'Pay load',
-                              count: widget
-                                  .homeProvider.selectedJobList[index].payload,
-                              suffixTitle: 'Kgs',
-                              imageUrl: AssetUtils.loadedSvgIcon),
-                          JobDetailContainer(
-                              containerName: 'Top Speed',
-                              count: widget
-                                  .homeProvider.selectedJobList[index].topSpeed,
-                              suffixTitle: 'Km/h',
-                              imageUrl: AssetUtils.speedometerSvgIcon),
-                        ],
-                      ),
-                    ),
-                    (widget.homeProvider.selectedJobList[index]
-                                .dropLocationNameList.isNotEmpty &&
-                            widget.homeProvider.selectedJobList[index]
-                                .isDropDownMenuOpen)
-                        ? Column(
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 15.0),
-                                child: Divider(),
-                              ),
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: widget
-                                      .homeProvider
-                                      .selectedJobList[index]
-                                      .dropLocationNameList
-                                      .length,
-                                  itemBuilder: (context, insideI) {
-                                    return (widget
-                                                    .homeProvider
-                                                    .selectedJobList[index]
-                                                    .dropLocationNameList[
-                                                        insideI]
-                                                    .type ==
-                                                "start" ||
-                                            widget
-                                                    .homeProvider
-                                                    .selectedJobList[index]
-                                                    .dropLocationNameList[
-                                                        insideI]
-                                                    .type ==
-                                                "end")
-                                        ? const SizedBox()
-                                        : Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 4.0,
-                                                horizontal: 10.0),
-                                            child: InkWell(
-                                              onTap: () {
+                            ],
+                          ),
+                        ),
+                        (widget.homeProvider.selectedJobList[index]
+                                    .dropLocationNameList.isNotEmpty &&
+                                widget.homeProvider.selectedJobList[index]
+                                    .isDropDownMenuOpen)
+                            ? Column(
+                                children: [
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 15.0),
+                                    child: Divider(),
+                                  ),
+                                  ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: widget
+                                          .homeProvider
+                                          .selectedJobList[index]
+                                          .dropLocationNameList
+                                          .length,
+                                      itemBuilder: (context, insideI) {
+                                        return (widget
+                                                        .homeProvider
+                                                        .selectedJobList[index]
+                                                        .dropLocationNameList[
+                                                            insideI]
+                                                        .type ==
+                                                    "start" ||
                                                 widget
-                                                    .homeProvider.mapController!
-                                                    .move(
-                                                        LatLng(
-                                                          widget
-                                                              .homeProvider
-                                                              .selectedJobList[
-                                                                  index]
-                                                              .dropLocationNameList[
-                                                                  insideI]
-                                                              .location[1],
-                                                          widget
-                                                              .homeProvider
-                                                              .selectedJobList[
-                                                                  index]
-                                                              .dropLocationNameList[
-                                                                  insideI]
-                                                              .location[0],
-                                                        ),
-                                                        18);
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  SizedBox(
-                                                    height: 35,
-                                                    width: 35,
-                                                    child: Stack(
-                                                      children: [
-                                                        Center(
-                                                          child: SvgPicture.asset(
-                                                              AssetUtils
-                                                                  .greenMapSvgIcon,
-                                                              height: 35,
-                                                              width: 35,
-                                                              color: widget
+                                                        .homeProvider
+                                                        .selectedJobList[index]
+                                                        .dropLocationNameList[
+                                                            insideI]
+                                                        .type ==
+                                                    "end")
+                                            ? const SizedBox()
+                                            : Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 4.0,
+                                                        horizontal: 10.0),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    widget.homeProvider
+                                                        .mapController!
+                                                        .move(
+                                                            LatLng(
+                                                              widget
                                                                   .homeProvider
                                                                   .selectedJobList[
                                                                       index]
-                                                                  .color),
-                                                        ),
-                                                        Center(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    bottom: 5.0,
-                                                                    right: 1.0),
-                                                            child: Text(
-                                                              '$insideI',
-                                                              style: FontUtilities.h12(
-                                                                  fontWeight: FWT
-                                                                      .semiBold,
-                                                                  fontColor:
-                                                                      VariableUtilities
+                                                                  .dropLocationNameList[
+                                                                      insideI]
+                                                                  .location[1],
+                                                              widget
+                                                                  .homeProvider
+                                                                  .selectedJobList[
+                                                                      index]
+                                                                  .dropLocationNameList[
+                                                                      insideI]
+                                                                  .location[0],
+                                                            ),
+                                                            18);
+                                                  },
+                                                  child: Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 35,
+                                                        width: 35,
+                                                        child: Stack(
+                                                          children: [
+                                                            Center(
+                                                              child: SvgPicture.asset(
+                                                                  AssetUtils
+                                                                      .greenMapSvgIcon,
+                                                                  height: 35,
+                                                                  width: 35,
+                                                                  colorFilter: ColorFilter.mode(
+                                                                      widget
+                                                                          .homeProvider
+                                                                          .selectedJobList[
+                                                                              index]
+                                                                          .color,
+                                                                      BlendMode
+                                                                          .srcATop)),
+                                                            ),
+                                                            Center(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        bottom:
+                                                                            5.0,
+                                                                        right:
+                                                                            1.0),
+                                                                child: Text(
+                                                                  '$insideI',
+                                                                  style: FontUtilities.h12(
+                                                                      fontWeight: FWT
+                                                                          .semiBold,
+                                                                      fontColor: VariableUtilities
                                                                           .theme
                                                                           .whiteColor),
+                                                                ),
+                                                              ),
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                      const SizedBox(width: 10),
+                                                      Expanded(
+                                                        child: Text(
+                                                          widget
+                                                                  .homeProvider
+                                                                  .selectedJobList[
+                                                                      index]
+                                                                  .dropLocationNameList[
+                                                                      insideI]
+                                                                  .description ??
+                                                              '',
+                                                          maxLines: 1,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: FontUtilities.h16(
+                                                              fontColor:
+                                                                  VariableUtilities
+                                                                      .theme
+                                                                      .color292D32),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        DateFormat('h:mm a').format(
+                                                            DateTime.fromMillisecondsSinceEpoch(
+                                                                    int.parse(
+                                                                        '${widget.homeProvider.selectedJobList[index].dropLocationNameList[insideI].arrival}000'))
+                                                                .toLocal()
+                                                                .toLocal()),
+                                                        // Text(
+                                                        //   truckReachDurationTmeInHoursAndMinutes(widget
+                                                        //       .homeProvider
+                                                        //       .selectedJobList[index]
+                                                        //       .startTime
+                                                        //       .add(Duration(
+                                                        //           minutes: (widget
+                                                        //                       .homeProvider
+                                                        //                       .selectedJobList[
+                                                        //                           index]
+                                                        //                       .dropLocationNameList[
+                                                        //                           insideI]
+                                                        //                       .totalTravelDuration /
+                                                        //                   60)
+                                                        //               .ceil()))),
+                                                        //  ' ${ homeProvider.selectedJobList[index].startTime.add(Duration(minutes: homeProvider.selectedJobList[index].dropLocationNameList[insideI].duration ~/ 60))}',
+                                                        style: FontUtilities.h12(
+                                                            fontColor:
+                                                                VariableUtilities
+                                                                    .theme
+                                                                    .color737B85),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  const SizedBox(width: 10),
-                                                  Expanded(
-                                                    child: Text(
-                                                      widget
-                                                              .homeProvider
-                                                              .selectedJobList[
-                                                                  index]
-                                                              .dropLocationNameList[
-                                                                  insideI]
-                                                              .description ??
-                                                          '',
-                                                      maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: FontUtilities.h16(
-                                                          fontColor:
-                                                              VariableUtilities
-                                                                  .theme
-                                                                  .color292D32),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    DateFormat('h:mm a').format(
-                                                        DateTime.fromMillisecondsSinceEpoch(
-                                                                int.parse(
-                                                                    '${widget.homeProvider.selectedJobList[index].dropLocationNameList[insideI].arrival}000'))
-                                                            .toLocal()
-                                                            .toLocal()),
-                                                    // Text(
-                                                    //   truckReachDurationTmeInHoursAndMinutes(widget
-                                                    //       .homeProvider
-                                                    //       .selectedJobList[index]
-                                                    //       .startTime
-                                                    //       .add(Duration(
-                                                    //           minutes: (widget
-                                                    //                       .homeProvider
-                                                    //                       .selectedJobList[
-                                                    //                           index]
-                                                    //                       .dropLocationNameList[
-                                                    //                           insideI]
-                                                    //                       .totalTravelDuration /
-                                                    //                   60)
-                                                    //               .ceil()))),
-                                                    //  ' ${ homeProvider.selectedJobList[index].startTime.add(Duration(minutes: homeProvider.selectedJobList[index].dropLocationNameList[insideI].duration ~/ 60))}',
-                                                    style: FontUtilities.h12(
-                                                        fontColor:
-                                                            VariableUtilities
-                                                                .theme
-                                                                .color737B85),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                  }),
-                            ],
-                          )
-                        : const SizedBox()
-                  ]),
-                ),
+                                                ),
+                                              );
+                                      }),
+                                ],
+                              )
+                            : const SizedBox()
+                      ]),
+                    ),
+                  ),
+                );
+              }),
+          Visibility(
+            visible: widget.homeProvider.uploadedExcelModelList.isEmpty &&
+                widget.homeProvider.selectedAssignableType == "Assigned",
+            child: Center(
+              child: Text(
+                'Not Assigned Yet...',
+                style: FontUtilities.h14(
+                    fontWeight: FWT.semiBold,
+                    fontColor: VariableUtilities.theme.blackColor),
               ),
-            );
-          }),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -749,7 +797,7 @@ void showDialogForUpdate({
                                                                   MainAxisAlignment
                                                                       .center,
                                                               children: [
-                                                                Container(
+                                                                SizedBox(
                                                                   height: 260,
                                                                   width: 260,
                                                                   child: Stack(

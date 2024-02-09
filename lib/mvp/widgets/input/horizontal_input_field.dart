@@ -98,7 +98,7 @@ class _HorizontalInputFieldState extends State<HorizontalInputField> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
+                  SizedBox(
                     width: widget.width ?? 131,
                     child: Text(
                       widget.label,
@@ -117,7 +117,6 @@ class _HorizontalInputFieldState extends State<HorizontalInputField> {
               setState(() {});
             },
             child: TextFormField(
-              inputFormatters: [],
               keyboardType: widget.keyboardType,
               onTap: widget.onTap ?? () {},
               validator: widget.validator ??
