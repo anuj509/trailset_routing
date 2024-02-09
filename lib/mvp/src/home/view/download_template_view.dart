@@ -173,6 +173,7 @@ class _DownloadTemplateViewState extends State<DownloadTemplateView> {
                               ..setAttribute('download',
                                   '${isSampleData ? 'trailset_standard_template' : 'trailset_sample_data'}.xlsx'); // Specify the filename
                             anchor.click();
+                            Navigator.pop(context);
                           }
                         },
                         child: Container(
