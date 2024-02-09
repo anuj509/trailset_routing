@@ -88,7 +88,7 @@ Since VROOM has provided extensive API document with example JSON. Take a look [
 To illustrate the capabilities of Trailset Routing, we provide a live demo showcasing its intuitive interface and powerful features. Click [here](http://trailset.in/) to access the demo.
 
 - Ideal usage where vehicles are selected, warehouse location is denoted by depo location 
-![Ideal Case](media/trailset_normal_demo.mp4)
+![Ideal Case](https://youtu.be/5f8kZVn4R44)
 - Adding stops manually
 ![Manual stops](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
 - Round trip and one way trip planning
