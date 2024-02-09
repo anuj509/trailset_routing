@@ -42,7 +42,7 @@ Trailset Routing is an innovative solution aimed at empowering logistic companie
 - **Geocoding**: Nominatin geocoding service is utilized for location-based services, enhancing address resolution and geospatial functionality.
 - **Hosting**: Hosted on GCP Compute Engine VM c2-standard-4 (4vCPU 16GB Memory) 
 - **OS**: Ubuntu 22.04.3 LTS
-- **UI Support**: Developed on Flutter for web 3.13.4.
+- **UI Support**: Developed on Flutter for web 3.13.4 with openstreetmap.
 - **Containerization** : VROOM and Valhalla are hosted on Docker container.
 
 ### Setup
@@ -87,6 +87,16 @@ Since VROOM has provided extensive API document with example JSON. Take a look [
 
 To illustrate the capabilities of Trailset Routing, we provide a live demo showcasing its intuitive interface and powerful features. Click [here](http://trailset.in/) to access the demo.
 
+- Ideal usage where vehicles are selected, warehouse location is denoted by depo location 
+![Ideal Case](media/trailset_normal_demo.mp4)
+- Adding stops manually
+![Manual stops](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
+- Round trip and one way trip planning
+![Round Trip or One Way Trip](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
+- Time window scheduling
+![Time Scheduling](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
+- Priority stops in planning so don't miss out on important delivery point
+![Priority Stops](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
 
 
 ### Usage
