@@ -124,7 +124,7 @@ Trailset Routing simplifies the route optimization process for logistic companie
 
 
 ### Real world Application by Parsel Exchange Pvt Ltd.
-![Parsel TMS](media/optimize_route plan.gif)
+![Parsel TMS](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
 
 
 Trailset Routing is poised to revolutionize route optimization for logistic companies, offering a powerful, customizable, and user-friendly solution for their delivery logistics needs.
