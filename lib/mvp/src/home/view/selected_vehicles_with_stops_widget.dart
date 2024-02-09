@@ -70,24 +70,6 @@ class _SelectedVehicleWithStopsState extends State<SelectedVehicleWithStops> {
                                           VariableUtilities.theme.color292D32,
                                       fontWeight: FWT.bold),
                                 ),
-                                Text(
-                                  widget.homeProvider.selectedJobList[index].id
-                                      .toString(),
-                                  style: FontUtilities.h14(
-                                      fontColor:
-                                          VariableUtilities.theme.color292D32,
-                                      fontWeight: FWT.bold),
-                                ),
-                                SizedBox(width: 5),
-                                Text(
-                                  widget.homeProvider.selectedJobList[index]
-                                      .vehicleId
-                                      .toString(),
-                                  style: FontUtilities.h14(
-                                      fontColor:
-                                          VariableUtilities.theme.color292D32,
-                                      fontWeight: FWT.bold),
-                                ),
                                 IconButton(
                                     onPressed: () {
                                       showDialogForUpdate(
@@ -390,7 +372,7 @@ class _SelectedVehicleWithStopsState extends State<SelectedVehicleWithStops> {
                 );
               }),
           Visibility(
-            visible: widget.homeProvider.uploadedExcelModelList.isEmpty &&
+            visible: widget.homeProvider.assignedExcelModelList.isEmpty &&
                 widget.homeProvider.selectedAssignableType == "Assigned",
             child: Center(
               child: Text(

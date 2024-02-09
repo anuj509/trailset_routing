@@ -139,15 +139,6 @@ class SelectNewVehicleWidget extends StatelessWidget {
                                         ),
                                       ),
                                       const Spacer(),
-                                      Text(
-                                        homeProvider
-                                            .vehicleList[index].vehicleNo,
-                                        style: FontUtilities.h14(
-                                          fontColor: VariableUtilities
-                                              .theme.primaryColor,
-                                        ),
-                                      ),
-                                      const SizedBox(width: 5),
                                       IconButton(
                                           onPressed: () {
                                             homeProvider.decreaseItemQty(
@@ -180,29 +171,21 @@ class SelectNewVehicleWidget extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 5),
                                   Wrap(
-                                    runSpacing: 10,
-                                    alignment: WrapAlignment.spaceBetween,
-                                    runAlignment: WrapAlignment.spaceBetween,
+                                    runSpacing: 20,
                                     direction: Axis.horizontal,
                                     children: [
                                       homeProvider.vehicleList[index].vehicleNo
                                               .isEmpty
                                           ? const SizedBox()
-                                          : Row(
-                                              children: [
-                                                JobDetailContainer(
-                                                    height: 18,
-                                                    width: 18,
-                                                    containerName: 'Number',
-                                                    suffixTitle: homeProvider
-                                                        .vehicleList[index]
-                                                        .vehicleNo,
-                                                    isPng: true,
-                                                    imageUrl: AssetUtils
-                                                        .speedometerSvgIcon),
-                                                const SizedBox(width: 20),
-                                              ],
-                                            ),
+                                          : JobDetailContainer(
+                                              height: 18,
+                                              width: 18,
+                                              containerName: 'Number',
+                                              suffixTitle: homeProvider
+                                                  .vehicleList[index].vehicleNo,
+                                              isPng: false,
+                                              imageUrl: AssetUtils
+                                                  .speedometerSvgIcon),
                                       JobDetailContainer(
                                           height: 18,
                                           width: 18,

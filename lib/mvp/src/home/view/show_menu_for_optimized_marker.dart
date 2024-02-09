@@ -651,9 +651,8 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                                       .increaseServiceTimeByTypeForOptimizedMarker(
                                                     dropLocationIndex: widget
                                                         .dropLocationIndex,
-                                                    jobName: widget.routeStep
-                                                            .description ??
-                                                        '',
+                                                    id: widget.routeStep.id ??
+                                                        0,
                                                     selectedJobIndex:
                                                         widget.selectedJobIndex,
                                                     service: service,
@@ -689,9 +688,8 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                                   state(() {});
                                                   widget.homeProvider
                                                       .increaseServiceTimeForOptimizedMarker(
-                                                          widget.routeStep
-                                                                  .description ??
-                                                              '');
+                                                          widget.routeStep.id ??
+                                                              0);
                                                   serviceTimeController.text =
                                                       '${widget.routeStep.serviceTime}';
                                                   // widget.homeProvider.increaseServiceTime(
@@ -710,9 +708,8 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
 
                                                   widget.homeProvider
                                                       .decreaseServiceTimeForOptimizedMarker(
-                                                          widget.routeStep
-                                                                  .description ??
-                                                              '');
+                                                          widget.routeStep.id ??
+                                                              0);
                                                   serviceTimeController.text =
                                                       '${widget.routeStep.serviceTime}';
                                                   // widget.homeProvider.decreaseServiceTime(
@@ -778,9 +775,8 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                                           .dropLocationIndex,
                                                       selectedJobIndex: widget
                                                           .selectedJobIndex,
-                                                      jobName: widget.routeStep
-                                                              .description ??
-                                                          '',
+                                                      id: widget.routeStep.id ??
+                                                          0,
                                                       priority: priority,
                                                     );
                                                   } else {
@@ -792,9 +788,8 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                                           .dropLocationIndex,
                                                       selectedJobIndex: widget
                                                           .selectedJobIndex,
-                                                      jobName: widget.routeStep
-                                                              .description ??
-                                                          '',
+                                                      id: widget.routeStep.id ??
+                                                          0,
                                                       priority: 100,
                                                     );
                                                   }
@@ -829,9 +824,8 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                                   state(() {});
                                                   widget.homeProvider
                                                       .increaseJobPriorityForOptimizedMarker(
-                                                          widget.routeStep
-                                                                  .description ??
-                                                              '');
+                                                          widget.routeStep.id ??
+                                                              0);
                                                   priorityController.text =
                                                       '${widget.routeStep.priority}';
                                                 },
@@ -846,9 +840,8 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
 
                                                   widget.homeProvider
                                                       .decreaseJobPriorityForOptimizedMarker(
-                                                          widget.routeStep
-                                                                  .description ??
-                                                              '');
+                                                          widget.routeStep.id ??
+                                                              0);
                                                   priorityController.text =
                                                       '${widget.routeStep.priority}';
                                                   // widget.homeProvider.decreaseJobPriority(
@@ -895,8 +888,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                         startDateTime = selectedDateTime;
                                         widget.homeProvider
                                             .updateStartTimeForOptimizedMarker(
-                                                widget.routeStep.description ??
-                                                    '',
+                                                widget.routeStep.id ?? 0,
                                                 selectedDateTime);
                                         state(() {});
                                       }
@@ -953,8 +945,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                                         endDateTime = selectedDateTime;
                                         widget.homeProvider
                                             .updateEndTimeForOptimizedMarker(
-                                                widget.routeStep.description ??
-                                                    '',
+                                                widget.routeStep.id ?? 0,
                                                 selectedDateTime);
                                         state(() {});
                                       }

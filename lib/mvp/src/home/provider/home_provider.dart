@@ -269,7 +269,7 @@ class HomeProvider extends ChangeNotifier {
         endTime: nightDateTime(),
         startTime: morningDateTime(),
         id: 2,
-        vehicleId: 2,
+        vehicleId: 1,
         vehicleNo: '',
         isJobActivated: true,
         isDropDownMenuOpen: false,
@@ -284,7 +284,7 @@ class HomeProvider extends ChangeNotifier {
         endTime: nightDateTime(),
         startTime: morningDateTime(),
         id: 3,
-        vehicleId: 3,
+        vehicleId: 1,
         vehicleNo: '',
         isJobActivated: true,
         isDropDownMenuOpen: false,
@@ -299,7 +299,7 @@ class HomeProvider extends ChangeNotifier {
         endTime: nightDateTime(),
         startTime: morningDateTime(),
         id: 4,
-        vehicleId: 4,
+        vehicleId: 1,
         vehicleNo: '',
         isJobActivated: true,
         isDropDownMenuOpen: false,
@@ -314,7 +314,7 @@ class HomeProvider extends ChangeNotifier {
         endTime: nightDateTime(),
         startTime: morningDateTime(),
         id: 5,
-        vehicleId: 5,
+        vehicleId: 1,
         vehicleNo: '',
         isJobActivated: true,
         isDropDownMenuOpen: false,
@@ -329,7 +329,7 @@ class HomeProvider extends ChangeNotifier {
         endTime: nightDateTime(),
         startTime: morningDateTime(),
         id: 6,
-        vehicleId: 6,
+        vehicleId: 1,
         vehicleNo: '',
         isJobActivated: true,
         isDropDownMenuOpen: false,
@@ -376,10 +376,12 @@ class HomeProvider extends ChangeNotifier {
         vehicleList[i].vehicleQty++;
         notifyListeners();
         if (vehicleList[i].isItemSelected) {
-          JobModel jobModel = JobModel.fromJson(
-              jsonDecode(jsonEncode(vehicleList[i].toJson())));
+          print("vehicleList[i]--> ${vehicleList[i].endTime.runtimeType}");
+          print("vehicleList[i]--> ${vehicleList[i].startTime.runtimeType}");
+          JobModel jobModel = JobModel.fromJson((vehicleList[i].toJson()));
           jobModel.vehicleId = vehicleList[i].vehicleQty;
-
+          jobModel.dropLocationNameList = [];
+          jobModel.stops = 0;
           addVehicleToSelectedJobList(jobModel: jobModel);
         }
         break;
@@ -388,6 +390,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void addVehicleToSelectedJobList({required JobModel jobModel}) {
+    print("addVehicleToSelectedJobList JobModel --> ${jobModel.toJson()}");
     // jobModel.id = selectedJobList.length + 1;
     if (colorIndex < 99) {
       Color color = StaticColors.colorsList[colorIndex];
@@ -406,26 +409,34 @@ class HomeProvider extends ChangeNotifier {
   void decreaseItemQty({required int id}) {
     for (int i = 0; i < vehicleList.length; i++) {
       if (vehicleList[i].id == id) {
+        print("decreaseItemQty JobModel --> ${vehicleList[i].toJson()}");
+
         if (vehicleList[i].vehicleQty > 0) {
           removeVehicleFromSelectedJobList(jobModel: vehicleList[i]);
           vehicleList[i].vehicleQty--;
-          if (vehicleList[i].vehicleQty == 0) {
-            vehicleList[i].isItemSelected = false;
-            vehicleList[i].isJobActivated = true;
-            selectedVehicleList.removeWhere((element) => element.id == id);
-          }
-          notifyListeners();
         }
+        if (vehicleList[i].vehicleQty == 0) {
+          vehicleList[i].isItemSelected = false;
+          vehicleList[i].isJobActivated = true;
+          removeVehicleFromSelectedJobList(jobModel: vehicleList[i]);
+        }
+        notifyListeners();
         break;
       }
     }
   }
 
-  void removeVehicleFromSelectedJobList({required JobModel jobModel}) {
+  void removeVehicleFromSelectedJobList(
+      {required JobModel jobModel, bool isFromOnCheckBoxClick = false}) {
+    print("removeVehicleFromSelectedJobList --> ${jobModel.vehicleQty}");
+    print("removeVehicleFromSelectedJobList --> ${jobModel.vehicleId}");
+    print("removeVehicleFromSelectedJobList --> ${jobModel.id}");
     optimizedRouteModel.routes.removeWhere((e) {
       return (e.vehicleId == jobModel.vehicleQty) && (e.id == jobModel.id);
     });
+
     for (int i = 0; i < selectedJobList.length; i++) {
+      print("selectedJobList[i].vehicleId --> ${selectedJobList[i].vehicleId}");
       if ((selectedJobList[i].id == jobModel.id) &&
           (selectedJobList[i].vehicleId == jobModel.vehicleQty)) {
         for (int j = 0;
@@ -452,19 +463,33 @@ class HomeProvider extends ChangeNotifier {
       }
     }
 
-    selectedJobList.removeWhere((element) {
+    selectedVehicleList.removeWhere((element) {
+      print(
+          "selectedVehicleList Removed--> ${(element.id == jobModel.id && element.vehicleId == jobModel.vehicleQty)}");
+
       return (element.id == jobModel.id &&
           element.vehicleId == jobModel.vehicleQty);
     });
+
+    selectedJobList.removeWhere((element) {
+      print(
+          "selectedJobList Removed--> ${(element.id == jobModel.id && element.vehicleId == jobModel.vehicleQty)}");
+      return (element.id == jobModel.id &&
+          element.vehicleId == jobModel.vehicleQty);
+    });
+
     isOptimizedButtonEnabled();
     notifyListeners();
   }
 
   void onCheckBoxSelectFromVehicleSelection({required JobModel jobModel}) {
-    selectedJobList.removeWhere((element) => (element.id == jobModel.id));
+    // selectedJobList.removeWhere((element) => (element.id == jobModel.id));
+    removeVehicleFromSelectedJobList(
+        jobModel: jobModel, isFromOnCheckBoxClick: true);
     if (jobModel.isItemSelected) {
       for (int i = 0; i < jobModel.vehicleQty; i++) {
         JobModel jobModels = JobModel.fromJson(jobModel.toJson());
+        jobModels.dropLocationNameList = [];
         jobModels.vehicleId = i + 1;
         if (colorIndex < 99) {
           Color color = StaticColors.colorsList[colorIndex];
@@ -493,21 +518,21 @@ class HomeProvider extends ChangeNotifier {
     required String cargoTopSpeed,
   }) async {
     JobModel jobModel = JobModel(
-        vehicleId: selectedJobList.length + 1,
+        vehicleId: 1,
         endTime: endTime == null
             ? nightDateTime()
             : nightDateTime(hours: endTime.hour, minutes: endTime.minute),
         startTime: startTime == null
             ? morningDateTime()
             : morningDateTime(hours: startTime.hour, minutes: startTime.minute),
-        id: selectedJobList.length + 1,
+        id: vehicleList.length + 1,
         vehicleNo: cargoNo,
         isItemSelected: true,
         dropLocationNameList: [],
         height: int.parse(cargoHeight),
         length: int.parse(cargoLength),
         payload: int.parse(cargoPayload),
-        stops: 15,
+        stops: 0,
         topSpeed: int.parse(cargoTopSpeed),
         vehicleName: cargoName,
         isJobActivated: true);
@@ -601,6 +626,9 @@ class HomeProvider extends ChangeNotifier {
         break;
       }
     }
+    selectedVehicleList.removeWhere((element) {
+      return (element.id == id);
+    });
     for (int i = 0; i < selectedJobList.length; i++) {
       if (selectedJobList[i].id == id) {
         for (int j = 0;
@@ -628,7 +656,6 @@ class HomeProvider extends ChangeNotifier {
     }
     optimizedRouteModel.routes.removeWhere((e) => e.id == id);
 
-    selectedVehicleList.removeWhere((element) => (element.id == id));
     selectedJobList.removeWhere((element) => (element.id == id));
     isOptimizedButtonEnabled();
 
@@ -662,7 +689,10 @@ class HomeProvider extends ChangeNotifier {
             // vehicleList[i].vehicleQty = 1;
             increaseItemQty(id: vehicleList[i].id);
           }
-          vehicleList[i].vehicleId = i + 1;
+          vehicleList[i].vehicleId = vehicleList[i].vehicleQty;
+
+          vehicleList[i].dropLocationNameList = [];
+          vehicleList[i].stops = 0;
           selectedVehicleList.add(vehicleList[i]);
         } else {
           removeItemFromSelectedVehicleList(
@@ -791,10 +821,10 @@ class HomeProvider extends ChangeNotifier {
     // addMarkersToMap();
   }
 
-  void increaseJobPriority(String jobName) {
+  void increaseJobPriority(int id) {
     int priority = 0;
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
-      if (uploadedExcelModelList[i].name == jobName) {
+      if (uploadedExcelModelList[i].id == id) {
         if (uploadedExcelModelList[i].priority < 100) {
           priority = uploadedExcelModelList[i].priority;
           priority = priority + 1;
@@ -806,7 +836,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         if (uploadedExcelToOptimizeMarkerList[i].priority < 100) {
           uploadedExcelToOptimizeMarkerList[i].priority = priority;
         }
@@ -815,10 +845,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void increaseJobPriorityForOptimizedMarker(String jobName) {
+  void increaseJobPriorityForOptimizedMarker(int id) {
     for (int i = 0; i < selectedJobList.length; i++) {
       for (int j = 0; j < selectedJobList[i].dropLocationNameList.length; j++) {
-        if (selectedJobList[i].dropLocationNameList[j].description == jobName) {
+        if (selectedJobList[i].dropLocationNameList[j].id == id) {
           if (selectedJobList[i].dropLocationNameList[j].priority < 100) {
             selectedJobList[i].dropLocationNameList[j].priority++;
             isOptimizedButtonEnabled(isJobList: true);
@@ -829,7 +859,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         if (uploadedExcelToOptimizeMarkerList[i].priority < 100) {
           uploadedExcelToOptimizeMarkerList[i].priority++;
         }
@@ -838,10 +868,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void decreaseJobPriority(String jobName) {
+  void decreaseJobPriority(int id) {
     int priority = 0;
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
-      if (uploadedExcelModelList[i].name == jobName) {
+      if (uploadedExcelModelList[i].id == id) {
         priority = uploadedExcelModelList[i].priority;
         if (uploadedExcelModelList[i].priority > 0) {
           priority = priority - 1;
@@ -855,7 +885,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         if (uploadedExcelToOptimizeMarkerList[i].priority > 0) {
           uploadedExcelToOptimizeMarkerList[i].priority = priority;
           notifyListeners();
@@ -865,9 +895,9 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void decreaseJobPriorityForOptimizedMarker(String jobName) {
+  void decreaseJobPriorityForOptimizedMarker(int id) {
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
-      if (uploadedExcelModelList[i].name == jobName) {
+      if (uploadedExcelModelList[i].id == id) {
         if (uploadedExcelModelList[i].priority > 0) {
           uploadedExcelModelList[i].priority--;
 
@@ -880,7 +910,7 @@ class HomeProvider extends ChangeNotifier {
     }
     for (int i = 0; i < selectedJobList.length; i++) {
       for (int j = 0; j < selectedJobList[i].dropLocationNameList.length; j++) {
-        if (selectedJobList[i].dropLocationNameList[j].description == jobName) {
+        if (selectedJobList[i].dropLocationNameList[j].id == id) {
           if (selectedJobList[i].dropLocationNameList[j].priority > 0) {
             selectedJobList[i].dropLocationNameList[j].priority--;
             notifyListeners();
@@ -892,7 +922,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         if (uploadedExcelToOptimizeMarkerList[i].priority > 0) {
           uploadedExcelToOptimizeMarkerList[i].priority--;
           notifyListeners();
@@ -902,9 +932,9 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void updateStartTime(String jobName, DateTime startTime) {
+  void updateStartTime(int id, DateTime startTime) {
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
-      if (uploadedExcelModelList[i].name == jobName) {
+      if (uploadedExcelModelList[i].id == id) {
         uploadedExcelModelList[i].startTime = startTime;
 
         isOptimizedButtonEnabled();
@@ -913,7 +943,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         uploadedExcelToOptimizeMarkerList[i].startTime = startTime;
         notifyListeners();
         break;
@@ -921,10 +951,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void updateStartTimeForOptimizedMarker(String jobName, DateTime startTime) {
+  void updateStartTimeForOptimizedMarker(int id, DateTime startTime) {
     for (int i = 0; i < selectedJobList.length; i++) {
       for (int j = 0; j < selectedJobList[i].dropLocationNameList.length; j++) {
-        if (selectedJobList[i].dropLocationNameList[j].description == jobName) {
+        if (selectedJobList[i].dropLocationNameList[j].id == id) {
           selectedJobList[i].dropLocationNameList[j].startTime = startTime;
           isOptimizedButtonEnabled(isJobList: true);
           notifyListeners();
@@ -933,7 +963,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         uploadedExcelToOptimizeMarkerList[i].startTime = startTime;
         notifyListeners();
         break;
@@ -941,9 +971,9 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void updateEndTime(String jobName, DateTime endTime) {
+  void updateEndTime(int id, DateTime endTime) {
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
-      if (uploadedExcelModelList[i].name == jobName) {
+      if (uploadedExcelModelList[i].id == id) {
         uploadedExcelModelList[i].endTime = endTime;
 
         notifyListeners();
@@ -953,7 +983,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         uploadedExcelToOptimizeMarkerList[i].endTime = endTime;
 
         break;
@@ -961,10 +991,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void updateEndTimeForOptimizedMarker(String jobName, DateTime endTime) {
+  void updateEndTimeForOptimizedMarker(int id, DateTime endTime) {
     for (int i = 0; i < selectedJobList.length; i++) {
       for (int j = 0; j < selectedJobList[i].dropLocationNameList.length; j++) {
-        if (selectedJobList[i].dropLocationNameList[j].description == jobName) {
+        if (selectedJobList[i].dropLocationNameList[j].id == id) {
           selectedJobList[i].dropLocationNameList[j].endTime = endTime;
           isOptimizedButtonEnabled(isJobList: true);
           notifyListeners();
@@ -973,7 +1003,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         uploadedExcelToOptimizeMarkerList[i].endTime = endTime;
 
         break;
@@ -981,10 +1011,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void increaseServiceTime(String jobName) {
+  void increaseServiceTime(int id) {
     int service = 0;
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
-      if (uploadedExcelModelList[i].name == jobName) {
+      if (uploadedExcelModelList[i].id == id) {
         service = uploadedExcelModelList[i].serviceTime;
         service = service + 1;
         uploadedExcelModelList[i].serviceTime = service;
@@ -995,7 +1025,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int k = 0; k < uploadedExcelToOptimizeMarkerList.length; k++) {
-      if (uploadedExcelToOptimizeMarkerList[k].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[k].id == id) {
         uploadedExcelToOptimizeMarkerList[k].serviceTime = service;
         notifyListeners();
         break;
@@ -1004,13 +1034,13 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void increaseServiceTimeByType(
-      {required String jobName, required int service, required int index}) {
+      {required int id, required int service, required int index}) {
     uploadedExcelModelList[index].serviceTime = service;
     isOptimizedButtonEnabled();
     notifyListeners();
 
     for (int k = 0; k < uploadedExcelToOptimizeMarkerList.length; k++) {
-      if (uploadedExcelToOptimizeMarkerList[k].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[k].id == id) {
         uploadedExcelToOptimizeMarkerList[k].serviceTime = service;
         notifyListeners();
         break;
@@ -1019,13 +1049,13 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void increasePriorityByType(
-      {required String jobName, required int priority, required int index}) {
+      {required int id, required int priority, required int index}) {
     uploadedExcelModelList[index].priority = priority;
     isOptimizedButtonEnabled();
     notifyListeners();
 
     for (int k = 0; k < uploadedExcelToOptimizeMarkerList.length; k++) {
-      if (uploadedExcelToOptimizeMarkerList[k].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[k].id == id) {
         uploadedExcelToOptimizeMarkerList[k].priority = priority;
         notifyListeners();
         break;
@@ -1034,7 +1064,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void increaseServiceTimeByTypeForOptimizedMarker({
-    required String jobName,
+    required int id,
     required int service,
     required int dropLocationIndex,
     required int selectedJobIndex,
@@ -1047,7 +1077,7 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
 
     for (int k = 0; k < uploadedExcelToOptimizeMarkerList.length; k++) {
-      if (uploadedExcelToOptimizeMarkerList[k].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[k].id == id) {
         uploadedExcelToOptimizeMarkerList[k].serviceTime = service;
         notifyListeners();
         break;
@@ -1056,7 +1086,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   void increasePriorityByTypeForOptimizedMarker({
-    required String jobName,
+    required int id,
     required int priority,
     required int dropLocationIndex,
     required int selectedJobIndex,
@@ -1069,7 +1099,7 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
 
     for (int k = 0; k < uploadedExcelToOptimizeMarkerList.length; k++) {
-      if (uploadedExcelToOptimizeMarkerList[k].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[k].id == id) {
         uploadedExcelToOptimizeMarkerList[k].priority = priority;
         notifyListeners();
         break;
@@ -1077,10 +1107,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void increaseServiceTimeForOptimizedMarker(String jobName) {
+  void increaseServiceTimeForOptimizedMarker(int id) {
     for (int i = 0; i < selectedJobList.length; i++) {
       for (int j = 0; j < selectedJobList[i].dropLocationNameList.length; j++) {
-        if (selectedJobList[i].dropLocationNameList[j].description == jobName) {
+        if (selectedJobList[i].dropLocationNameList[j].id == id) {
           selectedJobList[i].dropLocationNameList[j].serviceTime++;
           isOptimizedButtonEnabled(isJobList: true);
           notifyListeners();
@@ -1089,7 +1119,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         uploadedExcelToOptimizeMarkerList[i].serviceTime++;
         notifyListeners();
         break;
@@ -1097,10 +1127,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void decreaseServiceTime(String jobName) {
+  void decreaseServiceTime(int id) {
     int service = 0;
     for (int i = 0; i < uploadedExcelModelList.length; i++) {
-      if (uploadedExcelModelList[i].name == jobName) {
+      if (uploadedExcelModelList[i].id == id) {
         service = uploadedExcelModelList[i].serviceTime;
         if (service > 0) {
           service = service - 1;
@@ -1112,7 +1142,7 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         if (uploadedExcelToOptimizeMarkerList[i].serviceTime > 0) {
           uploadedExcelToOptimizeMarkerList[i].serviceTime = service;
           notifyListeners();
@@ -1122,10 +1152,10 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  void decreaseServiceTimeForOptimizedMarker(String jobName) {
+  void decreaseServiceTimeForOptimizedMarker(int id) {
     for (int i = 0; i < selectedJobList.length; i++) {
       for (int j = 0; j < selectedJobList[i].dropLocationNameList.length; j++) {
-        if (selectedJobList[i].dropLocationNameList[j].description == jobName) {
+        if (selectedJobList[i].dropLocationNameList[j].id == id) {
           if (selectedJobList[i].dropLocationNameList[j].serviceTime > 0) {
             selectedJobList[i].dropLocationNameList[j].serviceTime--;
           }
@@ -1137,7 +1167,7 @@ class HomeProvider extends ChangeNotifier {
     }
 
     for (int i = 0; i < uploadedExcelToOptimizeMarkerList.length; i++) {
-      if (uploadedExcelToOptimizeMarkerList[i].name == jobName) {
+      if (uploadedExcelToOptimizeMarkerList[i].id == id) {
         if (uploadedExcelToOptimizeMarkerList[i].serviceTime > 0) {
           uploadedExcelToOptimizeMarkerList[i].serviceTime--;
           notifyListeners();
@@ -1164,13 +1194,13 @@ class HomeProvider extends ChangeNotifier {
       return;
     }
 
-    print(
-        "uploadedExcelModelList.isEmpty --> ${uploadedExcelModelList.isEmpty}");
+    // print(
+    //     "uploadedExcelModelList.isEmpty --> ${uploadedExcelModelList.isEmpty}");
     if (uploadedExcelModelList.isEmpty) {
       isOptimizeButtonEnabled = false;
       return;
     }
-    print("selectedVehicleList.isEmpty --> ${selectedVehicleList.isEmpty}");
+    // print("selectedVehicleList.isEmpty --> ${selectedVehicleList.isEmpty}");
     if (selectedVehicleList.isEmpty) {
       isOptimizeButtonEnabled = false;
       return;
@@ -1182,8 +1212,8 @@ class HomeProvider extends ChangeNotifier {
     bool isItemSelected = checkIsItemSelected();
 
     bool isJobActivated = checkIsJobActivated();
-    print(
-        "selectedVehicleList.isEmpty -->isBothListIsEqual $isBothListIsEqual isItemSelected $isItemSelected isJobActivated $isJobActivated");
+    // print(
+    //     "selectedVehicleList.isEmpty -->isBothListIsEqual $isBothListIsEqual isItemSelected $isItemSelected isJobActivated $isJobActivated");
 
     if (isBothListIsEqual && isItemSelected && isJobActivated) {
       isOptimizeButtonEnabled = true;
@@ -1372,8 +1402,8 @@ class HomeProvider extends ChangeNotifier {
               for (int k = 0;
                   k < uploadedExcelToOptimizeMarkerList.length;
                   k++) {
-                if (uploadedExcelToOptimizeMarkerList[k].name ==
-                    selectedJobList[i].dropLocationNameList[j].description) {
+                if (uploadedExcelToOptimizeMarkerList[k].id ==
+                    selectedJobList[i].dropLocationNameList[j].id) {
                   // selectedJobList[i].dropLocationNameList[j].duration =
                   //     duration;
                   assignedExcelModelList
