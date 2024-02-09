@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
 import 'package:trailset_route_optimize/utils/utils.dart';
 
-class ImportOrAddStopsWidget extends StatelessWidget {
-  const ImportOrAddStopsWidget(
+class ImportJobOrAddStopsOrDownloadTemplateWidget extends StatelessWidget {
+  const ImportJobOrAddStopsOrDownloadTemplateWidget(
       {super.key,
       required this.onImportCallBack,
       required this.onAddStopCallBack,
