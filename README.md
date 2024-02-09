@@ -52,11 +52,9 @@ Trailset Routing is an innovative solution aimed at empowering logistic companie
 - Download Geofabrik map data [file](https://download.geofabrik.de/asia/india/western-zone-latest.osm.pbf) in custom_files directory. 
 - Run the following Docker commands
     1. ```
-        docker run -dt --name vroom --net=bridge -p 3000:3000 -v ~/trailset_routing/routing_setup/conf:/conf -e VROOM_ROUTER=valhalla vroomvrp/vroom-docker:v1.13.0
-        ```
+        docker run -dt --name vroom --net=bridge -p 3000:3000 -v ~/trailset_routing/routing_setup/conf:/conf -e VROOM_ROUTER=valhalla vroomvrp/vroom-docker:v1.13.0```
     2. ```
-        docker run -dt --name valhalla_gis-ops --net=bridge -p 8002:8002 -v ~/custom_files:/custom_files ghcr.io/gis-ops/docker-valhalla/valhalla:latest
-        ```
+        docker run -dt --name valhalla_gis-ops --net=bridge -p 8002:8002 -v ~/custom_files:/custom_files ghcr.io/gis-ops/docker-valhalla/valhalla:latest```
 - ```bash
     cd trailset_routing
     flutter web build
@@ -84,7 +82,9 @@ Trailset Routing is an innovative solution aimed at empowering logistic companie
 
 
 ### API Documentation
-Since VROOM has provided extensive API document with example JSON. Take a look [here](https://github.com/VROOM-Project/vroom/blob/master/docs/API.md).  
+- Swagger Document can be found [here](https://github.com/anuj509/trailset_routing/blob/main/docs/swagger.yaml)  
+- Sample Request and Response can be found [here](https://github.com/anuj509/trailset_routing/tree/main/test/sample%20request)  
+- Although, VROOM has provided extensive API document with example JSON. Take a look [here](https://github.com/VROOM-Project/vroom/blob/master/docs/API.md).  
 
 
 ### Demo

@@ -1,0 +1,284 @@
+openapi: 3.0.3
+info:
+  title: Trailset Routing
+  description: |-
+    Trailset Routing is an innovative solution aimed at empowering logistic companies with efficient route planning for their deliveries. Leveraging VROOM, an open-source optimization engine, and powered by Valhalla's robust capabilities, this API offers comprehensive features tailored to various real-life vehicle routing problems (VRP).
+  contact:
+    email: anuj.shah2016@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Trailset
+  url: https://github.com/anuj509/trailset_routing/blob/main/README.md
+servers:
+  - url: http://trailset.in:3000
+tags:
+  - name: Route Optimization
+    description: A Route Optimization API for Logistic Companies
+    externalDocs:
+      description: Find out more
+      url: https://github.com/anuj509/trailset_routing/blob/main/README.md
+paths:
+  /:
+    post:
+      tags:
+        - Route Optimization
+      summary: API for route planning
+      description: API for route planning. Get sample request response [here](https://github.com/anuj509/trailset_routing/tree/main/test/sample%20request)
+      operationId: routeOptimize
+      requestBody:
+        description: Optimize Deliveries by defining vehicle and delivery points
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApiRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+components:
+  schemas:
+    Job:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the job
+        description:
+          type: string
+          description: A string describing this job
+        location:
+          type: array
+          items:
+            type: number
+          description: Coordinates array [longitude, latitude]
+        location_index:
+          type: integer
+          description: Index of relevant row and column in custom matrices
+        setup:
+          type: integer
+          description: Job setup duration in seconds (defaults to 0)
+        service:
+          type: integer
+          description: Job service duration in seconds (defaults to 0)
+        amount:
+          type: array
+          items:
+            type: integer
+          description: An array of integers describing multidimensional quantities
+        delivery:
+          type: array
+          items:
+            type: integer
+          description: An array of integers describing multidimensional quantities for delivery
+        pickup:
+          type: array
+          items:
+            type: integer
+          description: An array of integers describing multidimensional quantities for pickup
+        skills:
+          type: array
+          items:
+            type: integer
+          description: An array of integers defining mandatory skills
+        priority:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: An integer in the [0, 100] range describing priority level (defaults to 0)
+        time_windows:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeWindow'
+          description: An array of time_window objects describing valid slots for job service start
+      required:
+        - id
+        - description
+        - location
+    TimeWindow:
+      type: array
+      description: relative values or absolute value epoch
+      items:
+        type: integer
+        format: int64
+        minItems: 2
+        maxItems: 2
+    Vehicle:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the vehicle
+        profile:
+          type: string
+          default: truck
+          description: Routing profile (defaults to truck)
+        description:
+          type: string
+          description: A string describing this vehicle
+        start:
+          type: array
+          items:
+            type: number
+            format: double
+          description: Coordinates array [longitude, latitude] for the starting location
+        end:
+          type: array
+          items:
+            type: number
+            format: double
+          description: Coordinates array [longitude, latitude] for the ending location
+        capacity:
+          type: array
+          items:
+            type: integer
+          description: An array of integers describing multidimensional quantities. Trailset default 28
+        skills:
+          type: array
+          items:
+            type: integer
+          description: An array of integers defining skills
+        time_window:
+          $ref: '#/components/schemas/TimeWindow'
+          description: A time_window object describing working hours
+        speed_factor:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 5
+          default: 0.6
+          description: A double value in the range (0, 5] used to scale all vehicle travel times
+        max_tasks:
+          type: integer
+          description: An integer defining the maximum number of tasks in a route for this vehicle
+      required:
+        - id
+        - profile
+        - start
+        - startDescription
+    Violation:
+      type: object
+      properties:
+        cause:
+          type: string
+        duration:
+          type: array
+          items:
+            type: string
+    Step:
+      type: object
+      properties:
+        type:
+          type: string
+        location:
+          type: array
+          items:
+            type: number
+            format: double
+          description: Coordinates array [longitude, latitude] for the starting location
+        setup:
+          type: integer
+        service:
+          type: integer
+        waiting_time:
+          type: integer
+        load:
+          type: array
+          items:
+            type: integer
+        arrival:
+          type: integer
+        duration: 
+          type: integer
+        violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Violation'
+        distance:
+          type: integer
+    Route:
+      type: object
+      properties:
+        vehicle:
+          type: integer
+          format: int64
+        cost:
+          type: integer
+          format: int64
+        delivery:
+          type: array
+          items:
+            type: integer
+        amount:
+          type: array
+          items:
+            type: integer
+        pickup:
+          type: array
+          items:
+            type: integer
+        setup:
+          type: integer
+        service:
+          type: integer
+        duration:
+          type: integer
+        waiting_time:
+          type: integer
+        priority:
+          type: integer
+        distance:
+          type: integer
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+        violations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Violation'
+        geometry:
+          type: string
+    ApiRequest:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        options:
+          type: object
+          properties:
+            g:
+              type: boolean
+              default: true
+        vehicles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vehicle'
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        summary:
+          type: string
+        unassigned:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
