@@ -88,15 +88,15 @@ Since VROOM has provided extensive API document with example JSON. Take a look [
 To illustrate the capabilities of Trailset Routing, we provide a live demo showcasing its intuitive interface and powerful features. Click [here](http://trailset.in/) to access the demo.
 
 - Ideal usage where vehicles are selected, warehouse location is denoted by depo location 
-![Ideal Case](https://youtu.be/5f8kZVn4R44)
+[![Demo](https://img.youtube.com/vi/5f8kZVn4R44/maxresdefault.jpg)](https://youtu.be/5f8kZVn4R44)
 - Adding stops manually
-![Manual stops](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
+[![Manual stops](https://img.youtube.com/vi/5Qwhf2fIrgE/maxresdefault.jpg)](https://youtu.be/5Qwhf2fIrgE)
 - Round trip and one way trip planning
-![Round Trip or One Way Trip](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
+[![Round Trip or One Way Trip](https://img.youtube.com/vi/enQYarg7_bA/maxresdefault.jpg)](https://youtu.be/enQYarg7_bA)
 - Time window scheduling
-![Time Scheduling](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
-- Priority stops in planning so don't miss out on important delivery point
-![Priority Stops](https://github.com/anuj509/trailset_routing/blob/main/media/optimize_route%20plan.gif)
+[![Time Scheduling](https://img.youtube.com/vi/tRT2h_k-OF0/maxresdefault.jpg)](https://youtu.be/tRT2h_k-OF0)
+- Priority stops in planning so don't miss out on important delivery point when less vehicles are available
+[![Priority Stops](https://img.youtube.com/vi/28CUlmC-1aU/maxresdefault.jpg)](https://youtu.be/28CUlmC-1aU)
 
 
 ### Usage
