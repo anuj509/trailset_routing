@@ -14,7 +14,7 @@ class OptimizedRouteModel {
   final int code;
   final Summary? summary;
   final List<Unassigned> unassigned;
-  final List<Summary> routes;
+  List<Summary> routes;
 
   OptimizedRouteModel({
     required this.code,
@@ -44,6 +44,8 @@ class OptimizedRouteModel {
 }
 
 class Summary {
+  int id;
+  int vehicleId;
   final int? vehicle;
   final int cost;
   final List<int> delivery;
@@ -66,6 +68,8 @@ class Summary {
   bool isVisible;
 
   Summary({
+    this.id = 500,
+    this.vehicleId = 500,
     this.vehicle,
     this.color = Colors.transparent,
     this.polylines = const [],

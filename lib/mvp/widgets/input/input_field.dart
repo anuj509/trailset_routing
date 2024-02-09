@@ -108,7 +108,6 @@ class _InputFieldState extends State<InputField> {
             setState(() {});
           },
           child: TextFormField(
-            inputFormatters: [],
             keyboardType: widget.keyboardType,
             onTap: widget.onTap ?? () {},
             validator: widget.validator ??

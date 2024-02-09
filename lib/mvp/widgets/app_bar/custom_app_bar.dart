@@ -52,7 +52,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // SvgPicture.asset(AssetUtils.downloadTemplateSvgIcon),
-                        const Icon(Icons.shuffle),
+                        const Icon(Icons.open_in_new),
                         const SizedBox(width: 10),
                         Text('Documentation',
                             style: FontUtilities.h16(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NotchedContainer extends StatelessWidget {
+  const NotchedContainer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,8 +36,8 @@ class NotchClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     final path = Path();
-    final notchWidth = 40.0; // Adjust the width of the notch
-    final notchHeight = 20.0; // Adjust the height of the notch
+    const notchWidth = 40.0; // Adjust the width of the notch
+    const notchHeight = 20.0; // Adjust the height of the notch
 
     path.lineTo((size.width - notchWidth) / 2, 0.0);
     path.lineTo(size.width / 2, -notchHeight);

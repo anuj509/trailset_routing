@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:trailset_route_optimize/utils/utils.dart';
@@ -167,7 +168,7 @@ class _DownloadTemplateViewState extends State<DownloadTemplateView> {
                         onTap: () {
                           if (isSampleData || isSampleStandard) {
                             String assetPath =
-                                'assets/assets/xlsx/${isSampleData ? 'trailset_sample_data' : 'trailset_standard_template'}.xlsx'; // Adjust the path to match your asset
+                                '${kDebugMode ? '' : 'assets/'}assets/xlsx/${isSampleData ? 'trailset_sample_data' : 'trailset_standard_template'}.xlsx'; // Adjust the path to match your asset
                             final anchor = html.AnchorElement(href: assetPath)
                               ..setAttribute('download',
                                   '${isSampleData ? 'trailset_sample_data' : 'trailset_standard_template'}.xlsx'); // Specify the filename
@@ -192,8 +193,9 @@ class _DownloadTemplateViewState extends State<DownloadTemplateView> {
                                 children: [
                                   SvgPicture.asset(
                                       AssetUtils.downloadTemplateSvgIcon,
-                                      color:
-                                          VariableUtilities.theme.whiteColor),
+                                      colorFilter: ColorFilter.mode(
+                                          VariableUtilities.theme.whiteColor,
+                                          BlendMode.srcATop)),
                                   const SizedBox(width: 10),
                                   Text('Download',
                                       style: FontUtilities.h16(

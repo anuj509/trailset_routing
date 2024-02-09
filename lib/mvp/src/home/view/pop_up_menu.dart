@@ -272,7 +272,7 @@ class _PopupMenu<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double unit = 1.0 / (1 + 1.5);
+    const double unit = 1.0 / (1 + 1.5);
     final List<Widget> children = <Widget>[];
     final ThemeData theme = Theme.of(context);
     final PopupMenuThemeData popupMenuTheme = PopupMenuTheme.of(context);
@@ -309,8 +309,8 @@ class _PopupMenu<T> extends StatelessWidget {
 
     final CurveTween opacity =
         CurveTween(curve: const Interval(0.0, 1.0 / 3.0));
-    final CurveTween width = CurveTween(curve: Interval(0.0, unit));
-    final CurveTween height = CurveTween(curve: Interval(0.0, unit * 1));
+    final CurveTween width = CurveTween(curve: const Interval(0.0, unit));
+    final CurveTween height = CurveTween(curve: const Interval(0.0, unit * 1));
 
     final Widget child = ConstrainedBox(
       constraints: constraints ??
@@ -834,7 +834,7 @@ class _PopupMenuDefaultsM2 extends PopupMenuThemeData {
   late final TextTheme _textTheme = _theme.textTheme;
 
   @override
-  TextStyle? get textStyle => _textTheme.subtitle1;
+  TextStyle? get textStyle => _textTheme.titleMedium;
 }
 
 class _PopupMenuDefaultsM3 extends PopupMenuThemeData {

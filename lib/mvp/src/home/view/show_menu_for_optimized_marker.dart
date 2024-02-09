@@ -10,7 +10,6 @@ import 'package:trailset_route_optimize/mvp/src/home/model/open_source_place_res
 import 'package:trailset_route_optimize/mvp/src/home/model/optimized_route_model.dart';
 import 'package:trailset_route_optimize/mvp/src/home/provider/home_provider.dart';
 import 'package:trailset_route_optimize/mvp/src/home/view/open_time_picker.dart';
-import 'package:trailset_route_optimize/mvp/src/home/view/pop_up_menu.dart';
 import 'package:trailset_route_optimize/mvp/widgets/pop_up/pop_up_shape.dart';
 import 'package:trailset_route_optimize/mvp/widgets/widgets.dart';
 import 'package:trailset_route_optimize/utils/utils.dart';
@@ -83,6 +82,13 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
         TextEditingController(text: '${widget.routeStep.location[1]}');
     longController =
         TextEditingController(text: '${widget.routeStep.location[0]}');
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      widget.homeProvider.isOptionsAvailable = false;
+      widget.homeProvider.isLocationSearching = false;
+      widget.homeProvider.isSelectValidAddress = true;
+      widget.homeProvider.isLatSearching = false;
+      widget.homeProvider.isLongSearching = false;
+    });
     super.initState();
   }
 
@@ -91,7 +97,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
     return StatefulBuilder(builder: (context, state) {
       return SingleChildScrollView(
         child: PopupShapes(
-            position: PopupArrowPosition.BottomCenter,
+            position: PopupArrowPosition.bottomCenter,
             bgColor: Colors.white,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -130,17 +136,29 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                         // onEditingComplete: ,
                         controller: locationNameController,
                         onChanged: (val) async {
-                          print(val.isNotEmpty && val.length > 3);
                           if (val.isNotEmpty && val.length > 3) {
+                            widget.homeProvider.isSelectValidAddress = false;
+                            widget.homeProvider.isLocationSearching = true;
                             _debounceTimerForLocationName?.cancel();
-                            // if (widget.isNewRecord) {
+
                             _debounceTimerForLocationName = Timer(
                                 const Duration(milliseconds: 1500), () async {
-                              await widget.homeProvider
-                                  .searchOnChanged(searchText: val);
+                              try {
+                                await widget.homeProvider
+                                    .searchOnChanged(searchText: val);
+                                widget.homeProvider.isLocationSearching = false;
+                              } catch (e) {
+                                widget.homeProvider.isLocationSearching = false;
+                              }
                               state(() {});
                             });
-                            // }
+                          }
+                          if (val.isEmpty) {
+                            widget.homeProvider.isLocationSearching = false;
+
+                            widget.homeProvider
+                                .searchOpenStreetPlaceResponseList = [];
+                            widget.homeProvider.isSelectValidAddress = true;
                           }
                           state(() {});
                         },
@@ -163,116 +181,176 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                             fillColor: VariableUtilities.theme.colorEFEFEF),
                       ),
                     ),
-                    widget.homeProvider.searchOpenStreetPlaceResponseList
-                            .isEmpty
-                        ? const SizedBox()
-                        : Container(
-                            decoration: BoxDecoration(
-                                color: VariableUtilities.theme.whiteColor,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: VariableUtilities.theme.blackColor
-                                        .withOpacity(0.15),
-                                    offset: const Offset(0, 2),
-                                    blurRadius: 6,
-                                  )
-                                ]),
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
-                              child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: widget.homeProvider
-                                      .searchOpenStreetPlaceResponseList.length,
-                                  itemBuilder: (context, index) {
-                                    return InkWell(
-                                      onTap: () {
-                                        OpenStreetPlaceResponse
-                                            openStreetPlaceResponse = widget
-                                                    .homeProvider
-                                                    .searchOpenStreetPlaceResponseList[
-                                                index];
-                                        locationNameController =
-                                            TextEditingController(
-                                                text: openStreetPlaceResponse
-                                                    .displayName);
-                                        latController = TextEditingController(
-                                            text: openStreetPlaceResponse.lat);
-                                        longController = TextEditingController(
-                                            text: openStreetPlaceResponse.lon);
-                                        widget.homeProvider
-                                            .searchOpenStreetPlaceResponseList = [];
-                                        state(() {});
-                                      },
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5.0, right: 5.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  widget
-                                                      .homeProvider
-                                                      .searchOpenStreetPlaceResponseList[
-                                                          index]
-                                                      .displayName
-                                                      .split(",")
-                                                      .first,
-                                                  style: FontUtilities.h16(
+                    Stack(
+                      children: [
+                        widget.homeProvider.searchOpenStreetPlaceResponseList
+                                .isEmpty
+                            ? const SizedBox()
+                            : Container(
+                                decoration: BoxDecoration(
+                                    color: VariableUtilities.theme.whiteColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: VariableUtilities
+                                            .theme.blackColor
+                                            .withOpacity(0.15),
+                                        offset: const Offset(0, 2),
+                                        blurRadius: 6,
+                                      )
+                                    ]),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 2.0),
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: widget
+                                          .homeProvider
+                                          .searchOpenStreetPlaceResponseList
+                                          .length,
+                                      itemBuilder: (context, index) {
+                                        return InkWell(
+                                          onTap: () {
+                                            OpenStreetPlaceResponse
+                                                openStreetPlaceResponse = widget
+                                                        .homeProvider
+                                                        .searchOpenStreetPlaceResponseList[
+                                                    index];
+                                            locationNameController =
+                                                TextEditingController(
+                                                    text:
+                                                        openStreetPlaceResponse
+                                                            .displayName);
+                                            latController =
+                                                TextEditingController(
+                                                    text:
+                                                        openStreetPlaceResponse
+                                                            .lat);
+                                            longController =
+                                                TextEditingController(
+                                                    text:
+                                                        openStreetPlaceResponse
+                                                            .lon);
+                                            widget.homeProvider
+                                                .searchOpenStreetPlaceResponseList = [];
+
+                                            widget.homeProvider
+                                                .isSelectValidAddress = true;
+                                            state(() {});
+                                          },
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5.0, right: 5.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      widget
+                                                          .homeProvider
+                                                          .searchOpenStreetPlaceResponseList[
+                                                              index]
+                                                          .displayName
+                                                          .split(",")
+                                                          .first,
+                                                      style: FontUtilities.h16(
+                                                          fontWeight:
+                                                              FWT.semiBold,
+                                                          fontColor:
+                                                              VariableUtilities
+                                                                  .theme
+                                                                  .color292D32),
+                                                    ),
+                                                    const SizedBox(height: 5),
+                                                    Text(
+                                                      widget
+                                                          .homeProvider
+                                                          .searchOpenStreetPlaceResponseList[
+                                                              index]
+                                                          .displayName,
+                                                      style: FontUtilities.h14(
+                                                          fontColor:
+                                                              VariableUtilities
+                                                                  .theme
+                                                                  .color6F6E6E),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              (((widget
+                                                                  .homeProvider
+                                                                  .searchOpenStreetPlaceResponseList
+                                                                  .length -
+                                                              1) ==
+                                                          index) ||
+                                                      (index == 0 &&
+                                                          widget
+                                                                  .homeProvider
+                                                                  .searchOpenStreetPlaceResponseList
+                                                                  .length ==
+                                                              1))
+                                                  ? const SizedBox()
+                                                  : Divider(
+                                                      color: VariableUtilities
+                                                          .theme.colorB1B1B1,
+                                                    ),
+                                            ],
+                                          ),
+                                        );
+                                      }),
+                                ),
+                              ),
+                        locationNameController.text.isNotEmpty
+                            ? widget.homeProvider.isLocationSearching
+                                ? SizedBox(
+                                    width: VariableUtilities.screenSize.width,
+                                    height: 55,
+                                    child: const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CircularProgressIndicator(),
+                                      ],
+                                    ))
+                                : widget
+                                        .homeProvider
+                                        .searchOpenStreetPlaceResponseList
+                                        .isEmpty
+                                    ? widget.homeProvider.isSelectValidAddress
+                                        ? const SizedBox()
+                                        : Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const SizedBox(height: 10),
+                                              Center(
+                                                child: Text(
+                                                  'No Location Found...',
+                                                  style: FontUtilities.h14(
                                                       fontWeight: FWT.semiBold,
                                                       fontColor:
                                                           VariableUtilities
                                                               .theme
-                                                              .color292D32),
+                                                              .blackColor),
                                                 ),
-                                                const SizedBox(height: 5),
-                                                Text(
-                                                  widget
-                                                      .homeProvider
-                                                      .searchOpenStreetPlaceResponseList[
-                                                          index]
-                                                      .displayName,
-                                                  style: FontUtilities.h14(
-                                                      fontColor:
-                                                          VariableUtilities
-                                                              .theme
-                                                              .color6F6E6E),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          (((widget
-                                                              .homeProvider
-                                                              .searchOpenStreetPlaceResponseList
-                                                              .length -
-                                                          1) ==
-                                                      index) ||
-                                                  (index == 0 &&
-                                                      widget
-                                                              .homeProvider
-                                                              .searchOpenStreetPlaceResponseList
-                                                              .length ==
-                                                          1))
-                                              ? const SizedBox()
-                                              : Divider(
-                                                  color: VariableUtilities
-                                                      .theme.colorB1B1B1,
-                                                ),
-                                        ],
-                                      ),
-                                    );
-                                  }),
-                            ),
-                          ),
+                                              ),
+                                            ],
+                                          )
+                                    : const SizedBox()
+                            : const SizedBox()
+                      ],
+                    ),
                     const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -284,71 +362,105 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                         SizedBox(
                           height: 30,
                           width: 100,
-                          child: TextField(
-                            controller: latController,
-                            onChanged: (val) {
-                              String latLng = '$val,${longController.text}';
-                              bool isLatLngValidate = isValidLatLong(latLng);
-                              _debounceTimerForLat?.cancel();
-                              print("isLatValid ==> $isLatLngValidate");
+                          child: Stack(
+                            children: [
+                              TextField(
+                                controller: latController,
+                                onChanged: (val) {
+                                  String latLng = '$val,${longController.text}';
+                                  bool isLatLngValidate =
+                                      isValidLatLong(latLng);
+                                  _debounceTimerForLat?.cancel();
 
-                              if (isLatLngValidate) {
-                                _debounceTimerForLat =
-                                    Timer(const Duration(milliseconds: 1500),
+                                  if (isLatLngValidate) {
+                                    _debounceTimerForLat = Timer(
+                                        const Duration(milliseconds: 1500),
                                         () async {
-                                  OpenStreetPlaceResponse?
-                                      openStreetPlaceResponse = await widget
-                                          .homeProvider
-                                          .fetchLocationNameFromLatLong(LatLng(
-                                              double.parse(val),
-                                              double.parse(
-                                                  longController.text)));
-                                  if (openStreetPlaceResponse != null) {
-                                    print(
-                                        'openStreetPlaceResponse --> ${openStreetPlaceResponse.toJson()}');
-                                    locationNameController =
-                                        TextEditingController(
-                                            text: openStreetPlaceResponse
-                                                .displayName);
+                                      widget.homeProvider.isLatSearching = true;
+                                      try {
+                                        OpenStreetPlaceResponse?
+                                            openStreetPlaceResponse =
+                                            await widget.homeProvider
+                                                .fetchLocationNameFromLatLong(
+                                                    LatLng(
+                                                        double.parse(val),
+                                                        double.parse(
+                                                            longController
+                                                                .text)));
+                                        if (openStreetPlaceResponse != null) {
+                                          locationNameController =
+                                              TextEditingController(
+                                                  text: openStreetPlaceResponse
+                                                      .displayName);
 
-                                    latController = TextEditingController(
-                                        text: openStreetPlaceResponse.lat);
-                                    longController = TextEditingController(
-                                        text: openStreetPlaceResponse.lon);
-                                    widget.homeProvider
-                                        .searchOpenStreetPlaceResponseList = [];
-                                    state(() {});
+                                          latController = TextEditingController(
+                                              text:
+                                                  openStreetPlaceResponse.lat);
+                                          longController =
+                                              TextEditingController(
+                                                  text: openStreetPlaceResponse
+                                                      .lon);
+                                          widget.homeProvider
+                                              .searchOpenStreetPlaceResponseList = [];
+                                          widget.homeProvider.isLatSearching =
+                                              false;
+
+                                          state(() {});
+                                        } else {
+                                          widget.homeProvider.isLatSearching =
+                                              false;
+                                          state(() {});
+                                        }
+                                      } catch (e) {
+                                        widget.homeProvider.isLatSearching =
+                                            false;
+                                        state(() {});
+                                      }
+                                    });
                                   }
-
-                                  print(
-                                      "isLatLngValidate ==> $isLatLngValidate");
-                                });
-                              }
-                            },
-                            inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'^(\d+)?\.?\d*'))
+                                },
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'^(\d+)?\.?\d*'))
+                                ],
+                                style: FontUtilities.h14(
+                                    fontColor:
+                                        VariableUtilities.theme.color6F6E6E),
+                                decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.only(
+                                        bottom: 20, left: 8),
+                                    border: InputBorder.none,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(2),
+                                      borderSide: BorderSide(
+                                          width: 0.7,
+                                          color: VariableUtilities
+                                              .theme.primaryColor),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(2),
+                                      borderSide: BorderSide(
+                                          width: 0.7,
+                                          color: VariableUtilities
+                                              .theme.primaryColor),
+                                    )),
+                              ),
+                              Visibility(
+                                  visible: widget.homeProvider.isLatSearching,
+                                  child: const Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: SizedBox(
+                                            height: 25,
+                                            width: 25,
+                                            child: CircularProgressIndicator()),
+                                      ),
+                                    ],
+                                  ))
                             ],
-                            style: FontUtilities.h14(
-                                fontColor: VariableUtilities.theme.color6F6E6E),
-                            decoration: InputDecoration(
-                                contentPadding:
-                                    const EdgeInsets.only(bottom: 20, left: 8),
-                                border: InputBorder.none,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(2),
-                                  borderSide: BorderSide(
-                                      width: 0.7,
-                                      color:
-                                          VariableUtilities.theme.primaryColor),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(2),
-                                  borderSide: BorderSide(
-                                      width: 0.7,
-                                      color:
-                                          VariableUtilities.theme.primaryColor),
-                                )),
                           ),
                         ),
                       ],
@@ -364,70 +476,103 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                         SizedBox(
                           height: 30,
                           width: 100,
-                          child: TextField(
-                            onChanged: (val) async {
-                              String latLng = '${latController.text},$val';
-                              bool isLatLngValidate = isValidLatLong(latLng);
-                              _debounceTimerForLong?.cancel();
-                              print("isLatValid ==> $isLatLngValidate");
+                          child: Stack(
+                            children: [
+                              TextField(
+                                onChanged: (val) async {
+                                  String latLng = '${latController.text},$val';
+                                  bool isLatLngValidate =
+                                      isValidLatLong(latLng);
+                                  _debounceTimerForLong?.cancel();
 
-                              if (isLatLngValidate) {
-                                _debounceTimerForLong =
-                                    Timer(const Duration(milliseconds: 1500),
+                                  if (isLatLngValidate) {
+                                    _debounceTimerForLong = Timer(
+                                        const Duration(milliseconds: 1500),
                                         () async {
-                                  OpenStreetPlaceResponse?
-                                      openStreetPlaceResponse = await widget
-                                          .homeProvider
-                                          .fetchLocationNameFromLatLong(LatLng(
-                                              double.parse(latController.text),
-                                              double.parse(val)));
-                                  if (openStreetPlaceResponse != null) {
-                                    print(
-                                        'openStreetPlaceResponse --> ${openStreetPlaceResponse?.toJson()}');
-                                    locationNameController =
-                                        TextEditingController(
-                                            text: openStreetPlaceResponse
-                                                .displayName);
+                                      widget.homeProvider.isLongSearching =
+                                          true;
+                                      try {
+                                        OpenStreetPlaceResponse?
+                                            openStreetPlaceResponse =
+                                            await widget.homeProvider
+                                                .fetchLocationNameFromLatLong(
+                                                    LatLng(
+                                                        double.parse(
+                                                            latController.text),
+                                                        double.parse(val)));
+                                        if (openStreetPlaceResponse != null) {
+                                          locationNameController =
+                                              TextEditingController(
+                                                  text: openStreetPlaceResponse
+                                                      .displayName);
 
-                                    latController = TextEditingController(
-                                        text: openStreetPlaceResponse.lat);
-                                    longController = TextEditingController(
-                                        text: openStreetPlaceResponse.lon);
-                                    widget.homeProvider
-                                        .searchOpenStreetPlaceResponseList = [];
-                                    state(() {});
+                                          latController = TextEditingController(
+                                              text:
+                                                  openStreetPlaceResponse.lat);
+                                          longController =
+                                              TextEditingController(
+                                                  text: openStreetPlaceResponse
+                                                      .lon);
+                                          widget.homeProvider
+                                              .searchOpenStreetPlaceResponseList = [];
+                                          widget.homeProvider.isLongSearching =
+                                              false;
+                                          state(() {});
+                                        } else {
+                                          widget.homeProvider.isLongSearching =
+                                              false;
+                                          state(() {});
+                                        }
+                                      } catch (e) {
+                                        widget.homeProvider.isLongSearching =
+                                            false;
+                                      }
+                                    });
                                   }
-
-                                  print(
-                                      "isLatLngValidate ==> $isLatLngValidate");
-                                });
-                              }
-                            },
-                            controller: longController,
-                            inputFormatters: <TextInputFormatter>[
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'^(\d+)?\.?\d*'))
+                                },
+                                controller: longController,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'^(\d+)?\.?\d*'))
+                                ],
+                                style: FontUtilities.h14(
+                                    fontColor:
+                                        VariableUtilities.theme.color6F6E6E),
+                                decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.only(
+                                        bottom: 20, left: 8),
+                                    border: InputBorder.none,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(2),
+                                      borderSide: BorderSide(
+                                          width: 0.7,
+                                          color: VariableUtilities
+                                              .theme.primaryColor),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(2),
+                                      borderSide: BorderSide(
+                                          width: 0.7,
+                                          color: VariableUtilities
+                                              .theme.primaryColor),
+                                    )),
+                              ),
+                              Visibility(
+                                  visible: widget.homeProvider.isLongSearching,
+                                  child: const Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: SizedBox(
+                                            height: 25,
+                                            width: 25,
+                                            child: CircularProgressIndicator()),
+                                      ),
+                                    ],
+                                  ))
                             ],
-                            style: FontUtilities.h14(
-                                fontColor: VariableUtilities.theme.color6F6E6E),
-                            decoration: InputDecoration(
-                                contentPadding:
-                                    const EdgeInsets.only(bottom: 20, left: 8),
-                                border: InputBorder.none,
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(2),
-                                  borderSide: BorderSide(
-                                      width: 0.7,
-                                      color:
-                                          VariableUtilities.theme.primaryColor),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(2),
-                                  borderSide: BorderSide(
-                                      width: 0.7,
-                                      color:
-                                          VariableUtilities.theme.primaryColor),
-                                )),
                           ),
                         )
                       ],
@@ -446,13 +591,14 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                         const SizedBox(width: 10),
                         IconButton(
                           icon: SvgPicture.asset(
-                            widget.homeProvider.isOptionsAvailable
-                                ? AssetUtils.downArrowSvgIcon
-                                : AssetUtils.upArrowSvgIcon,
-                            height: 8,
-                            width: 8,
-                            color: VariableUtilities.theme.primaryColor,
-                          ),
+                              widget.homeProvider.isOptionsAvailable
+                                  ? AssetUtils.downArrowSvgIcon
+                                  : AssetUtils.upArrowSvgIcon,
+                              height: 8,
+                              width: 8,
+                              colorFilter: ColorFilter.mode(
+                                  VariableUtilities.theme.primaryColor,
+                                  BlendMode.srcATop)),
                           onPressed: () {
                             widget.homeProvider.isOptionsAvailable =
                                 !widget.homeProvider.isOptionsAvailable;
@@ -878,9 +1024,17 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
                               showToast(title: 'Please Enter Location name');
                               return;
                             }
-                            if (isValidLatLong(
+                            if (!isValidLatLong(
                                 '${latController.text},${longController.text}')) {
                               showToast(title: 'Enter Valid LatLng');
+                              return;
+                            }
+                            if (priorityController.text.isEmpty) {
+                              showToast(title: 'Enter Valid Priority');
+                              return;
+                            }
+                            if (serviceTimeController.text.isEmpty) {
+                              showToast(title: 'Enter Valid Service-Time');
                               return;
                             }
                             widget.homeProvider
@@ -945,7 +1099,6 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
     DateTime dateTime = DateTime(
         now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
 
-    print('Converted DateTime: $dateTime');
     return dateTime;
   }
 
@@ -963,7 +1116,7 @@ class _OptimizedMarkerDialogState extends State<OptimizedMarkerDialog> {
 
   bool isValidLatLong(String latLong) {
     RegExp pattern = RegExp(
-        r'^\s*([-+]?\d{1,2}(?:\.\d{1,6})?)\s*,\s*([-+]?\d{1,3}(?:\.\d{1,6})?)\s*$');
+        r'^\s*([-+]?\d{1,2}(?:\.\d{1,20})?)\s*,\s*([-+]?\d{1,3}(?:\.\d{1,20})?)\s*$');
 
     return pattern.hasMatch(latLong);
   }
