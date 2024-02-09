@@ -1,0 +1,2519 @@
+{
+    "code": 0,
+    "summary": {
+        "cost": 34275,
+        "routes": 4,
+        "unassigned": 2,
+        "delivery": [
+            112
+        ],
+        "amount": [
+            112
+        ],
+        "pickup": [
+            0
+        ],
+        "setup": 0,
+        "service": 1120,
+        "duration": 34275,
+        "waiting_time": 0,
+        "priority": 130,
+        "distance": 256946,
+        "violations": [],
+        "computing_times": {
+            "loading": 6073,
+            "solving": 1484,
+            "routing": 349
+        }
+    },
+    "unassigned": [
+        {
+            "id": 71,
+            "location": [
+                72.9682297,
+                19.1874125
+            ],
+            "type": "job",
+            "description": "SEVENTY2 HOSPITALITY SERVICES PVT. LTD. - THANE W"
+        },
+        {
+            "id": 31,
+            "location": [
+                72.9757177,
+                19.1915872
+            ],
+            "type": "job",
+            "description": "DOLOMITE RESTAURANTS PVT. LTD."
+        }
+    ],
+    "routes": [
+        {
+            "vehicle": 1,
+            "cost": 7006,
+            "delivery": [
+                28
+            ],
+            "amount": [
+                28
+            ],
+            "pickup": [
+                0
+            ],
+            "setup": 0,
+            "service": 280,
+            "duration": 7006,
+            "waiting_time": 0,
+            "priority": 22,
+            "distance": 51078,
+            "steps": [
+                {
+                    "type": "start",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        28
+                    ],
+                    "arrival": 1707265497,
+                    "duration": 0,
+                    "violations": [],
+                    "distance": 0
+                },
+                {
+                    "type": "job",
+                    "description": "Foodlink F&B Hodings (India) Private Limited",
+                    "location": [
+                        72.897766,
+                        19.0565297
+                    ],
+                    "id": 24,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 24,
+                    "load": [
+                        27
+                    ],
+                    "arrival": 1707265800,
+                    "duration": 303,
+                    "violations": [],
+                    "distance": 1979
+                },
+                {
+                    "type": "job",
+                    "description": "AMAR JUICE CENTRE",
+                    "location": [
+                        72.8758646,
+                        19.0657649
+                    ],
+                    "id": 99,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 99,
+                    "load": [
+                        26
+                    ],
+                    "arrival": 1707266484,
+                    "duration": 977,
+                    "violations": [],
+                    "distance": 7643
+                },
+                {
+                    "type": "job",
+                    "description": "General Medical L.L.P.",
+                    "location": [
+                        72.8879158,
+                        19.0851996
+                    ],
+                    "id": 103,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 103,
+                    "load": [
+                        25
+                    ],
+                    "arrival": 1707266850,
+                    "duration": 1333,
+                    "violations": [],
+                    "distance": 10551
+                },
+                {
+                    "type": "job",
+                    "description": "STAR ANISE FINE FOOD",
+                    "location": [
+                        72.8939282,
+                        19.0930943
+                    ],
+                    "id": 101,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 101,
+                    "load": [
+                        24
+                    ],
+                    "arrival": 1707267134,
+                    "duration": 1607,
+                    "violations": [],
+                    "distance": 12202
+                },
+                {
+                    "type": "job",
+                    "description": "PVR LIMITED",
+                    "location": [
+                        72.8924123,
+                        19.0985577
+                    ],
+                    "id": 27,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 27,
+                    "load": [
+                        23
+                    ],
+                    "arrival": 1707267301,
+                    "duration": 1764,
+                    "violations": [],
+                    "distance": 13408
+                },
+                {
+                    "type": "job",
+                    "description": "PENINSULA GRAND [SAKINAKA]",
+                    "location": [
+                        72.8878211,
+                        19.1034075
+                    ],
+                    "id": 97,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 97,
+                    "load": [
+                        22
+                    ],
+                    "arrival": 1707267394,
+                    "duration": 1847,
+                    "violations": [],
+                    "distance": 14149
+                },
+                {
+                    "type": "job",
+                    "description": "SHELL INN INTERNATIONAL LIMITED",
+                    "location": [
+                        72.8851768,
+                        19.1062236
+                    ],
+                    "id": 98,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 98,
+                    "load": [
+                        21
+                    ],
+                    "arrival": 1707267504,
+                    "duration": 1947,
+                    "violations": [],
+                    "distance": 14930
+                },
+                {
+                    "type": "job",
+                    "description": "LITE BITE FOODS(P)LTD[LOWER PAREL.W]",
+                    "location": [
+                        72.8875412,
+                        19.1095506
+                    ],
+                    "id": 95,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 95,
+                    "load": [
+                        20
+                    ],
+                    "arrival": 1707267620,
+                    "duration": 2053,
+                    "violations": [],
+                    "distance": 15846
+                },
+                {
+                    "type": "job",
+                    "description": "YRL FOODD LLP",
+                    "location": [
+                        72.8962931,
+                        19.1112219
+                    ],
+                    "id": 105,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 105,
+                    "load": [
+                        19
+                    ],
+                    "arrival": 1707267900,
+                    "duration": 2323,
+                    "violations": [],
+                    "distance": 17523
+                },
+                {
+                    "type": "job",
+                    "description": "SHERATON TRADERS PVT. LTD (TBC RETAIL)",
+                    "location": [
+                        72.8929972,
+                        19.1161848
+                    ],
+                    "id": 14,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 14,
+                    "load": [
+                        18
+                    ],
+                    "arrival": 1707268077,
+                    "duration": 2490,
+                    "violations": [],
+                    "distance": 18445
+                },
+                {
+                    "type": "job",
+                    "description": "HOTEL GURUKRIPA [POWAI]",
+                    "location": [
+                        72.8894982,
+                        19.1172767
+                    ],
+                    "id": 114,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 114,
+                    "load": [
+                        17
+                    ],
+                    "arrival": 1707268268,
+                    "duration": 2671,
+                    "violations": [],
+                    "distance": 19481
+                },
+                {
+                    "type": "job",
+                    "description": "SSKDS SUPERFUN VENTURES LLP",
+                    "location": [
+                        72.8918514,
+                        19.1227692
+                    ],
+                    "id": 60,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 60,
+                    "load": [
+                        16
+                    ],
+                    "arrival": 1707268351,
+                    "duration": 2744,
+                    "violations": [],
+                    "distance": 20144
+                },
+                {
+                    "type": "job",
+                    "description": "JANTA BAKERS [POWAI]",
+                    "location": [
+                        72.9129721,
+                        19.1229916
+                    ],
+                    "id": 96,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 96,
+                    "load": [
+                        15
+                    ],
+                    "arrival": 1707268718,
+                    "duration": 3101,
+                    "violations": [],
+                    "distance": 23309
+                },
+                {
+                    "type": "job",
+                    "description": "TEXMEX CUISINE INDIA PVT LTD",
+                    "location": [
+                        72.9131804,
+                        19.1226255
+                    ],
+                    "id": 111,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 111,
+                    "load": [
+                        14
+                    ],
+                    "arrival": 1707268732,
+                    "duration": 3105,
+                    "violations": [],
+                    "distance": 23353
+                },
+                {
+                    "type": "job",
+                    "description": "MONARCH LIBERTY WORLDWIDE HOSPITALITY LLP (Powai)",
+                    "location": [
+                        72.9128779,
+                        19.1210332
+                    ],
+                    "id": 107,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 107,
+                    "load": [
+                        13
+                    ],
+                    "arrival": 1707268758,
+                    "duration": 3121,
+                    "violations": [],
+                    "distance": 23528
+                },
+                {
+                    "type": "job",
+                    "description": "RODAS AN ECOTEL HOTEL-A DIV OF MELRONIA HOSPITALITY PVT LTD",
+                    "location": [
+                        72.9112812,
+                        19.1178683
+                    ],
+                    "id": 108,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 108,
+                    "load": [
+                        12
+                    ],
+                    "arrival": 1707268824,
+                    "duration": 3177,
+                    "violations": [],
+                    "distance": 23926
+                },
+                {
+                    "type": "job",
+                    "description": "MELUHA THE FERN HOTEL A DIV OF MELRONIA HOSPITALITY PVT LTD",
+                    "location": [
+                        72.9124319,
+                        19.1136099
+                    ],
+                    "id": 110,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 110,
+                    "load": [
+                        11
+                    ],
+                    "arrival": 1707268955,
+                    "duration": 3298,
+                    "violations": [],
+                    "distance": 24660
+                },
+                {
+                    "type": "job",
+                    "description": "VIJIT HOSPITALITY PVT LTD",
+                    "location": [
+                        72.9095471,
+                        19.1171986
+                    ],
+                    "id": 109,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 109,
+                    "load": [
+                        10
+                    ],
+                    "arrival": 1707269087,
+                    "duration": 3420,
+                    "violations": [],
+                    "distance": 25353
+                },
+                {
+                    "type": "job",
+                    "description": "NATURES BASKET LIMITED",
+                    "location": [
+                        72.9092747,
+                        19.1210626
+                    ],
+                    "id": 48,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 48,
+                    "load": [
+                        9
+                    ],
+                    "arrival": 1707269288,
+                    "duration": 3611,
+                    "violations": [],
+                    "distance": 25931
+                },
+                {
+                    "type": "job",
+                    "description": "HAIKO SUPER MARKET",
+                    "location": [
+                        72.9164112,
+                        19.1155587
+                    ],
+                    "id": 112,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 112,
+                    "load": [
+                        8
+                    ],
+                    "arrival": 1707269593,
+                    "duration": 3906,
+                    "violations": [],
+                    "distance": 27275
+                },
+                {
+                    "type": "job",
+                    "description": "DELUXE CATERERS PVT.LTD.",
+                    "location": [
+                        72.9260921,
+                        19.1129853
+                    ],
+                    "id": 13,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 13,
+                    "load": [
+                        7
+                    ],
+                    "arrival": 1707269906,
+                    "duration": 4209,
+                    "violations": [],
+                    "distance": 30309
+                },
+                {
+                    "type": "job",
+                    "description": "ARISTO FOOD COMPANY",
+                    "location": [
+                        72.9162682,
+                        19.0980143
+                    ],
+                    "id": 100,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 100,
+                    "load": [
+                        6
+                    ],
+                    "arrival": 1707270185,
+                    "duration": 4478,
+                    "violations": [],
+                    "distance": 33106
+                },
+                {
+                    "type": "job",
+                    "description": "TATA STARBUCKS PRIVATE LIMITED",
+                    "location": [
+                        72.9164294,
+                        19.0980453
+                    ],
+                    "id": 70,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 70,
+                    "load": [
+                        5
+                    ],
+                    "arrival": 1707270290,
+                    "duration": 4573,
+                    "violations": [],
+                    "distance": 33119
+                },
+                {
+                    "type": "job",
+                    "description": "HAS LIFESTYLE PRIVATE LIMITED",
+                    "location": [
+                        72.9096167,
+                        19.0930699
+                    ],
+                    "id": 102,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 102,
+                    "load": [
+                        4
+                    ],
+                    "arrival": 1707270544,
+                    "duration": 4817,
+                    "violations": [],
+                    "distance": 34756
+                },
+                {
+                    "type": "job",
+                    "description": "ELIOR WEST CATERING LLP",
+                    "location": [
+                        72.9225959,
+                        19.0942526
+                    ],
+                    "id": 106,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 106,
+                    "load": [
+                        3
+                    ],
+                    "arrival": 1707271075,
+                    "duration": 5338,
+                    "violations": [],
+                    "distance": 38266
+                },
+                {
+                    "type": "job",
+                    "description": "NEELKANTH ENTERPRISE (FORT)",
+                    "location": [
+                        72.90521939999999,
+                        19.0744608
+                    ],
+                    "id": 19,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 19,
+                    "load": [
+                        2
+                    ],
+                    "arrival": 1707271591,
+                    "duration": 5844,
+                    "violations": [],
+                    "distance": 42458
+                },
+                {
+                    "type": "job",
+                    "description": "Madrasi Kaapi House LLP",
+                    "location": [
+                        72.9206137,
+                        19.0571735
+                    ],
+                    "id": 90,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 90,
+                    "load": [
+                        1
+                    ],
+                    "arrival": 1707272075,
+                    "duration": 6318,
+                    "violations": [],
+                    "distance": 46101
+                },
+                {
+                    "type": "job",
+                    "description": "COPAIN BAKERY",
+                    "location": [
+                        72.9205883,
+                        19.0571389
+                    ],
+                    "id": 2,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 2,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707272085,
+                    "duration": 6318,
+                    "violations": [],
+                    "distance": 46105
+                },
+                {
+                    "type": "end",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707272783,
+                    "duration": 7006,
+                    "violations": [],
+                    "distance": 51066
+                }
+            ],
+            "violations": [],
+            "geometry": "{pfsBcy{{LxCAImDaGJqADq@@[@W?sB?_C?]AqCIwCD{@@wACKAyCs@kCy@MAcAMe@AW?o@@_AA]IsA_@UI{@Ow@QqAQy@K]Ee@IeBUoAQsFu@g@GDUXwBZuBj@iEQAOIMMGQCQ?A@QFQJMNIPCR?RHLNHRBPCPAFCFKLKFMDO@k@hE[tBYvBETiCYcAMk@MoAg@{DwBiAo@s@a@qAw@y@a@QIQK}@e@sBcAq@WeAa@}NoE_AY}Aa@_AQbArBdBbDf@~@N^Ld@BZDTj@MBhACh@Gp@Mz@YlBQf@kBnKUr@cAzFu@fEOr@Qr@Yl@c@n@mArAiAlAaA~@yK`J{@t@iFdE{AnAe@^_@^aCrCy@z@aAxA]z@Or@KdADfACx@En@Ih@Kh@_@`Aq@jAIHg@t@m@z@Yn@Op@y@|Ba@z@c@z@Wd@mAtBbD|BvB|AtAv@PFtBTRBtIh@P@t@HzAJbCPtD`@xEXtE^~D^RyCFg@N]O\\Gf@SxCCTaE[gE]G?{Ec@wDYiBO]CqCScJs@w@G_BWmAu@MI{B{AWQ}B{AMMEC_@[QOMKuAaAuA_AaCaBaKiHk@a@SOsF_EqEsBuAm@QIyAo@WKAAm@c@QQ{@gBs@yCk@}BK_@I[aAkDI[My@Cq@AKBaAB_ABo@g@_Af@~@N_CFy@TiEJcBHqAAgB?q@Iy@Gs@CIUeAWeAeDt@aBZ}ANo@Ng@JODa@Lc@Hc@DmAH}@HaBeFOi@]q@_@q@s@VaAh@e@NMBqAPuAZUB_@M_Bs@WUY[e@k@g@c@_@Qq@QYC}@Ko@K]OKEw@a@UOYOe@k@a@k@Yo@Sc@G[Ac@?c@DWDQRe@Vq@XuAFg@@S?UKMOOkEnIs@nACF}@|AqA~BEHc@v@c@v@w@bAaB|As@`@YPMFm@Xo@ZoAj@aAb@iClA{At@c@ZoA`Aq@r@{@`A_@f@EH[^OV[d@sB~CMRqAlCGJ[j@g@t@_AvAIR_@d@{@fAaDlCqB~A_@Xo@j@a@\\KJ_@b@]h@Sb@e@Kt@{A`@g@t@q@v@o@JIDEnAiA^WxBeBp@g@nAaB_CmAuBmA]SCA_@OGCEAi@Ky@Ge@Ac@Ai@@i@F[Hc@NmATk@Hq@@qACwCSEb@Dc@cCQeAOaAWuAc@kBe@e@Ie@@?QU{@[i@Mc@SwAYo@y@yAgCaDWi@WuAEQCQI_@Se@yBuCEg@?u@DkAF}@VyDZsIL@dAN`CRrE^tCVlAJAD@EmAKuCWsE_@aCSeAO[nI_@zFEfA@f@@VBXODa@H[?o@Ak@MKIg@Bm@HMBLCl@If@CJHj@LNnDFhBFtBR`CBNbAtFhAN`B`@VFETyBi@cAOy@Gg@CsAEy@?o@CKAaBWe@I_Ae@_@OMKiAw@_@Og@KOCy@QcB_@c@Km@SeCy@{Ag@_AQiCg@SGEA}BqAMGo@_@QKoDoB}CcAeA_@{@WcCu@i@Ua@[GGWQNWPW`BoCV[^[n@c@TUV[Nk@PmAXqA\\eAh@_AnA}Al@y@x@s@v@g@x@a@xBk@dEgAxAm@t@m@r@iAHYLe@ZmCtAeJLw@Hy@@qAMcA_AuEi@_CsD{I{@aA_Am@_Fo@cBUwAg@m@o@e@qAGqAh@mIFcAAm@e@iCXGRG|C_@lAObAMf@KlAHzBVH@pEdA~A`@|An@f@TDCH@F@BHXVxBjBDDFFbCdCXVHHHAHBd@u@`AwAn@gAv@sAJUf@cAAAACAC@C?EBA@ABAD?B@f@u@f@s@P]h@cADEFCL@D@PLl@^h@b@f@d@l@fAJTKUm@gAg@e@i@c@m@_@QMEAMAGBEDi@bAQ\\g@r@g@t@@B@B@DABCDE@C?EAg@bAKTw@rAo@fAaAvAe@t@DDBH?HGJIDKAiA`BsAnBg@l@gCzCOLIMoAmAKKGEkAw@Kl@OAOCe@A[A_@H]B{@e@KU?UGYQ[PZFX?TJTz@d@\\C^IZ@d@@NBN@Jm@FMfAv@Fg@b@iFP}BDi@RoB?IBg@?e@AG?GBGBCDCDSDUn@aHdAcK?WAYAE?C@CBC@ADAB?B?BBB@RB^BzAFn@Ed@G|Cy@z@SRIDE??BICUDSHMz@g@NKPWRe@V]LIZCdAGbBKPAfDSt@EbDQjEE\\B`DXlShBR@bFd@f@Bl@?d@ILG\\UfFiIhAmBpAuBsCgBQMWQmFmDc@YmDwByA}@yHyEuBoAiBaAIE{BmAwAq@UKkBw@{@W{@YcASyB_@cC[g@AyFI?U~GJ|BLrDv@lAZfBj@vAz@^PdCpA|@d@TN`Af@jCrAzAx@dAp@|A~@tChBdDxBj@^lK`H`@XxCpB~E`DHFn@l@d@`@PNPNlBvAfAv@FBz@l@XTJHbAz@dDjCLJz@x@xC|BILwD_D_@Y{AiAq@i@QMWSNMdDjCLJz@x@xC|BdBrAx@n@PLn@f@JHpCvBRNr@h@jA`Az@p@p@f@|AbAz@h@PNGVOf@[x@{@zAUd@Ql@Gf@Ch@?b@BTHb@Nj@Xn@b@n@j@j@f@\\JT`Ah@WF[Ae@IFKNYU?IGo@e@s@u@[m@Se@Ok@C]AS?S???w@JcAJc@Tq@nAgCZw@DYHm@dBqFPm@n@mBn@}@nAcB`AgAf@y@z@uB`@gAh@yAd@s@JOFIfAcB`@i@HIDENMh@k@v@e@zA}@l@]jDsBJItD{B~CiBF_@?SK]}HkGiBoA_Bu@oAi@mIiCsGmBiFcBkBk@Q`@KZwF`H]h@dAj@JDh@n@NZJFDFIJiAzA[^[n@c@XqA|Aw@z@aB{As@u@GS@MnCaDr@y@bBsBxGoIVMPa@JWRYlMzDbH|BxBr@pCbA~Ax@lBnAhZbV|@r@vAlAdEdDj@d@n@p@dS`PhA~@~@~@~@|@jC|C|@hAdHpKnApAhBxCrDhGn@dALZm@PQc@i@Qc@w@a@q@Ye@oAz@c@[IZ@rAEVkBtC_DvDkC`@Ft@YAX@@rE?Z?pAH\\Nd@NVNN`@Jj@RNFHEnBcBnAeAn@cA`@m@hBqCh@mA?s@GsAMy@_@kCASDCOWo@gAU_@nA{@hAw@P\\DFd@x@^PLBJ?NEJGT]Vy@Re@Zg@\\c@`@c@`@_@f@a@f@Wd@Ud@Qf@Kf@Kh@Iz@GxDUn@If@Ij@Mb@Md@Od@Q`@Wb@[`@]b@a@d@g@r@y@b@m@b@o@b@w@Zu@^uAd@cCLm@d@eCXgAKa@Ho@l@aDj@mBFWhAsDv@Xx@^ZRZPXNx@|@FDNd@J?bAF~DNTg@d@y@hCmCfCeCjAiAh@q@`@y@zBcGiB}@FD`Bv@JDyB`Ge@~@g@l@iAjAiC~BoCtCe@x@O^CFo@fBOv@Df@P`@~ChDGPUz@Ur@fBp@v@`@\\`@jGzDh@\\h@FzA~@LHp@^z@Zl@Pr@NPDd@JfEf@|ERjBHjCBjERzCh@dC^tBb@|Ev@JB~Bb@B@x@^PANBLFLJFLDP?NCPGL?l@@|@BdJDhH@B?dB?~A?DAdAA~@?HEjBAHq@bK@NOnD?|AF`BTvDB\\Ax@Fj@H`BDrBP`CRzD@H?FRrD?NAd@bACvACjAG`CMbEC|@?x@KD`@g@F{CFeA@HlDyC@"
+        },
+        {
+            "vehicle": 2,
+            "cost": 11022,
+            "delivery": [
+                28
+            ],
+            "amount": [
+                28
+            ],
+            "pickup": [
+                0
+            ],
+            "setup": 0,
+            "service": 280,
+            "duration": 11022,
+            "waiting_time": 0,
+            "priority": 0,
+            "distance": 81692,
+            "steps": [
+                {
+                    "type": "start",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        28
+                    ],
+                    "arrival": 1707289373,
+                    "duration": 0,
+                    "violations": [],
+                    "distance": 0
+                },
+                {
+                    "type": "job",
+                    "description": "SANIJA HOTELS PVT LTD",
+                    "location": [
+                        72.8863088,
+                        19.1044588
+                    ],
+                    "id": 104,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 104,
+                    "load": [
+                        27
+                    ],
+                    "arrival": 1707290393,
+                    "duration": 1020,
+                    "violations": [],
+                    "distance": 9124
+                },
+                {
+                    "type": "job",
+                    "description": "MC CAINS INDIA PVT. LTD. (CLAIM)",
+                    "location": [
+                        72.8731882,
+                        19.1104804
+                    ],
+                    "id": 80,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 80,
+                    "load": [
+                        26
+                    ],
+                    "arrival": 1707290584,
+                    "duration": 1201,
+                    "violations": [],
+                    "distance": 10708
+                },
+                {
+                    "type": "job",
+                    "description": "VIJAYDEEP HOTELS PVT LTD",
+                    "location": [
+                        72.8556917,
+                        19.1185354
+                    ],
+                    "id": 33,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 33,
+                    "load": [
+                        25
+                    ],
+                    "arrival": 1707291000,
+                    "duration": 1607,
+                    "violations": [],
+                    "distance": 14307
+                },
+                {
+                    "type": "job",
+                    "description": "MARUTI HOSPITALITY",
+                    "location": [
+                        72.8567898,
+                        19.2010157
+                    ],
+                    "id": 89,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 89,
+                    "load": [
+                        24
+                    ],
+                    "arrival": 1707292008,
+                    "duration": 2605,
+                    "violations": [],
+                    "distance": 25081
+                },
+                {
+                    "type": "job",
+                    "description": "SATNIRMAL HOSPITALITY",
+                    "location": [
+                        72.8501862999999,
+                        19.2207579
+                    ],
+                    "id": 93,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 93,
+                    "load": [
+                        23
+                    ],
+                    "arrival": 1707292614,
+                    "duration": 3201,
+                    "violations": [],
+                    "distance": 29660
+                },
+                {
+                    "type": "job",
+                    "description": "9 Star Kitchens",
+                    "location": [
+                        72.8520845,
+                        19.2277746
+                    ],
+                    "id": 94,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 94,
+                    "load": [
+                        22
+                    ],
+                    "arrival": 1707292838,
+                    "duration": 3415,
+                    "violations": [],
+                    "distance": 31339
+                },
+                {
+                    "type": "job",
+                    "description": "B.B.C.RESTAURANTS",
+                    "location": [
+                        72.8470285,
+                        19.2311058
+                    ],
+                    "id": 92,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 92,
+                    "load": [
+                        21
+                    ],
+                    "arrival": 1707293007,
+                    "duration": 3574,
+                    "violations": [],
+                    "distance": 32220
+                },
+                {
+                    "type": "job",
+                    "description": "BUNTY JUICE CENTER [BORIVALI.W]",
+                    "location": [
+                        72.8526695,
+                        19.230892
+                    ],
+                    "id": 91,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 91,
+                    "load": [
+                        20
+                    ],
+                    "arrival": 1707293164,
+                    "duration": 3721,
+                    "violations": [],
+                    "distance": 32931
+                },
+                {
+                    "type": "job",
+                    "description": "FOODSTUFF ENTERPRISE LLP",
+                    "location": [
+                        72.855245,
+                        19.2286471
+                    ],
+                    "id": 81,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 81,
+                    "load": [
+                        19
+                    ],
+                    "arrival": 1707293289,
+                    "duration": 3836,
+                    "violations": [],
+                    "distance": 33643
+                },
+                {
+                    "type": "job",
+                    "description": "FROZENWALA ENTERPRISES",
+                    "location": [
+                        72.8554399,
+                        19.2286323
+                    ],
+                    "id": 1,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 1,
+                    "load": [
+                        18
+                    ],
+                    "arrival": 1707293301,
+                    "duration": 3838,
+                    "violations": [],
+                    "distance": 33663
+                },
+                {
+                    "type": "job",
+                    "description": "GOOD FOOD COMPANY [MALAD.W]",
+                    "location": [
+                        72.8452762,
+                        19.2198454
+                    ],
+                    "id": 83,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 83,
+                    "load": [
+                        17
+                    ],
+                    "arrival": 1707293556,
+                    "duration": 4083,
+                    "violations": [],
+                    "distance": 35462
+                },
+                {
+                    "type": "job",
+                    "description": "FAGUN CAKES(KANDIVALI W)",
+                    "location": [
+                        72.8398972999999,
+                        19.2038115
+                    ],
+                    "id": 88,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 88,
+                    "load": [
+                        16
+                    ],
+                    "arrival": 1707293955,
+                    "duration": 4472,
+                    "violations": [],
+                    "distance": 38405
+                },
+                {
+                    "type": "job",
+                    "description": "OCEANIC BEVERAGE & MARKETING PVT LTD [KANDIVALI.W]",
+                    "location": [
+                        72.8223987,
+                        19.2064582
+                    ],
+                    "id": 87,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 87,
+                    "load": [
+                        15
+                    ],
+                    "arrival": 1707294338,
+                    "duration": 4845,
+                    "violations": [],
+                    "distance": 40908
+                },
+                {
+                    "type": "job",
+                    "description": "VIVETTE BANQUETS (MALAD W)",
+                    "location": [
+                        72.835889,
+                        19.1794753
+                    ],
+                    "id": 84,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 84,
+                    "load": [
+                        14
+                    ],
+                    "arrival": 1707294892,
+                    "duration": 5389,
+                    "violations": [],
+                    "distance": 44958
+                },
+                {
+                    "type": "job",
+                    "description": "QUALITY FOODS [ANDHERI.W]",
+                    "location": [
+                        72.8241476,
+                        19.1437953
+                    ],
+                    "id": 69,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 69,
+                    "load": [
+                        13
+                    ],
+                    "arrival": 1707295707,
+                    "duration": 6194,
+                    "violations": [],
+                    "distance": 51141
+                },
+                {
+                    "type": "job",
+                    "description": "GLOBAL FOOD SERVICES",
+                    "location": [
+                        72.82506359999999,
+                        19.1312542
+                    ],
+                    "id": 76,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 76,
+                    "load": [
+                        12
+                    ],
+                    "arrival": 1707296203,
+                    "duration": 6680,
+                    "violations": [],
+                    "distance": 54225
+                },
+                {
+                    "type": "job",
+                    "description": "NIMMET HOSPITALITY",
+                    "location": [
+                        72.8296252,
+                        19.1364016
+                    ],
+                    "id": 73,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 73,
+                    "load": [
+                        11
+                    ],
+                    "arrival": 1707296427,
+                    "duration": 6894,
+                    "violations": [],
+                    "distance": 55226
+                },
+                {
+                    "type": "job",
+                    "description": "ORION RESTAURANTS PVT LTD",
+                    "location": [
+                        72.8311746999999,
+                        19.1388195
+                    ],
+                    "id": 65,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 65,
+                    "load": [
+                        10
+                    ],
+                    "arrival": 1707296582,
+                    "duration": 7039,
+                    "violations": [],
+                    "distance": 55753
+                },
+                {
+                    "type": "job",
+                    "description": "GLOBAL FOOD SERVICES",
+                    "location": [
+                        72.834564,
+                        19.1389386
+                    ],
+                    "id": 64,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 64,
+                    "load": [
+                        9
+                    ],
+                    "arrival": 1707296817,
+                    "duration": 7264,
+                    "violations": [],
+                    "distance": 56232
+                },
+                {
+                    "type": "job",
+                    "description": "SJI HOSPITALITY AND FOODS PRIVATE LIMITED",
+                    "location": [
+                        72.8347521,
+                        19.1399043
+                    ],
+                    "id": 74,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 74,
+                    "load": [
+                        8
+                    ],
+                    "arrival": 1707296986,
+                    "duration": 7423,
+                    "violations": [],
+                    "distance": 56576
+                },
+                {
+                    "type": "job",
+                    "description": "HOTEL SVENSKA [ANDHERI.W]",
+                    "location": [
+                        72.8349264,
+                        19.1365355
+                    ],
+                    "id": 67,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 67,
+                    "load": [
+                        7
+                    ],
+                    "arrival": 1707297298,
+                    "duration": 7725,
+                    "violations": [],
+                    "distance": 58066
+                },
+                {
+                    "type": "job",
+                    "description": "EAT DRINK DESIGN PVT LTD[ANDHERI W]",
+                    "location": [
+                        72.8364643,
+                        19.1343755
+                    ],
+                    "id": 75,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 75,
+                    "load": [
+                        6
+                    ],
+                    "arrival": 1707297514,
+                    "duration": 7931,
+                    "violations": [],
+                    "distance": 58694
+                },
+                {
+                    "type": "job",
+                    "description": "GREEN TURTLE HOSPITALITY",
+                    "location": [
+                        72.83139,
+                        19.129012
+                    ],
+                    "id": 63,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 63,
+                    "load": [
+                        5
+                    ],
+                    "arrival": 1707297808,
+                    "duration": 8215,
+                    "violations": [],
+                    "distance": 60097
+                },
+                {
+                    "type": "job",
+                    "description": "JOES PIZZA [ANDHERI W]",
+                    "location": [
+                        72.8298782,
+                        19.1265735
+                    ],
+                    "id": 66,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 66,
+                    "load": [
+                        4
+                    ],
+                    "arrival": 1707297938,
+                    "duration": 8335,
+                    "violations": [],
+                    "distance": 60848
+                },
+                {
+                    "type": "job",
+                    "description": "Shakti Food Corporation",
+                    "location": [
+                        72.8279348,
+                        19.0913406
+                    ],
+                    "id": 54,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 54,
+                    "load": [
+                        3
+                    ],
+                    "arrival": 1707298506,
+                    "duration": 8893,
+                    "violations": [],
+                    "distance": 65422
+                },
+                {
+                    "type": "job",
+                    "description": "RISA HOSPITALITY PRIVATE LIMITED",
+                    "location": [
+                        72.8346247,
+                        19.0650284
+                    ],
+                    "id": 68,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 68,
+                    "load": [
+                        2
+                    ],
+                    "arrival": 1707298972,
+                    "duration": 9349,
+                    "violations": [],
+                    "distance": 68992
+                },
+                {
+                    "type": "job",
+                    "description": "RAYS CAFE & PIZZERIA [BANDRA.W]",
+                    "location": [
+                        72.8302669,
+                        19.0551854
+                    ],
+                    "id": 72,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 72,
+                    "load": [
+                        1
+                    ],
+                    "arrival": 1707299359,
+                    "duration": 9726,
+                    "violations": [],
+                    "distance": 71133
+                },
+                {
+                    "type": "job",
+                    "description": "MAIA HOSPITALITY AND ENTERTAINMENT",
+                    "location": [
+                        72.855401,
+                        19.06019
+                    ],
+                    "id": 86,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 86,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707299808,
+                    "duration": 10165,
+                    "violations": [],
+                    "distance": 74627
+                },
+                {
+                    "type": "end",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707300675,
+                    "duration": 11022,
+                    "violations": [],
+                    "distance": 81678
+                }
+            ],
+            "violations": [],
+            "geometry": "{pfsBcy{{LxCAImDaGJqADq@@[@W?sB?_C?]AqCIwCD{@@wACKAyCs@kCy@MAcAMe@AW?o@@_AA]IsA_@UI{@Ow@QqAQy@K]Ee@IeBUoAQsFu@g@GiCYcAMk@MoAg@{DwBiAo@s@a@qAw@y@a@QIQK}@e@sBcAq@WeAa@}NoE_AY}Aa@_AQbArBdBbDf@~@N^Ld@BZDTj@MBhACh@Gp@Mz@YlBQf@kBnKUr@cAzFu@fEOr@Qr@Yl@c@n@mArAiAlAaA~@yK`J{@t@iFdE{AnAe@^_@^aCrCy@z@aAxA]z@Or@KdADfACx@En@Ih@Kh@_@`Aq@jAIHg@t@m@z@Yn@Op@y@|Ba@z@c@z@Wd@mAtBINEC_@[QOMKuAaAuA_AaCaBaKiHk@a@S?gACkAAyBCyDGcDU}BKuAG}CMaBM[E}@MwDm@g@IwAGO?}@A[?]?i@E_ASkAc@}Ao@_@MiBo@mA]oAW{Es@]CgAMm@Oq@WwBu@o@OYIMAsAWmBWcAOE?SCw@KM?c@A[BmAXI@_@Fe@D_@Dm@@C?U?o@?eACq@A_BCuAIeDcAMEM@iC_AcBu@[QoBeBwCeCmA_Ae@[iBoAUO_@d@a@f@Y^aDlCqB~A_@Xo@j@a@\\KJ_@b@]h@Sb@M\\KVQz@En@AFK`DEhCAJEn@Kv@Kd@Mb@]fAIX}AxFELMf@CFe@lBOp@gA|DCHSt@Ut@GVSv@eAtDGRe@bBy@xCUbAa@dBe@`CIb@ETKh@Ib@_@zB{@~ECJUrAQz@s@nEq@pDTPh@r@Zl@JXTl@PbARrBp@dH\\fDAbABh@?lAO~@Mf@u@~B[rAOz@G`@UtBMxAe@pBgA|E[hA}@lDCHe@fBWlAUbAGAQC{AOaAI{KaAkAEi@GwE_@MAOAeBQyCYoAKmC[oEq@KA_Ei@PwArAR~Fz@`BTbBVTFb@FhD\\F@~J|@f@He@~@yC`GYWhCqFwE_@MAOAeBQyCYgBa@oAYwPcCeBWs@Au@AoAHo@HoA^yAp@mBhAo@V]NkAVmAHoUNqMTgINiLJqC@}FNuINmAAmAK}@Oo@MkN}CkASk@Ik@E}H]sLg@sBIaCOeMi@aCI_DEaDYqEe@yQuAi@E}AK_DYSCuCWaG]sCSeCSsCSqCS_CMk@EeBKyBOyBKkBK{BMkCKoAK[CQAeCMm@Em@CaDQwCQ_COkACeA?o@BaAHs@FoB`@cB\\aAZy@ViATuARq@HaABuCBgD@qCBy@AM?i@AU?uC?oC@qCA_B?Q?O?qFA]?aB@S@Q?aDBgB@aA@aFAiAAe@AeAAaC?eA?u@CiAU_@M]Ma@UeAg@kBy@}B}@g@UQIMEGEi@My@O{Ca@gDc@_C[gBQc@GcD_@qBU_BQSC[JOA[AaBMu@Gm@Km@Me@OWl@ABOd@IZCn@D|B?\\@r@C~@GzBM|BIx@IV[lBKh@L@x@JLAPGtA[zA_@r@MnBWd@G|AWF?D?B@@@@@PbCH|@NjAPvB?XE`AKz@E`@Ef@AZ@^N~@@V@J~@tJZpCJt@BVAf@Et@Ep@?b@@bD@l@?BA`@APIAOCkE{@qA[}Aa@[GQC}@M_AMICKAkAQi@IsFu@qDk@WAGAE?EA]EeFg@uEu@gBUsD_@aCY}Dw@}@Y}CaAOGEAgCiA{@W_AOOC[Co@Gy@Aa@?OBm@\\aA~@{@v@MFUJc@PMDQDMB}@Hs@?c@Ak@AkAKeDa@mB]IEYKsCaAYK_FwAeDeAW@MBKFKFGJGJh@tLFdA@`@b@~Ik@F[{IMeCWoE[cGMQMQQO]Yq@UaAYqA_@aA[uBo@KCgEiAYIuAc@cA[kCw@wBm@cCw@wAc@gEgAAAQC@tBEnBKlB@vA?f@?lAAhA@dCl@AhACx@?y@?iABm@@?pADlK?NDjCH|@LzB@NM?gA?q@?oA?_Cj@q@HQAmAB@BADCBCBC@E?Kx@IPEFDGHQJy@CACCCC?E?E@EBCBAD?B?DBBB?DlACc@iEQgAEm@?_@AmA?}@Cw@A}@Ec@C]G]ESC_@Cw@?QAo@DuAACAE?C?A@EBEBk@V?CZAPBD@D?BADADEZCz@?j@N?z@@~ABbA@bA@t@@nA@A}@?I@q@AqA?yCA_CB]JwAB{A?K?e@A_A@S?C?ID@B@TDhEhAtExA|Bn@jCv@RFn@RtAb@XHfEfAJDtBn@tErAn@RdATj@L@XFnAh@tLFdA@`@b@~Ih@rN?L?H?RAb@@N@PLnBb@xGLxDNzD?ZnCX`BTvA\\p@THBHDxB~@dDdBJFr@p@rA|An@r@PLrAtANLNNfBxAVRp@\\r@`@FBHDlAp@~At@dInCbARf@HlAL~Jv@p@gCES?i@Be@Di@Dg@Fc@NiAX{@JQT]@AHIFEr@g@LIx@g@LEHRl@p@\\Rf@@zACxAHbCC~CG?cF?aC_BImCO[l@]p@y@dAe@b@]Tc@ZgAb@{@\\MDeA`@EDq@d@QPYd@GPGTGXGd@Ov@Ep@Gf@Ed@@`@DZNr@Tx@Lh@Lp@XnAJx@FjA?pB?zA@V?v@Bp@Af@Cl@CXCRCZKj@k@xC[hBSbAGZsBfIoAtFa@|ASnAEfAAZJdM@p@?XrAp@vGdD`@N\\cAjA}CN]X{@z@sCZ{@|@yCt@gCx@uB\\}@jBwEBE|@{D@Q?AFEXkNDmAHg@@UT_EHmAFeANgDBe@j@DD@lBL~CBJ?pJFP?lBBH?x@@f@@vCHlIZd@AVAT?TAr@EhC_@pBg@vCs@zG}AzDe@jDm@jEy@|DW`EKl@ARAl@AR?V?`DAj@AlCA`AAvC@hEO~CWjBSrGsAB\\N`Ad@n@e@o@OaAC]`CWfFi@fAK`D]nBMzAKj@?`ALfDt@h@N|@XTDfEnA|DhAr@NrBb@z@VRF`BZn@FxCFjETt@@lAFnA@xGXH?~DLnABbCFN@`EHN@hEEHA~BEb@EfB]dAUdAQJ?rIAhGFt@?lFg@`CQpCUbGm@pBSLA`@CP?v@IfDWfE[HAnGe@fBO|BQPCRC@NB^Bb@TlDBd@DvAT|FAnB@F?DH~BPjExDOvAGj@CrAGrAEfBI|@EnBKZA?VJ|D@ND|FBn@D|@@DHXlA~ApA|A`A`BtAtCDJt@~APEH@D@DDBF@HAHEFGDI@KAGEGGg@qA[_@yAl@A?uD~AoCpAcDxAqB~@c@TsAn@_F|BkAf@GBK?KCOGeBqAiAw@aClCSLXRdP`MpA`AnA`Aj@\\d@LPm@TUb@a@HGbH}FFGjFsEfB{AfAmAZWDSE[[gB{@aF@I?IDKPEH@D@DD`@?@?fDC~AA`BAnAAjFA~FCjAAzBF^?~CAL?jADrAAtB?T?tAAT?BTW?wA@U??L?F?DAJMdALeA@K?E?G?MuB?sA@mAAO?_D?]AgCI_A@{FDAUGUs@gPQsDAKc@kKCm@FYy@DS@eDHq@FaABC`@EHKHoAFnAGJIDIBa@uCJWKScHKmBZEh@ICIIYK[OUNTJZHXBHi@H[DCi@qEFDeBb@s@b@BDHEIc@Cc@r@EdBB`@DbBBZrEQRbHvCMtAEjFYoAgGlJiAg@mD_AcGaB^u@P`@jCa@kCt@Q`B_@Qy@Ii@@UZSfAcA|@eAn@k@TQ?MxCA?NGnBCtAKAUAT@J@BuAFoB?ObB@vB@vC?xB@L?APK`BGzAEnBc@fNChAOtDWjClC\\`ADP@RATCtAWREPAR@|B^VDz@LlDh@B@VBvAFz@?nA@x@?J@rDBpCn@NBALF^AVGXy@`Ae@^m@TeAFaAIo@YWGVFn@X`AHdAGl@Ud@_@x@aAFY@WG_@@MtBd@tAVxBXhANlEz@ZDf@DVBZ?f@@l@@pBCdCAdHAfA?~AAR?d@At@ATAJ?|@CT?tAA~HCrE@V@zAAt@@fB?lGBfGEnIAN?L?jB?`DDL?vG@N@PBANcClPV^LLVHj@EfH_@rCYl@GdAMB?XGtAUhEi@nBSpBOJ?H?H@F?LDFBFDHHDFBHBPDRPdABFHFD@F@F?H?VCfBYxAOj@GHEFEDGBI@G?IEcA?UFSHKJGLEXGTA|DSxAK|@G|CId@?zAAp@?b@Bd@NZT`At@XJXHXB^F|AD~DXXBnBFrATvALv@BhA?fAOp@E|@DbAJXCFGHIHWJmANiABSRsABODYD_@Lo@XiBt@gEn@mCVsABKBQBKBOx@mL@QL@~BB|ABvDFbCDxIBfHJdIPtHNrFJjFHxFLtG`@`AFbD`@pBVbABnAENAr@K`AU`@KNEFAfHuBnA_@h@QxDeAf@OrJgDYj@iEpAmC`AAfAfH`@jCJrHd@~AJD?@?@?J@?B?DO`JGxHARCnC?fA@JF?F?DGjESjEQzLy@Gk@SoBUgCSkAa@iCc@gDYaCU}BImAJe@\\q@TUhAcAXWl@o@nAqC`AyAV]DGJOCWNCB?vBUxBS|@K|@IFATCB?JC^Ab@A\\?h@Ax@?v@AZMRSBIFW@e@Cm@eAyDYoBkA{D{@sCcAeDs@kAm@sBGa@Eg@Bm@Bm@?a@?a@KgAIm@UeAOcAGeAAo@C]Oc@O]}BaESYMSIIIKwAgAiAeAsAqAu@s@oAeBiGoH[_@oEeF}EuFOQCEQUe@mAcAb@bAc@ISOsCAYAc@?IIYsAeDQc@GOG]EU?[?YCSAMEOM[KOMMQIUI_HiAOCJ_@ZiA^{ALe@DO@Ef@mBl@cCJ[Pu@Ry@r@iC`AwDPMt@I|@Gr@E`CO|@Ch@Az@EbDQpEUr@GPEh@On@S|KqDf@Wh@e@PUlA}A`ReYN_@Lc@?g@Ei@uDuNq@gB}E}Q]uAi@qBgBcGg@mAYeAgAcFU{@u@sAiBaFQe@G]AKAMBKBIDGFGnBsAFGFKBKBI@K?KAWKsEGkAQyCQoFGaBAWEuAGmBEuBIyCJoBBiEAw@?mB?k@Bk@B]\\Dp@JxATd@LJ@~@PZJhA\\rAPZ@|A?h@HX@F?JBJ?HBb@NtBl@~Bb@z@AtACR?~@A`A?jABdAJ`ABvAAnCAbACvACjAG`CMbEC|@?x@KD`@g@F{CFeA@HlDyC@"
+        },
+        {
+            "vehicle": 3,
+            "cost": 7974,
+            "delivery": [
+                28
+            ],
+            "amount": [
+                28
+            ],
+            "pickup": [
+                0
+            ],
+            "setup": 0,
+            "service": 280,
+            "duration": 7974,
+            "waiting_time": 0,
+            "priority": 0,
+            "distance": 57208,
+            "steps": [
+                {
+                    "type": "start",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        28
+                    ],
+                    "arrival": 1707265187,
+                    "duration": 0,
+                    "violations": [],
+                    "distance": 0
+                },
+                {
+                    "type": "job",
+                    "description": "THE JOY PIZZETERIA(MALAD W)",
+                    "location": [
+                        72.8591606,
+                        19.047969
+                    ],
+                    "id": 85,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 85,
+                    "load": [
+                        27
+                    ],
+                    "arrival": 1707265800,
+                    "duration": 613,
+                    "violations": [],
+                    "distance": 5283
+                },
+                {
+                    "type": "job",
+                    "description": "GOLD DIGITECH THEATERS PRIVATE LIMITED",
+                    "location": [
+                        72.8533141,
+                        19.0479125
+                    ],
+                    "id": 82,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 82,
+                    "load": [
+                        26
+                    ],
+                    "arrival": 1707265885,
+                    "duration": 688,
+                    "violations": [],
+                    "distance": 5922
+                },
+                {
+                    "type": "job",
+                    "description": "TAMNAKTHAI (BLUE DIAMOND BAR & REST)",
+                    "location": [
+                        72.8361592,
+                        19.025962
+                    ],
+                    "id": 47,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 47,
+                    "load": [
+                        25
+                    ],
+                    "arrival": 1707266456,
+                    "duration": 1249,
+                    "violations": [],
+                    "distance": 10269
+                },
+                {
+                    "type": "job",
+                    "description": "PH4 FOOD & BEVERAGES PVT LTD",
+                    "location": [
+                        72.8244173,
+                        19.012796
+                    ],
+                    "id": 45,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 45,
+                    "load": [
+                        24
+                    ],
+                    "arrival": 1707266731,
+                    "duration": 1514,
+                    "violations": [],
+                    "distance": 12506
+                },
+                {
+                    "type": "job",
+                    "description": "SPECIALITY RESTAURANTS LTD",
+                    "location": [
+                        72.8269646,
+                        18.9982461
+                    ],
+                    "id": 46,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 46,
+                    "load": [
+                        23
+                    ],
+                    "arrival": 1707267084,
+                    "duration": 1857,
+                    "violations": [],
+                    "distance": 15110
+                },
+                {
+                    "type": "job",
+                    "description": "ANGEL ENTERPRISE",
+                    "location": [
+                        72.8245487,
+                        18.9981734
+                    ],
+                    "id": 30,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 30,
+                    "load": [
+                        22
+                    ],
+                    "arrival": 1707267404,
+                    "duration": 2167,
+                    "violations": [],
+                    "distance": 15735
+                },
+                {
+                    "type": "job",
+                    "description": "HEALTH AND BEYOND FOODS PVT LTD",
+                    "location": [
+                        72.8250875,
+                        19.0013742
+                    ],
+                    "id": 42,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 42,
+                    "load": [
+                        21
+                    ],
+                    "arrival": 1707267800,
+                    "duration": 2553,
+                    "violations": [],
+                    "distance": 16463
+                },
+                {
+                    "type": "job",
+                    "description": "V AND RO HOSPITALITY PVT.LTD.",
+                    "location": [
+                        72.8290699,
+                        19.0015369
+                    ],
+                    "id": 40,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 40,
+                    "load": [
+                        20
+                    ],
+                    "arrival": 1707267985,
+                    "duration": 2728,
+                    "violations": [],
+                    "distance": 16973
+                },
+                {
+                    "type": "job",
+                    "description": "SMAAASH ENTERTAINMENT PVT LTD[LOWER PAREL-W]",
+                    "location": [
+                        72.829364,
+                        19.0022871
+                    ],
+                    "id": 41,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 41,
+                    "load": [
+                        19
+                    ],
+                    "arrival": 1707268010,
+                    "duration": 2743,
+                    "violations": [],
+                    "distance": 17076
+                },
+                {
+                    "type": "job",
+                    "description": "GRAVISS RESTAURANTS PRIVATE LIMITED",
+                    "location": [
+                        72.8302691,
+                        19.0000684
+                    ],
+                    "id": 34,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 34,
+                    "load": [
+                        18
+                    ],
+                    "arrival": 1707268172,
+                    "duration": 2895,
+                    "violations": [],
+                    "distance": 18103
+                },
+                {
+                    "type": "job",
+                    "description": "FUNKY MONKEYS PLAY CENTERS PRIVATE LIMITED",
+                    "location": [
+                        72.8299443,
+                        18.9994787
+                    ],
+                    "id": 44,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 44,
+                    "load": [
+                        17
+                    ],
+                    "arrival": 1707268207,
+                    "duration": 2920,
+                    "violations": [],
+                    "distance": 18186
+                },
+                {
+                    "type": "job",
+                    "description": "UDUPI PURE VEG RESTAURANT",
+                    "location": [
+                        72.8302922,
+                        18.9978936
+                    ],
+                    "id": 32,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 32,
+                    "load": [
+                        16
+                    ],
+                    "arrival": 1707268344,
+                    "duration": 3047,
+                    "violations": [],
+                    "distance": 18684
+                },
+                {
+                    "type": "job",
+                    "description": "RAMNATH SNACKS",
+                    "location": [
+                        72.8263455,
+                        18.9951617
+                    ],
+                    "id": 39,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 39,
+                    "load": [
+                        15
+                    ],
+                    "arrival": 1707268453,
+                    "duration": 3146,
+                    "violations": [],
+                    "distance": 19328
+                },
+                {
+                    "type": "job",
+                    "description": "INVENTO",
+                    "location": [
+                        72.8386211,
+                        19.0147615
+                    ],
+                    "id": 36,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 36,
+                    "load": [
+                        14
+                    ],
+                    "arrival": 1707268872,
+                    "duration": 3555,
+                    "violations": [],
+                    "distance": 23016
+                },
+                {
+                    "type": "job",
+                    "description": "DEVASHREE ENTERPRISES [MAHIM]",
+                    "location": [
+                        72.8464707,
+                        19.0372985
+                    ],
+                    "id": 49,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 49,
+                    "load": [
+                        13
+                    ],
+                    "arrival": 1707269244,
+                    "duration": 3917,
+                    "violations": [],
+                    "distance": 25920
+                },
+                {
+                    "type": "job",
+                    "description": "AVRONSAA Webfoods Private Limited",
+                    "location": [
+                        72.8435876,
+                        19.0411136
+                    ],
+                    "id": 50,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 50,
+                    "load": [
+                        12
+                    ],
+                    "arrival": 1707269405,
+                    "duration": 4068,
+                    "violations": [],
+                    "distance": 26724
+                },
+                {
+                    "type": "job",
+                    "description": "NEIGHBOURHOOD HOSPITALITY PVT. LTD.",
+                    "location": [
+                        72.8366767,
+                        19.0590919
+                    ],
+                    "id": 62,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 62,
+                    "load": [
+                        11
+                    ],
+                    "arrival": 1707269744,
+                    "duration": 4397,
+                    "violations": [],
+                    "distance": 29201
+                },
+                {
+                    "type": "job",
+                    "description": "RYKE HOSPITALITY PVT LTD",
+                    "location": [
+                        72.836672,
+                        19.0616172
+                    ],
+                    "id": 113,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 113,
+                    "load": [
+                        10
+                    ],
+                    "arrival": 1707269804,
+                    "duration": 4447,
+                    "violations": [],
+                    "distance": 29539
+                },
+                {
+                    "type": "job",
+                    "description": "PUREEARTH BEVERAGES PRIVATE LIMITED-CLAIM",
+                    "location": [
+                        72.8378712,
+                        19.0681493
+                    ],
+                    "id": 52,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 52,
+                    "load": [
+                        9
+                    ],
+                    "arrival": 1707269949,
+                    "duration": 4582,
+                    "violations": [],
+                    "distance": 30409
+                },
+                {
+                    "type": "job",
+                    "description": "SEA PRINCESS",
+                    "location": [
+                        72.8275877,
+                        19.0988392
+                    ],
+                    "id": 57,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 57,
+                    "load": [
+                        8
+                    ],
+                    "arrival": 1707270510,
+                    "duration": 5133,
+                    "violations": [],
+                    "distance": 34987
+                },
+                {
+                    "type": "job",
+                    "description": "GREEN TURTLE HOSPITALITY",
+                    "location": [
+                        72.8262233,
+                        19.1018504
+                    ],
+                    "id": 79,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 79,
+                    "load": [
+                        7
+                    ],
+                    "arrival": 1707270629,
+                    "duration": 5242,
+                    "violations": [],
+                    "distance": 35413
+                },
+                {
+                    "type": "job",
+                    "description": "JUHU BEACH RESORTS LIMITED [JUHU]",
+                    "location": [
+                        72.8263733,
+                        19.1060567
+                    ],
+                    "id": 77,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 77,
+                    "load": [
+                        6
+                    ],
+                    "arrival": 1707270766,
+                    "duration": 5369,
+                    "violations": [],
+                    "distance": 35933
+                },
+                {
+                    "type": "job",
+                    "description": "KEER HOTELS PRIVATE LIMITED",
+                    "location": [
+                        72.8263717,
+                        19.1067234
+                    ],
+                    "id": 78,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 78,
+                    "load": [
+                        5
+                    ],
+                    "arrival": 1707270784,
+                    "duration": 5377,
+                    "violations": [],
+                    "distance": 36006
+                },
+                {
+                    "type": "job",
+                    "description": "RAMANI HOTELS LIMITED",
+                    "location": [
+                        72.825255,
+                        19.1095455
+                    ],
+                    "id": 53,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 53,
+                    "load": [
+                        4
+                    ],
+                    "arrival": 1707270861,
+                    "duration": 5444,
+                    "violations": [],
+                    "distance": 36397
+                },
+                {
+                    "type": "job",
+                    "description": "AMYLICIOUS",
+                    "location": [
+                        72.8269918,
+                        19.1105989
+                    ],
+                    "id": 55,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 55,
+                    "load": [
+                        3
+                    ],
+                    "arrival": 1707270983,
+                    "duration": 5556,
+                    "violations": [],
+                    "distance": 36859
+                },
+                {
+                    "type": "job",
+                    "description": "ICE AND ROLL [VILLE PARLE.W]",
+                    "location": [
+                        72.8367244,
+                        19.1040993
+                    ],
+                    "id": 58,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 58,
+                    "load": [
+                        2
+                    ],
+                    "arrival": 1707271232,
+                    "duration": 5795,
+                    "violations": [],
+                    "distance": 38701
+                },
+                {
+                    "type": "job",
+                    "description": "ALFA",
+                    "location": [
+                        72.8434243,
+                        19.1083973
+                    ],
+                    "id": 61,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 61,
+                    "load": [
+                        1
+                    ],
+                    "arrival": 1707271467,
+                    "duration": 6020,
+                    "violations": [],
+                    "distance": 39937
+                },
+                {
+                    "type": "job",
+                    "description": "INTERNATIONAL SOCIETY FOR KRISHNA CONSCIOUSNESS",
+                    "location": [
+                        72.8427916,
+                        19.0986069
+                    ],
+                    "id": 59,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 59,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707271771,
+                    "duration": 6314,
+                    "violations": [],
+                    "distance": 41779
+                },
+                {
+                    "type": "end",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707273441,
+                    "duration": 7974,
+                    "violations": [],
+                    "distance": 57192
+                }
+            ],
+            "violations": [],
+            "geometry": "{pfsBcy{{LxCAImDaGJqADq@@[@W?sB?_C?]AqCIwCD{@@wACKAyCs@kCy@Sf@iB`E{AdDKTs@|AEDEJgA|Am@~@GF{A`BmAz@o@f@BhAP~DTzGBx@DfAJ~C?VF~CFrEBZ@HBNb@hBPz@Tv@Rh@Tl@F\\Fb@Bj@Dh@Hj@zBnHf@pB^tAf@pBrDjNh@jBTv@ZlAdDfM\\rA|ChMr@|A^v@Tf@j@dAj@|@jAtA|D~Dh@`@~@l@r@d@xBz@jAZVHi@^eFlCUP_Av@_BvAOHUh@ELc@tA]hAKZg@xA[v@Q`@ELQf@}@xBIRETCZ?`AAhA?|A?p@?F@vA@nAA^El@QlAId@?XGh@OlAMlACXCl@?HAHDv@?N@HThAJ`@FTLXHRVMWLl@z@|@`ARRf@l@?@x@z@NTLTTVVb@JNHRNhAr@dFNnABHBPFb@X`CBT?P@ND\\PhADRHf@Hl@Jl@TlAFZHZFRP~@Np@J^Pt@j@zC`@`B@h@Ej@EZI\\GRMVORs@f@w@XUHk@NVzAN~@XfB?TRTfA\\PFP\\LpCHdAFXvIeDjIeD|Ao@fCaAxEaB~AWbDWLHRD~@INCLMhDQxC@pFNbETnCJbENCP]~BOhAADe@jDy@~EHXFLHFFDDAd@AxA@pBJzATZHRJfAd@fBt@PHfGnCjDvAfB`Ar@^n@XTJvAl@pBbAbBr@bHnCj@VVN|JxG`@\\~B`Bh@b@tHzFfB`AbCtBv@|@l@j@`@Bh@Gf@WTMlAq@v@c@dCoATM^~@HTz@xB^x@lA`DVl@?Df@lDBR@XHdD?NB`B?`@?fBANIzAAPK`AIdAJX`@fAn@fBBFjAhBLRnAjBl@r@hA|@v@f@^N@@ZN~D`BxAp@vDlBpBbALHTRHFx@ZPFrBh@@qD?aCAaG@aB@[@qECgB?I?KIGAIPAr@K`OoB~@{@FGlAgAPMPIRGv@Qv@ULEt@U^Kf@Sx@[`DeAb@OhBy@LGJIFKZWJ]NIZMfBi@KHUTSRaA~@S\\G|ADBBFBF?FADCFEDEBEvBb@@?rAmBB?bCdCA@wB`A?H@IAaA?AvBeC@?cCBq@Zi@YAKO_@?o@AW?H_C@c@@Qc@NaDdAy@Zg@R_@J?FEt@ZD[EDu@?Gu@TMD[qGAkCHiATmAX_C`@wAH[gBe@YMQG[KaA_@kBy@}GsCeAc@nACtAl@hJbEv@d@|Bx@\\N|@mBXsAHm@x@Dh@Ct@DrAHEbADcAiCOv@m@^oA`JQ`@@G|CGfDS`AEnBErBA|@tAl@fGfClF~BjJ`EjOzGKTuGqCmAe@]QaBu@u@YwA{@[KkXgLkP{GaAe@a@OgBe@SQe@S_@M}OyGsIuCkI{Du@e@eByAgJyIcC{BoAaA}@{@gCcCeIwHgBaB{@{@eB_BcA_Ae@g@iAgAo@m@[k@sBqBqAeAwImEcA]eCiA_Bu@MGgC_AaCcAu@YSGoA_@QEcBg@s@UoBm@gFkAkAYaDu@y@O{JoBeCe@OEc@Ia@ImJmA}GOwE?wFZkFj@HtCh@Ci@BIuCgF|@_@FaE~@Fn@ZlCBLHv@LbAeAl@iBfAGzBgBp@YB_AJeFDs@?WAg@AG~BCrAb@fFBX`@lEFRo@TyDzAeBp@kA`@iEdBgAb@aBVeE?e@?M@iB?e@?yGB_@?e@?qA?M@oAAs@?K?k@DM?qBVsD^{ALUBG@SBy@JiANmARi@POJu@`@EBa@VcAj@e@PcAR_ADY@O@y@CcBG{AG}@Ea@CKAg@CK?OCK?QEUIQESEQEg@M_@Ga@C_@AmDEObBNcBeBC}AAqCE_CDiB?eA?mDBi@CoCEoEBQ?YBJc@?QA}AaA?_D@eEI@dBAd@}GKkFSqFKwGEaIM{HWyBCk@EqCG}BG{BCKAiCE}CE}BAo@A}ACc@xHk@dJANq@tIMhBALCPCJWtA}@rEe@~BERs@nEWnBOjAIx@C\\IRWRE?G?a@EWCgAIi@@y@Lm@DsBC}@EyASs@KqBMUCgAIeBIiACe@Ca@Ic@Ii@YYWSM]SYIa@CoDAe@@yCBa@@M@qAJwCPc@@SDG@OFKFGFEJCJ?JB~@@D?JAHCFEHIFKFI@m@J_Ft@S@QCMGGMCO]cBCKGGKGIEOEK?SBI@}@Fi@DSBO@uC\\oBViALg@JQB}@FBR@JXFFHBJAJGHMBe@Fi@HKAOEEIAMBKRMCOCM}BXqAHiH^SBI?S@qALk@@M@a@De@BaBHa@@gADK?aA@CTE\\@l@ELONYJ_@?s@A]D_@\\[HkADiA@i@F?P?QM@s@Bo@Au@EO?G?UA_ABi@@@_@?]?K@WBkADaBtA@dABYc@a@Q`@PXb@j@BnQaIA{CAgD@UL?jB?`DDL?vG@N@dAuHRmAl@qEf@sDf@mD`@oCb@mCNgACUIUKKa@K_F@oA?eOAK?kFOUA@YJoBLgB@W?If@yK@ONSLwA?e@@m@@u@?w@Je@Rc@eCUQe@Cc@Hk@Na@HODCEBINO`@Ij@Bb@Pd@dCTSb@Kd@?v@At@Al@?d@MvADVzBb@~@PrDn@PDD@f@HbB\\hBZlBPB?r@?p@?bB?B?~AA|@AbEG~CGfNK?Y?eB@yC@sCSaCQe@QIYa@I@HAX`@PHPd@R`CArCAxC?dB?XxC?`@ClB@jBApBC^?dAAp@@T?vB@~@Fl@DXHzAf@vAp@fCjAn@LtAXj@Dl@DdCH~@BCq@ImAYeBE_@CM?G_@iBu@_DKa@QcAE{@Eq@Ce@Ak@KeCKk@I[[k@u@eAs@_A{@qA]w@So@WkAIo@WqBWqBUcBcAkINCKq@c@}Ag@iAYs@So@MQU[YYo@m@{@q@kAu@CI?I?K@IDIHGHAF@rAt@|ApAP`@j@t@d@n@^n@Zp@\\hAB^BJZbB^vBXfCTtBR`BHjAVnBTpAT~@Tl@l@dAdAjAfAx@v@b@j@Rh@Pz@L`@Df@Bd@?l@E~@KhAQv@U`Ai@xAeA^WnDaD~@m@f@Yz@_@fAWr@Ob@EXWj@MNEf@Kz@O|BY^EvAM`Hu@JAt@CBAVAf@Ana@P@U@ITgCf@iE@qB@q@p@gGHaACwAMqAMeAg@}AO[}CyGK_@Mg@Oq@Ce@?a@FmA~BoTL{@Ry@Zo@\\i@h@c@l@]|@YzG{Ah@Y`@[d@i@`@u@Nk@Lk@Dm@@m@EaAKi@g@iBsEeNg@aAeBaFcBcFSi@s@wBwAiEm@gBc@wAi@{AEKACk@wAi@kBoAoDOa@g@kBUk@Ma@I]E_@C[Ca@A_@B_@Dc@Ja@J]N]L[P[hCqE`@y@^y@z@{BPq@T_@`@{@r@mAv@sAZy@Lg@Fi@Fi@Bw@FiAJgAPw@^}@bA}Ax@{@bCsC^a@d@_@zAmAhFgE`Ao@xK_J~@_AhAmAlAsA`@m@Vm@Pq@Pq@p@gEdA{FBy@Nw@zAwIDo@ZeBJ{@Hq@@g@Cs@j@MXW`@yBr@}DeA[iAa@o@[e@Ba@?rAb@bOjEl@NJDp@TlFbCrD|BrGrDj@R^N`@Hx@NnCVhFn@bCZfCZ\\Dp@JxATd@LJ@~@PZJhA\\rAPZ@|A?h@HX@F?JBJ?HBb@NtBl@~Bb@z@AtACR?~@A`A?jABdAJ`ABvAAnCAbACvACjAG`CMbEC|@?x@KD`@g@F{CFeA@HlDyC@"
+        },
+        {
+            "vehicle": 4,
+            "cost": 8273,
+            "delivery": [
+                28
+            ],
+            "amount": [
+                28
+            ],
+            "pickup": [
+                0
+            ],
+            "setup": 0,
+            "service": 280,
+            "duration": 8273,
+            "waiting_time": 0,
+            "priority": 108,
+            "distance": 66968,
+            "steps": [
+                {
+                    "type": "start",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        28
+                    ],
+                    "arrival": 1707273914,
+                    "duration": 0,
+                    "violations": [],
+                    "distance": 0
+                },
+                {
+                    "type": "job",
+                    "description": "MUHAVRA ENTERPRISES PVT LTD ( DEVONAR)",
+                    "location": [
+                        72.9117052,
+                        19.0456712
+                    ],
+                    "id": 18,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 18,
+                    "load": [
+                        27
+                    ],
+                    "arrival": 1707274328,
+                    "duration": 414,
+                    "violations": [],
+                    "distance": 2931
+                },
+                {
+                    "type": "job",
+                    "description": "ZEN CONCEPTS MUMBAI",
+                    "location": [
+                        72.8388948,
+                        18.9345693
+                    ],
+                    "id": 17,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 17,
+                    "load": [
+                        26
+                    ],
+                    "arrival": 1707275591,
+                    "duration": 1667,
+                    "violations": [],
+                    "distance": 19568
+                },
+                {
+                    "type": "job",
+                    "description": "LOTUS ICE FACTORY LLP",
+                    "location": [
+                        72.8381841,
+                        18.9342934
+                    ],
+                    "id": 9,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 9,
+                    "load": [
+                        25
+                    ],
+                    "arrival": 1707275634,
+                    "duration": 1700,
+                    "violations": [],
+                    "distance": 19715
+                },
+                {
+                    "type": "job",
+                    "description": "TRICOLOUR (5 SPICE)",
+                    "location": [
+                        72.8359101,
+                        18.9324685
+                    ],
+                    "id": 8,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 8,
+                    "load": [
+                        24
+                    ],
+                    "arrival": 1707275694,
+                    "duration": 1750,
+                    "violations": [],
+                    "distance": 20103
+                },
+                {
+                    "type": "job",
+                    "description": "THE CHOCOLATE SPOON CO.PVT LTD",
+                    "location": [
+                        72.8325312,
+                        18.9214985
+                    ],
+                    "id": 21,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 21,
+                    "load": [
+                        23
+                    ],
+                    "arrival": 1707275863,
+                    "duration": 1909,
+                    "violations": [],
+                    "distance": 21549
+                },
+                {
+                    "type": "job",
+                    "description": "DESSERTS R US",
+                    "location": [
+                        72.8292767,
+                        18.9182209
+                    ],
+                    "id": 11,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 11,
+                    "load": [
+                        22
+                    ],
+                    "arrival": 1707275975,
+                    "duration": 2011,
+                    "violations": [],
+                    "distance": 22229
+                },
+                {
+                    "type": "job",
+                    "description": "PRESIDENT HOTEL",
+                    "location": [
+                        72.8297694,
+                        18.9230917
+                    ],
+                    "id": 15,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 15,
+                    "load": [
+                        21
+                    ],
+                    "arrival": 1707276122,
+                    "duration": 2148,
+                    "violations": [],
+                    "distance": 23274
+                },
+                {
+                    "type": "job",
+                    "description": "COLABA SWEET MART",
+                    "location": [
+                        72.821027,
+                        18.9147266
+                    ],
+                    "id": 12,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 12,
+                    "load": [
+                        20
+                    ],
+                    "arrival": 1707276392,
+                    "duration": 2408,
+                    "violations": [],
+                    "distance": 25783
+                },
+                {
+                    "type": "job",
+                    "description": "CATER-INC",
+                    "location": [
+                        72.8277976999999,
+                        18.92365
+                    ],
+                    "id": 22,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 22,
+                    "load": [
+                        19
+                    ],
+                    "arrival": 1707276600,
+                    "duration": 2606,
+                    "violations": [],
+                    "distance": 27311
+                },
+                {
+                    "type": "job",
+                    "description": "TAJ MAHAL PALACE & TOWER",
+                    "location": [
+                        72.8228939,
+                        18.9259423
+                    ],
+                    "id": 10,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 10,
+                    "load": [
+                        18
+                    ],
+                    "arrival": 1707276720,
+                    "duration": 2716,
+                    "violations": [],
+                    "distance": 28208
+                },
+                {
+                    "type": "job",
+                    "description": "STATUS RESTAURENT",
+                    "location": [
+                        72.8222189,
+                        18.9250656
+                    ],
+                    "id": 16,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 16,
+                    "load": [
+                        17
+                    ],
+                    "arrival": 1707276741,
+                    "duration": 2727,
+                    "violations": [],
+                    "distance": 28325
+                },
+                {
+                    "type": "job",
+                    "description": "VISH HOSPITALITY PRIVATE LIMITED",
+                    "location": [
+                        72.8264378,
+                        18.9322453
+                    ],
+                    "id": 7,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 7,
+                    "load": [
+                        16
+                    ],
+                    "arrival": 1707277010,
+                    "duration": 2986,
+                    "violations": [],
+                    "distance": 29869
+                },
+                {
+                    "type": "job",
+                    "description": "GAYLORD RESTAURANT",
+                    "location": [
+                        72.8261184,
+                        18.9330948
+                    ],
+                    "id": 4,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 4,
+                    "load": [
+                        15
+                    ],
+                    "arrival": 1707277142,
+                    "duration": 3108,
+                    "violations": [],
+                    "distance": 30246
+                },
+                {
+                    "type": "job",
+                    "description": "GAYLORDS BAKE SHOP",
+                    "location": [
+                        72.8260115,
+                        18.9332955
+                    ],
+                    "id": 5,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 5,
+                    "load": [
+                        14
+                    ],
+                    "arrival": 1707277217,
+                    "duration": 3173,
+                    "violations": [],
+                    "distance": 30647
+                },
+                {
+                    "type": "job",
+                    "description": "GOOD FOOD CONCEPT",
+                    "location": [
+                        72.8306953,
+                        18.9365297
+                    ],
+                    "id": 20,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 20,
+                    "load": [
+                        13
+                    ],
+                    "arrival": 1707277526,
+                    "duration": 3472,
+                    "violations": [],
+                    "distance": 32694
+                },
+                {
+                    "type": "job",
+                    "description": "SHORELINE HOTEL PVT LTD (CHURCHGATE )",
+                    "location": [
+                        72.8308382,
+                        18.9357466
+                    ],
+                    "id": 3,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 3,
+                    "load": [
+                        12
+                    ],
+                    "arrival": 1707277550,
+                    "duration": 3486,
+                    "violations": [],
+                    "distance": 32784
+                },
+                {
+                    "type": "job",
+                    "description": "BOMBAY GYMKHANA",
+                    "location": [
+                        72.8280833,
+                        18.941287
+                    ],
+                    "id": 6,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 6,
+                    "load": [
+                        11
+                    ],
+                    "arrival": 1707277727,
+                    "duration": 3653,
+                    "violations": [],
+                    "distance": 33774
+                },
+                {
+                    "type": "job",
+                    "description": "GOOD FOOD CONCEPT",
+                    "location": [
+                        72.8114706,
+                        18.962582
+                    ],
+                    "id": 26,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 26,
+                    "load": [
+                        10
+                    ],
+                    "arrival": 1707278391,
+                    "duration": 4307,
+                    "violations": [],
+                    "distance": 37956
+                },
+                {
+                    "type": "job",
+                    "description": "B.J.R. GALLOPS",
+                    "location": [
+                        72.8146015,
+                        18.976353
+                    ],
+                    "id": 29,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 29,
+                    "load": [
+                        9
+                    ],
+                    "arrival": 1707278797,
+                    "duration": 4703,
+                    "violations": [],
+                    "distance": 40708
+                },
+                {
+                    "type": "job",
+                    "description": "Kabu Hospitality LLP",
+                    "location": [
+                        72.8148637,
+                        18.9943387
+                    ],
+                    "id": 28,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 28,
+                    "load": [
+                        8
+                    ],
+                    "arrival": 1707279083,
+                    "duration": 4979,
+                    "violations": [],
+                    "distance": 43214
+                },
+                {
+                    "type": "job",
+                    "description": "GOURMESTAN PRIVATE LIMITED",
+                    "location": [
+                        72.8239782,
+                        18.9964395
+                    ],
+                    "id": 35,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 35,
+                    "load": [
+                        7
+                    ],
+                    "arrival": 1707279398,
+                    "duration": 5284,
+                    "violations": [],
+                    "distance": 45284
+                },
+                {
+                    "type": "job",
+                    "description": "MONGIA VENTURES PVT LTD [PEDDAR RD]",
+                    "location": [
+                        72.8239782,
+                        18.9964395
+                    ],
+                    "id": 25,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 25,
+                    "load": [
+                        6
+                    ],
+                    "arrival": 1707279408,
+                    "duration": 5284,
+                    "violations": [],
+                    "distance": 45284
+                },
+                {
+                    "type": "job",
+                    "description": "PILLION RIDDER LLP",
+                    "location": [
+                        72.8286371,
+                        19.0026879
+                    ],
+                    "id": 43,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 43,
+                    "load": [
+                        5
+                    ],
+                    "arrival": 1707279933,
+                    "duration": 5799,
+                    "violations": [],
+                    "distance": 48138
+                },
+                {
+                    "type": "job",
+                    "description": "RISA AFT HOSPITALITY LLP",
+                    "location": [
+                        72.8286371,
+                        19.0026879
+                    ],
+                    "id": 38,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 38,
+                    "load": [
+                        4
+                    ],
+                    "arrival": 1707279943,
+                    "duration": 5799,
+                    "violations": [],
+                    "distance": 48138
+                },
+                {
+                    "type": "job",
+                    "description": "NYX HOSPITALITY PVT LTD(MAHALAXMI W)",
+                    "location": [
+                        72.8292092,
+                        19.0024812
+                    ],
+                    "id": 37,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 37,
+                    "load": [
+                        3
+                    ],
+                    "arrival": 1707280091,
+                    "duration": 5937,
+                    "violations": [],
+                    "distance": 48534
+                },
+                {
+                    "type": "job",
+                    "description": "BURGEON RETAIL LLP",
+                    "location": [
+                        72.8287458,
+                        18.9885673
+                    ],
+                    "id": 51,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 51,
+                    "load": [
+                        2
+                    ],
+                    "arrival": 1707280514,
+                    "duration": 6350,
+                    "violations": [],
+                    "distance": 50995
+                },
+                {
+                    "type": "job",
+                    "description": "PRITAM RESTAURANT [DADAR]",
+                    "location": [
+                        72.8460289,
+                        19.0165341
+                    ],
+                    "id": 56,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 56,
+                    "load": [
+                        1
+                    ],
+                    "arrival": 1707281127,
+                    "duration": 6953,
+                    "violations": [],
+                    "distance": 55908
+                },
+                {
+                    "type": "job",
+                    "description": "INDIC WISDOM PRIVATE LIMITED (CLAIM)",
+                    "location": [
+                        72.8792702,
+                        19.0392325
+                    ],
+                    "id": 23,
+                    "setup": 0,
+                    "service": 10,
+                    "waiting_time": 0,
+                    "job": 23,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707281848,
+                    "duration": 7664,
+                    "violations": [],
+                    "distance": 61924
+                },
+                {
+                    "type": "end",
+                    "location": [
+                        72.8929133,
+                        19.0441447
+                    ],
+                    "setup": 0,
+                    "service": 0,
+                    "waiting_time": 0,
+                    "load": [
+                        0
+                    ],
+                    "arrival": 1707282467,
+                    "duration": 8273,
+                    "violations": [],
+                    "distance": 66956
+                }
+            ],
+            "violations": [],
+            "geometry": "{pfsBcy{{LxCAImDaGJqADq@@[@?[@e@?OSsD?GAIS{DQaCEsBIaBGk@Ma@CMCg@Gy@M{BEyA?gBFiBDqAFuAJwBBa@B]L}BD{ABa@@eA?{@AcBCkB@sB@mDCgCAgAEwDA{@OBO?MCMGIIGKEO?Q@QFODGBCLILEb@eATi@AeC?E?o@BaC@a@J{FFuE\\HEhCCbA?PKhF?J?TCtD?`@@n@?r@O`CAPZHZD`CPjDZfBJlCG`HXzALPAt@G`AIxEg@vDS~@Fx@Lv@Pv@`@v@f@x@n@x@~@f@|@b@dAlB~EdA~ClGbPJZHXH^Bf@@jB?j@Ch@Cd@e@|DMbBEj@?t@@x@Dp@Nz@nOzk@\\|@`@x@lGhJ^l@j@hAnEtLt@tBzLb\\`@v@Vd@n@bB^`A^x@`@v@j@z@pGzI\\\\RPj@XhItETNjAn@hDjBrCfBhEhCpAh@vAl@tBr@fBh@hB\\~AXfFr@j@Lh@Pp@Xt@`@h@\\f@`@r@x@t@bATb@NV\\z@`@xAVrAFbABnAA~@EfASjBM~@Ah@Bl@Jp@Tv@zEnMdBtEz@nCbA|Bn@xAXt@Vt@fB`Gf@xAd@lAj@lAv@|Ad@n@f@f@\\X`@T`A`@x@R`@HRBdAB|GOnDApEHjADp@Hr@JxHnBtA`@nAd@~@X|DpA|An@jGdCzF~BbDjAtHzCnk@pSB?pEdBpWzJpAb@hAVtAX`BThBZ~@D~A?vAGxAKjC_@pDq@xB[vBYrBUvDWdBIbBCtA@~Rn@zABdANnCd@lCd@bAVz@RxJtC|A\\~@Xf@Td@X`@X\\\\XT^Rl@LrB\\hAPdCd@pCd@ZJVNj@HvLnBhIpAVDdFx@vN|B|@NdTbDlDj@hZrE`En@rDj@rBZhBVhBXlBXz@LHB`@H`AXd@HZuBp@kFBOBIzATAF[lCWrBUbBn@@dBJr@NRHRLfBnBz@fADFRJD?b@FN@nAHh@BzCPb@NDD^Vx@jAx@h@n@^pAb@dBh@`@LlA\\v@Jv@Fv@Az@Ab@Dn@DTDb@LVRf@l@Vn@Zv@\\f@TVLBPHNNFR@DzBh@\\DzAd@jDx@dBb@Vy@Tu@n@sBjA`@d@Po@nBUt@Wx@bBv@vAr@hBhApBlAnAz@|AvADLDa@EKJy@LBhAPF@b@HZFNP\\\\Zd@R\\FJn@v@_Ah@_Al@CBKIw@_A_@c@_@c@[_@]c@ICcBwAoA{@sBmAgBeAuAu@oAm@SGaClFUh@CH]t@y@kA{@qA_B_CyCgECCiAq@KNOJQDQ@KTKh@y@dHWdAk@rAGLOn@ObBMrAAPCdBAp@Ch@XJNEl@@v@Bx@Bd@@`@BzFV~CRtFf@|APv@JPBhBd@bHdB\\Tz@z@hA`AtGzEp@d@vC`CvC|BjCzBCTq@bAe@p@kAdBOOtB}Cl@_AcCoBuC_CwCaCkIcG_Ay@o@o@[SaA]m@SyD}@sBi@MC@SBi@AE?OIe@gCcE{@C_IK}IKK?qBCgA?CdBAp@Ch@EPGJFHp@dAf@t@b@h@^\\GJGRL\\`@zBJvA?`@Aj@SxAc@|AQZOXfDdC}AvBeAzA{AvBeA{@uC_CU_@GNmC\\[LKLOPQTmDwBQKyCyAoFwBJYRs@Nm@Tw@@ERs@?A@E@Gd@cBBIDQDMRy@Rq@j@uBIGI@}GyFEFq@bAp@cADGe@_@IIaAs@AKGEGEm@a@g@~CATIhAGp@AXEd@u@xJUCDm@@OHgA@AHgA?CHiAH_A?E?EJkADs@HaA@OXyBFa@DYBUBO@c@FkA\\yFaHo@y@GA?KASAuAKYAy@Ig@Ek@A{AE]?cAFoIbA_AL{I`AcFj@CQtBUhMqB|@OzKaAfCSVCf@EZAp@IAP[PYT[FKByCF]?cAFoIbA_AL{I`AcFj@H^p@hDVnABH^~Ae@PcBj@mA`@gATGLZhA`@vAFRMDsDvAqD|AoAr@]RwEnCiBhAeG|D{JvHgBtAgAhA[XA@uBdCeCfDGJyDnF[d@}@vA[^WLQFOBeDXuDv@{@RG@cD|@OHWJSDY@aCv@}@XkBn@y@X_@LcDlAeCfA}@`@yAp@MF[NQRBAH?DBBB@FAFEDUHYHO@MAKECG?EDIUSq@e@o@GG@wBDq@HOD]JoBv@kA^m@Le@AMAcAEKAcBYYKQKM^ObABTFN`@h@h@b@b@N\\J`Bd@rAlAd@z@|@lBLXDFh@r@XJHM~@_AVUNOX_@\\s@XeAH[DQ^gAJW^eATi@Re@Zs@CG?EDIUSq@e@o@GG@wBDq@HOD]JoBv@kA^m@Le@AMAcAEKAcBYYKQK{A{A[SOGoA]_Ae@UQ}C}Bi@]oAk@o@C[Bk@J_@LWBs@B_@?qDIwBR}AZQDeAV[J]Na@ZMHq@h@SPMJm@l@}@|@QLi@`@oAx@m@^qJxE_@P_@NoB|@SJE][iCi@qEK}@VArKwDCQE]EYDXqAr@qHzBQFJn@r@lGXbCDZSJw@a@wMoIiAs@]UWQYWSS]a@u@y@[Yi@]k@]]Me@Qi@Oe@IQCQASAKAI?I?G@G@C?_@H[FWFSFu@T}C`AeBj@a@JYHe@Fm@Bk@Bc@@M@u@HeABuNa@E?O?IAyACsEQsAIi@ISEgBk@aBo@OIy@c@}@e@yBmA}@a@mBs@}@[eG_C}BeAaAc@cAc@[K`@MjBk@fAe@LErEoBrCoAvHeDZOd@Sb@Qh@WNGnB{@BAvCqAq@gBmAoBm@u@a@e@[Um@a@}Ae@u@OsAKo@?_@Fa@FwAVMc@EOCOE]EYIcB?EACEA}A???|A?D@@B?DHbBDXD\\BNDNLb@vAW`@G^Gn@?rAJt@N|Ad@l@`@ZT`@d@l@t@lAnBp@fBh@UZMXMLGFDJHBDDBHHLJVB~A[vAw@r@g@Tg@HQBEDMzC_BHO@Qe@e@OGsD}AsCmAuGqCmAe@]QaBu@u@YwA{@[KkXgLkP{GaAe@a@OgBe@EFq@pAu@pA??GJcBvC@XwB}A\\u@d@o@b@HL@hByC^m@FKaA_@kBy@}GsCeAc@nACxACbLSpACxACXAh@MjPWLA`FInHMj@AF?bEIjCEbAAxEIdDEbLQDV^dFX~AV~@J`@Rr@XbA@DJ\\Lf@Nl@RvALpB|@R~IyAbDaDDGoEkECC?E?CBC|C}Dg@e@QMq@k@iAcAgAcAUSKU]K_AIaBCm@E]GSMSWGUGUEa@?W?qBE]MUOQsCeCYMQ@gAo@iDwCIUY@u@Kq@YmCwAi@Q{@GeAGiBEaCKiAEwCKUEu@GkBa@}Aq@wAm@GE_AWk@C]Ag@@w@Au@?}@?qAOm@U}Di@aB[UGsA[mB_@k@K]GaC[i@Kw@Qs@Ow@Ey@QMCg@Os@_@YS[Wi@i@e@g@c@_@w@e@eAs@IEc@U_Ae@qAg@YMICc@Ke@Ks@Qc@KOE}@YQEs@WCAEA_Ae@]SaB}@aAi@u@a@gAq@u@q@cCyAqDuBeAe@m@_@s@a@g@YeDoBuCmB_@WgBmAQKOMo@xAn@yA_C}AKIs@c@CC]SKGQCQBS?SEQKMOIUCW@WHUNQPMLCLAL?LBn@g@FMd@}@xGwLBEp@sAGIaB{AwCeDs@aAY]i@_A]q@{AaDu@aBu@qAQ[UUC@C@C@GAECAEAC?CUIaB{@GQEM@IFe@V{@~@yAHSDU@a@N}FLwCP{ERgJNwCJa@DMFGHIVQjDsANIHQDmA?]S]mAi@cBa@WOEUf@uFFgBASNwA?GFw@Fy@Fo@t@cHLiCBY?_@AYq@gIEe@Ga@GIKOSM{Am@_DuAgBy@QKk@]aAi@iBaAaAg@yBsAs@a@a@Y_@[a@Em@Km@Ks@Im@EIAKA}@ImBQaBOqCW_WsCaDa@GAIAk@KWEaC_@MCIC_AOk@Q_EiBmFaCoBk@yCg@YEYE{@I}ACS?S@qCLe@D[DoFd@{DZqE\\kHZW@aAFeDXs@DU@SD_J`CoATgB`@[?OBi@LeBZYHKBu@T_EhA[FSBIBO?S@[?g@HO@M?QEYMWQOQS[MOOMmBsAs@g@a@YMKKOISGOcB}FSuAYeAgAcFU{@u@sAiBaFQe@G]AKAMBKBIDGFGnBsAFGFKBKBI@K?KAWKsEGkAQyCQoFGaBAWEuAGmBEuBIyCJoBBiEAw@?mB?k@Bk@B]\\Dp@JxATd@LJ@~@PZJhA\\rAPZ@|A?h@HX@F?JBJ?HBb@NtBl@~Bb@z@AtACR?~@A`A?jABdAJ`ABvAAnCAbACvACjAG`CMbEC|@?x@KD`@g@F{CFeA@HlDyC@"
+        }
+    ]
+}
