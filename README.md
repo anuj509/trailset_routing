@@ -47,6 +47,13 @@ Trailset Routing is an innovative solution aimed at empowering logistic companie
 - **UI Support**: Developed on Flutter for web 3.13.4 with openstreetmap.
 - **Containerization** : VROOM and Valhalla are hosted on Docker container.
 
+
+### Architecture
+[![Architecture Diagram](https://github.com/anuj509/trailset_routing/blob/main/media/trailset-arch-diagram.jpg)](http://trailset.in)
+
+### Hack2Skill Presentation
+[Presentation](https://github.com/anuj509/trailset_routing/blob/main/media/Hackathon Submission__Trailset_RoutingV1.pdf)
+
 ### Setup
 - Pre-requisite Flutter, Apache2, Docker installed
 - Download Geofabrik map data [file](https://download.geofabrik.de/asia/india/western-zone-latest.osm.pbf) in custom_files directory. 
