@@ -52,7 +52,7 @@ Trailset Routing is an innovative solution aimed at empowering logistic companie
 [![Architecture Diagram](https://github.com/anuj509/trailset_routing/blob/main/media/trailset-arch-diagram.jpg)](http://trailset.in)
 
 ### Hack2Skill Presentation
-[Presentation](https://github.com/anuj509/trailset_routing/blob/main/media/Hackathon Submission__Trailset_RoutingV1.pdf)
+[Presentation](https://github.com/anuj509/trailset_routing/blob/main/media/Hackathon_Submission__Trailset_RoutingV1.pdf)
 
 ### Setup
 - Pre-requisite Flutter, Apache2, Docker installed
